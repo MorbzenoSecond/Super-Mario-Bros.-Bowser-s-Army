@@ -1,0 +1,327 @@
+[gd_scene load_steps=36 format=3 uid="uid://duc6vwj0d8q4y"]
+
+[ext_resource type="Script" uid="uid://bqm8bo6ao4q6g" path="res://Enemies/Koopa/koopa.gd" id="1_tgwte"]
+[ext_resource type="Texture2D" uid="uid://pxr12au1quo5" path="res://Enemies/Koopa/Koopa Exportable.png" id="1_xjc6k"]
+[ext_resource type="Shader" uid="uid://dotm6yfkpslgc" path="res://Enemies/Koopa/Koopa.gdshader" id="2_kce2r"]
+[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://Enemies/Super Mario Bros- Goomba Stomp Sound.mp3" id="3_82s7y"]
+[ext_resource type="Script" uid="uid://c26gyx3n3aw6n" path="res://State/State_Machine.gd" id="4_p8rd5"]
+[ext_resource type="Script" uid="uid://pg6tmodih83x" path="res://Enemies/Koopa/koopa_walk.gd" id="5_mvgmj"]
+[ext_resource type="Script" uid="uid://b6kboyeqmk65a" path="res://Enemies/Koopa/koopa_shell.gd" id="6_dr2br"]
+[ext_resource type="Script" uid="uid://dvv4m2c0rtyvc" path="res://Enemies/Koopa/koopa_shell_spining.gd" id="7_rq3oa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hi4v2"]
+shader = ExtResource("2_kce2r")
+shader_parameter/red = false
+shader_parameter/OLDCOLOR1 = Color(0.231373, 0.427451, 0.270588, 1)
+shader_parameter/OLDCOLOR2 = Color(0.215686, 0.529412, 0.2, 1)
+shader_parameter/OLDCOLOR3 = Color(0.192157, 0.678431, 0.0941176, 1)
+shader_parameter/OLDCOLOR4 = Color(0.337255, 0.737255, 0.254902, 1)
+shader_parameter/OLDCOLOR5 = Color(0.552941, 0.819608, 0.501961, 1)
+shader_parameter/NEWCOLOR1 = Color(0.313726, 0.0588235, 0.0470588, 1)
+shader_parameter/NEWCOLOR2 = Color(0.631373, 0.0941176, 0, 1)
+shader_parameter/NEWCOLOR3 = Color(0.909804, 0.137255, 0.00392157, 1)
+shader_parameter/NEWCOLOR4 = Color(0.913725, 0.227451, 0.109804, 1)
+shader_parameter/NEWCOLOR5 = Color(0.913725, 0.227451, 0.109804, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcn6l"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(280, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iamqa"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(280, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8awar"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(308, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwth2"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(336, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ppgq"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(364, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlsjb"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(392, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb4ou"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(420, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pr13"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(448, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8us6"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(476, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xjnk"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(0, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvlk2"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(28, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67y41"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(56, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nbx7"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(84, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvgmj"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(112, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr2br"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(140, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq3oa"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(168, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kce2r"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(196, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi4v2"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(224, 0, 28, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7cq"]
+atlas = ExtResource("1_xjc6k")
+region = Rect2(252, 0, 28, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pf8fp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcn6l")
+}],
+"loop": true,
+"name": &"green_shell",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iamqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8awar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwth2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ppgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlsjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb4ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pr13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8us6")
+}],
+"loop": true,
+"name": &"green_spining_shell",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xjnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvlk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67y41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nbx7")
+}],
+"loop": true,
+"name": &"green_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvgmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr2br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq3oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kce2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi4v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7cq")
+}],
+"loop": true,
+"name": &"red_walk",
+"speed": 6.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edal0"]
+size = Vector2(35, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjvtj"]
+size = Vector2(44, 96.3333)
+
+[sub_resource type="Animation" id="Animation_rq3oa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -53.15)]
+}
+
+[sub_resource type="Animation" id="Animation_kce2r"]
+resource_name = "golpe de goomba"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -53), Vector2(0, -70), Vector2(0, -80), Vector2(0, -70), Vector2(0, -53)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hi4v2"]
+_data = {
+&"RESET": SubResource("Animation_rq3oa"),
+&"shell_hit": SubResource("Animation_kce2r")
+}
+
+[sub_resource type="Gradient" id="Gradient_rq3oa"]
+offsets = PackedFloat32Array(0, 0.446429, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.642857, 0.642857, 0.642857, 1, 0.78, 0.78, 0.78, 0.262745)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[node name="Koopa" type="CharacterBody2D" groups=["Enemies"]]
+position = Vector2(0, -48)
+scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_tgwte")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hi4v2")
+position = Vector2(0, -53.15)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pf8fp")
+animation = &"green_shell"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -24.5)
+shape = SubResource("RectangleShape2D_edal0")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 3
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, -32.1667)
+shape = SubResource("RectangleShape2D_pjvtj")
+
+[node name="die" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-16, 4)
+stream = ExtResource("3_82s7y")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_p8rd5")
+initial_state = NodePath("KoopaWalk")
+
+[node name="KoopaWalk" type="Node" parent="State Machine"]
+script = ExtResource("5_mvgmj")
+
+[node name="KoopaShell" type="Node" parent="State Machine"]
+script = ExtResource("6_dr2br")
+
+[node name="KoopaShellSpining" type="Node" parent="State Machine"]
+script = ExtResource("7_rq3oa")
+
+[node name="Timer" type="Timer" parent="State Machine/KoopaShellSpining"]
+wait_time = 0.1
+
+[node name="Back" type="RayCast2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -28.6666)
+target_position = Vector2(28, 0)
+collision_mask = 6
+hit_from_inside = true
+
+[node name="Front" type="RayCast2D" parent="."]
+position = Vector2(0, -28.6666)
+target_position = Vector2(-28, 0)
+collision_mask = 6
+hit_from_inside = true
+
+[node name="Floor" type="RayCast2D" parent="."]
+position = Vector2(-13.3333, -16)
+target_position = Vector2(0, 38.3333)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hi4v2")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(0, 16)
+rotation = 2.51327
+emitting = false
+amount = 14
+lifetime = 0.5
+randomness = 0.56
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(100, 0)
+gravity = Vector2(0, -980)
+angular_velocity_min = -486.0
+angular_velocity_max = 288.0
+angle_min = -522.0
+angle_max = 486.0
+scale_amount_max = 26.0
+color_ramp = SubResource("Gradient_rq3oa")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="State Machine/KoopaShell" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="State Machine/KoopaShellSpining" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="State Machine/KoopaShellSpining/Timer" to="State Machine/KoopaShellSpining" method="_on_timer_timeout"]

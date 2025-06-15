@@ -1,0 +1,392 @@
+[gd_scene load_steps=54 format=3 uid="uid://fr7e11fmcjbl"]
+
+[ext_resource type="Script" uid="uid://bqa4mqrkibwel" path="res://Mario/Mario.gd" id="1_wrvex"]
+[ext_resource type="Texture2D" uid="uid://c1drn5aifkimk" path="res://Mario/Mario exportable.png" id="2_3hini"]
+[ext_resource type="Texture2D" uid="uid://ppuns5p3ayse" path="res://Mario/Mario.png" id="2_4ckko"]
+[ext_resource type="AudioStream" uid="uid://luq8kggr0d6q" path="res://Mario/Mario Jump Sound Effect.mp3" id="3_4ckko"]
+[ext_resource type="AudioStream" uid="uid://dshhl3lu47i3c" path="res://Mario/Mario Death - Sound Effect (HD).mp3" id="4_4gsdp"]
+[ext_resource type="Texture2D" uid="uid://ba4hlhvbyndh0" path="res://Mario/Mario estados.png" id="5_a1xm4"]
+[ext_resource type="Script" uid="uid://c26gyx3n3aw6n" path="res://Mario/State_Machine.gd" id="7_inkg7"]
+[ext_resource type="Script" uid="uid://cayo37x0xjkug" path="res://Mario/PlayerIdle.gd" id="8_m27cl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrvex"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ckko"]
+size = Vector2(16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hini"]
+atlas = ExtResource("2_3hini")
+region = Rect2(216, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inkg7"]
+atlas = ExtResource("2_3hini")
+region = Rect2(240, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q02hw"]
+atlas = ExtResource("2_3hini")
+region = Rect2(264, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrb0v"]
+atlas = ExtResource("2_3hini")
+region = Rect2(360, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rruph"]
+atlas = ExtResource("2_3hini")
+region = Rect2(336, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m27cl"]
+atlas = ExtResource("2_3hini")
+region = Rect2(0, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62d3u"]
+atlas = ExtResource("2_3hini")
+region = Rect2(24, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgq3k"]
+atlas = ExtResource("2_3hini")
+region = Rect2(264, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7mkf"]
+atlas = ExtResource("2_3hini")
+region = Rect2(288, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edt4b"]
+atlas = ExtResource("2_3hini")
+region = Rect2(312, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5ix6"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(72, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtlat"]
+atlas = ExtResource("2_3hini")
+region = Rect2(120, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buq8s"]
+atlas = ExtResource("2_3hini")
+region = Rect2(144, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q1p4"]
+atlas = ExtResource("2_3hini")
+region = Rect2(168, 0, 24, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g62fp"]
+atlas = ExtResource("2_3hini")
+region = Rect2(192, 0, 24, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1xm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hini")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inkg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q02hw")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrb0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rruph")
+}],
+"loop": true,
+"name": &"Talking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m27cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62d3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgq3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7mkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edt4b")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5ix6")
+}],
+"loop": true,
+"name": &"friction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtlat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buq8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q1p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g62fp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcndt"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(252, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0nmp"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(162, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc8ka"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(234, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1xm4"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(180, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wa4w"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(198, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hydp1"]
+atlas = ExtResource("5_a1xm4")
+region = Rect2(216, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ecrbk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcndt")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0nmp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc8ka")
+}],
+"loop": true,
+"name": &"friction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1xm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wa4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hydp1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdawk"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(90, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv04r"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(108, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gsdp"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrvex"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(72, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ckko"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(18, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_752v2"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(36, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76esm"]
+atlas = ExtResource("2_4ckko")
+region = Rect2(54, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_752v2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdawk")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv04r")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gsdp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrvex")
+}],
+"loop": true,
+"name": &"friction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ckko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_752v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76esm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3hini"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_inkg7"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_m27cl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_62d3u"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q02hw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jrb0v"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rruph"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtlat"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buq8s"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8q1p4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g62fp"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tgq3k"]
+"states/Jump up/node" = SubResource("AnimationNodeBlendSpace2D_3hini")
+"states/Jump up/position" = Vector2(465.319, -20.191)
+states/Start/position = Vector2(203, 100)
+states/iddle/node = SubResource("AnimationNodeStateMachine_inkg7")
+states/iddle/position = Vector2(374, 100)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_m27cl")
+states/walk/position = Vector2(553, 100)
+transitions = ["Start", "iddle", SubResource("AnimationNodeStateMachineTransition_62d3u"), "iddle", "walk", SubResource("AnimationNodeStateMachineTransition_q02hw"), "walk", "End", SubResource("AnimationNodeStateMachineTransition_jrb0v"), "Jump up", "iddle", SubResource("AnimationNodeStateMachineTransition_rruph"), "iddle", "Jump up", SubResource("AnimationNodeStateMachineTransition_qtlat"), "Jump up", "walk", SubResource("AnimationNodeStateMachineTransition_buq8s"), "walk", "Jump up", SubResource("AnimationNodeStateMachineTransition_8q1p4"), "walk", "iddle", SubResource("AnimationNodeStateMachineTransition_g62fp")]
+graph_offset = Vector2(-2.97302, -54.191)
+
+[node name="Mario" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 15
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_wrvex")
+Player_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_wrvex")
+debug_color = Color(0.100016, 0.522804, 1, 0.42)
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4ckko")
+debug_color = Color(0.949982, 4.23551e-06, 0.570836, 0.42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4ckko")
+volume_db = -9.675
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4gsdp")
+
+[node name="Iframe" type="Timer" parent="."]
+
+[node name="Big" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -8)
+sprite_frames = SubResource("SpriteFrames_a1xm4")
+animation = &"falling"
+
+[node name="Fire" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_ecrbk")
+animation = &"friction"
+
+[node name="Small" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_752v2")
+animation = &"Jump"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_tgq3k")
+"parameters/Jump up/blend_position" = Vector2(0, 0)
+parameters/walk/blend_position = Vector2(-0.00106496, 0.421488)
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_inkg7")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="State Machine"]
+script = ExtResource("8_m27cl")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Iframe" to="." method="_on_iframe_timeout"]

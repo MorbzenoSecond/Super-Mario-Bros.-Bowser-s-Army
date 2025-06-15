@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=4 uid="uid://dl3ajpph4krpa"]
+
+[ext_resource type="Script" uid="uid://5776k0dgpcro" path="res://node_2d.gd" id="1_52m40"]
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://bandera/Fondo.png" id="2_rv0tv"]
+[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://Enemies/Goomba/goomba.tscn" id="3_isuyh"]
+[ext_resource type="PackedScene" uid="uid://di3eirwna2f8r" path="res://Enemies/Bullet/Cannon/Cannon.tscn" id="4_dj4lm"]
+[ext_resource type="PackedScene" uid="uid://dkfqtofx032h6" path="res://Enemies/Bullet/Bill/bill.tscn" id="5_ijk1a"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="6_yst8l"]
+[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://Bloques/brick.tscn" id="7_331hi"]
+[ext_resource type="AudioStream" uid="uid://5kbid6fal8dy" path="res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3" id="8_d01w6"]
+[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="9_rv0tv"]
+[ext_resource type="PackedScene" uid="uid://msmsddp3ecl4" path="res://Power ups/coin.tscn" id="10_isuyh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52m40"]
+texture = ExtResource("2_rv0tv")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8, -4, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d21ai"]
+physics_layer_0/collision_layer = 3
+sources/0 = SubResource("TileSetAtlasSource_52m40")
+
+[node name="1-1" type="Node2D"]
+script = ExtResource("1_52m40")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAACAAAAAAACAAgAAAACAAAAAAADAAgAAAACAAAAAAAEAAgAAAACAAAAAAAFAAgAAAACAAAAAAAGAAgAAAACAAAAAAAHAAgAAAACAAAAAAAIAAgAAAACAAAAAAAJAAgAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAAMAAgAAAACAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAgAAAACAAAAAAAQAAgAAAACAAAAAAARAAgAAAACAAAAAAASAAgAAAACAAAAAAATAAgAAAACAAAAAAAUAAgAAAACAAAAAAAVAAgAAAACAAAAAAAWAAgAAAACAAAAAAAXAAgAAAACAAAAAAAYAAgAAAACAAAAAAAZAAgAAAACAAAAAAAaAAgAAAACAAAAAAAbAAgAAAACAAAAAAAcAAgAAAACAAAAAAAdAAgAAAACAAAAAAAeAAgAAAACAAAAAAAfAAgAAAACAAAAAAAgAAgAAAACAAAAAAAhAAgAAAACAAAAAAAiAAgAAAACAAAAAAAjAAgAAAACAAAAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAACAAAAAAAnAAgAAAACAAAAAAAoAAgAAAACAAAAAAApAAgAAAACAAAAAAAqAAgAAAACAAAAAAArAAgAAAACAAAAAAAsAAgAAAACAAAAAAAtAAgAAAACAAAAAAAuAAgAAAACAAAAAAAvAAgAAAACAAAAAAAwAAgAAAACAAAAAAAxAAgAAAACAAAAAAAyAAgAAAACAAAAAAAzAAgAAAACAAAAAAA0AAgAAAACAAAAAAA1AAgAAAACAAAAAAA2AAgAAAACAAAAAAA3AAgAAAACAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAEAAAANAAYAAAABAAAAAAANAAcAAAABAAEAAAAOAAYAAAACAAAAAAAOAAcAAAACAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAAAAAAQAAYAAAACAAAAAAAQAAcAAAACAAAAAAADAAcAAAACAAAAAAADAAYAAAACAAAAAAADAAUAAAACAAAAAAADAAQAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_d21ai")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Goomba" parent="Enemies" instance=ExtResource("3_isuyh")]
+position = Vector2(798, 260)
+horizontal_speed = -30
+
+[node name="Goomba4" parent="Enemies" instance=ExtResource("3_isuyh")]
+position = Vector2(537, 355)
+
+[node name="Cannons" type="Node" parent="Enemies"]
+
+[node name="RigidBody2D" parent="Enemies/Cannons" instance=ExtResource("4_dj4lm")]
+position = Vector2(681, 235.5)
+bullet = ExtResource("5_ijk1a")
+
+[node name="RigidBody2D2" parent="Enemies/Cannons" instance=ExtResource("4_dj4lm")]
+position = Vector2(853, 72)
+
+[node name="RigidBody2D3" parent="Enemies/Cannons" instance=ExtResource("4_dj4lm")]
+position = Vector2(1096, -55)
+
+[node name="Mario" parent="." instance=ExtResource("6_yst8l")]
+position = Vector2(-24, -31)
+scale = Vector2(3, 3)
+motion_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="Mario"]
+position = Vector2(34.3333, 10.3333)
+
+[node name="Bricks" type="Node" parent="."]
+
+[node name="Brick2" parent="Bricks" instance=ExtResource("7_331hi")]
+position = Vector2(424, -323)
+scale = Vector2(3, 3)
+
+[node name="Brick" parent="Bricks" instance=ExtResource("7_331hi")]
+position = Vector2(328, 239)
+scale = Vector2(3, 3)
+
+[node name="Brick3" parent="Bricks" instance=ExtResource("7_331hi")]
+position = Vector2(314, -222)
+scale = Vector2(3, 3)
+
+[node name="Brick4" parent="Bricks" instance=ExtResource("7_331hi")]
+position = Vector2(478, -320)
+scale = Vector2(3, 3)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_d01w6")
+
+[node name="Brick" parent="." instance=ExtResource("7_331hi")]
+position = Vector2(1043, 212)
+scale = Vector2(3, 3)
+
+[node name="UI" parent="." instance=ExtResource("9_rv0tv")]
+
+[node name="Coin" parent="." instance=ExtResource("10_isuyh")]
+position = Vector2(497, -85)
+coin_type = 1

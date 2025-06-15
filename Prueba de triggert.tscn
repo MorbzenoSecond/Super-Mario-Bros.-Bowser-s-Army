@@ -1,0 +1,156 @@
+[gd_scene load_steps=17 format=4 uid="uid://dtmwob3lgiuek"]
+
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://bandera/Fondo.png" id="1_tpgt6"]
+[ext_resource type="Script" uid="uid://bou5hfkw5m2mx" path="res://area_2d.gd" id="2_pp0uk"]
+[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://Enemies/Goomba/goomba.tscn" id="2_vtboj"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="3_pp0uk"]
+[ext_resource type="PackedScene" uid="uid://di3eirwna2f8r" path="res://Enemies/Bullet/Cannon/Cannon.tscn" id="5_p7pkq"]
+[ext_resource type="PackedScene" uid="uid://biknwpwud3pkg" path="res://Checkpoint.tscn" id="6_4plbv"]
+[ext_resource type="PackedScene" uid="uid://duc6vwj0d8q4y" path="res://Enemies/Koopa/Koopa.tscn" id="6_4rne6"]
+[ext_resource type="Script" uid="uid://c0wxt4v0ypxx5" path="res://cambio de escena.gd" id="7_nx1dr"]
+[ext_resource type="AudioStream" uid="uid://d36pfiybggyhy" path="res://music/Super Mario 3D World - Main Theme -  HD.mp3" id="8_nv3kh"]
+[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="9_x7o0c"]
+[ext_resource type="PackedScene" uid="uid://c3nh5p4yrim8u" path="res://enemy_spawn_trigger.tscn" id="10_ovhhl"]
+[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://Bloques/brick.tscn" id="12_i21mj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7s4b"]
+texture = ExtResource("1_tpgt6")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8, -4, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vtboj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
+sources/0 = SubResource("TileSetAtlasSource_d7s4b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp0uk"]
+size = Vector2(1741, 297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nv3kh"]
+size = Vector2(56, 66)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Brick3" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1656, 120)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_vtboj")
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("2_pp0uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1312, -272)
+shape = SubResource("RectangleShape2D_pp0uk")
+
+[node name="Goomba" parent="Area2D2" instance=ExtResource("2_vtboj")]
+position = Vector2(408, 332)
+
+[node name="RigidBody2D" parent="Area2D2" instance=ExtResource("5_p7pkq")]
+position = Vector2(288, 332)
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_4plbv")]
+position = Vector2(48, 336)
+
+[node name="Area2D3" type="Area2D" parent="."]
+scale = Vector2(1, 1.0068)
+script = ExtResource("7_nx1dr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(256, -246.325)
+shape = SubResource("RectangleShape2D_nv3kh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_nv3kh")
+parameters/looping = false
+
+[node name="Start_point" parent="." instance=ExtResource("6_4plbv")]
+position = Vector2(-16, -48)
+invisible = true
+
+[node name="UI" parent="." instance=ExtResource("9_x7o0c")]
+
+[node name="enemy_spawn_trigger" parent="." instance=ExtResource("10_ovhhl")]
+position = Vector2(1144, 0)
+size_y = 5000
+size_x = 7000
+
+[node name="Koopa" parent="enemy_spawn_trigger" instance=ExtResource("6_4rne6")]
+position = Vector2(288, -80)
+scale = Vector2(1, 1)
+
+[node name="Goomba2" parent="enemy_spawn_trigger" instance=ExtResource("2_vtboj")]
+position = Vector2(64, 112)
+
+[node name="Goomba4" parent="enemy_spawn_trigger" instance=ExtResource("2_vtboj")]
+position = Vector2(-408, 272)
+
+[node name="Goomba5" parent="enemy_spawn_trigger" instance=ExtResource("2_vtboj")]
+position = Vector2(1496, -3)
+
+[node name="Koopa4" parent="enemy_spawn_trigger" instance=ExtResource("6_4rne6")]
+position = Vector2(-8, 120)
+scale = Vector2(1, 1)
+red = true
+
+[node name="Brick" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1608, 120)
+
+[node name="Mario" parent="." instance=ExtResource("3_pp0uk")]
+position = Vector2(1368, -144)
+scale = Vector2(3, 3)
+motion_mode = 0
+Player_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="Mario"]
+position = Vector2(18.6666, -2.66667)
+
+[node name="Brick2" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(5856, 96)
+scale = Vector2(9, 9)
+
+[node name="Brick4" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1464, 24)
+
+[node name="Brick5" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1800, -24)
+
+[node name="Brick6" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1560, 24)
+
+[node name="Brick7" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1560, 120)
+
+[node name="Brick8" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1512, 120)
+
+[node name="Brick9" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1464, 120)
+
+[node name="Brick10" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1512, 24)
+
+[node name="Brick11" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(6048, 192)
+scale = Vector2(9, 9)
+
+[node name="Brick12" parent="." instance=ExtResource("12_i21mj")]
+position = Vector2(1416, 24)
+
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D2" to="Area2D2" method="_on_area_exited"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]
+[connection signal="area_entered" from="Area2D3" to="Area2D3" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]

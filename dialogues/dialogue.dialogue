@@ -1,0 +1,22 @@
+~ start
+do play_noises(1.5, "talk")
+Goomba: Hola mario, [wait=1]que tal estas?
+~ snipets
+do play_noises(2.0, "talk")
+Goomba: Veo que has estado algo... [wave amp=25 freq=5]ocupado.[/wave]
+- Asi es
+	do play_noises(0.2, "talk")
+	Goomba: Recuperate.
+- Los Goombas hablan?
+	do play_noises(0.3, "talk")
+	Goomba: Cabron racista.
+	- Lo siento...
+		do play_noises(2.5, "talk")
+		Goomba: No te preocupes, que te vaya[wait=0.3].[wait=0.3].[wait=0.3]. [speed=0.2] bien => snipets
+	- (Escapa)
+		do play_noises(1.0, "talk")
+		Goomba: [shake rate=20 level=10]¡¡Eso, corre perro!![/shake] => END!
+- Start again => start
+- Adios perro => END
+
+=> END

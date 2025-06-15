@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dklqy63qiphac"]
+
+[ext_resource type="Script" uid="uid://b14iymhif7wwp" path="res://Bloques/brick.gd" id="1_5p85m"]
+[ext_resource type="Texture2D" uid="uid://dttw2ibfmtb6o" path="res://Bloques/Ladrillos.png" id="2_mt0q5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llic7"]
+size = Vector2(46, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p85m"]
+size = Vector2(46, 7)
+
+[node name="Brick" type="StaticBody2D" groups=["Brick_golpeable"]]
+collision_layer = 7
+script = ExtResource("1_5p85m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("2_mt0q5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_llic7")
+one_way_collision_margin = 0.0
+
+[node name="Top" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_5p85m")

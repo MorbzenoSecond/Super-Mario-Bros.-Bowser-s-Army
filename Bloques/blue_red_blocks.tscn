@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl2l6f5sdpxm3"]
+
+[ext_resource type="Texture2D" uid="uid://d3fjbjrheag2i" path="res://Bloques/Bloques.png" id="1_ajfxk"]
+[ext_resource type="Script" uid="uid://vvllweqlxe6y" path="res://Bloques/blue_red_blocks.gd" id="1_sp7ur"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajfxk"]
+atlas = ExtResource("1_ajfxk")
+region = Rect2(68, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp7ur"]
+atlas = ExtResource("1_ajfxk")
+region = Rect2(68, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl5e6"]
+atlas = ExtResource("1_ajfxk")
+region = Rect2(51, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4lsy"]
+atlas = ExtResource("1_ajfxk")
+region = Rect2(51, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gnl81"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajfxk")
+}],
+"loop": true,
+"name": &"blue_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp7ur")
+}],
+"loop": true,
+"name": &"blue_on",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl5e6")
+}],
+"loop": true,
+"name": &"red_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4lsy")
+}],
+"loop": true,
+"name": &"red_on",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llic7"]
+size = Vector2(16, 16)
+
+[node name="Blue-red blocks" type="StaticBody2D" groups=["color-blocks"]]
+position = Vector2(13, 14)
+script = ExtResource("1_sp7ur")
+start_color = 1
+state = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gnl81")
+animation = &"blue_off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_llic7")
+one_way_collision_margin = 0.0

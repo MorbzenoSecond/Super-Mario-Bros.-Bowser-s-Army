@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=4 uid="uid://365sat4q0r48"]
+
+[ext_resource type="Script" uid="uid://5776k0dgpcro" path="res://node_2d.gd" id="1_fjb31"]
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://Mario/Fondo.png" id="2_hb5rr"]
+[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://enemy}/goomba.tscn" id="3_7f5d8"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/mario.tscn" id="4_h0p22"]
+[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://Bloques/brick.tscn" id="5_j5ljb"]
+[ext_resource type="AudioStream" uid="uid://5kbid6fal8dy" path="res://Super Mario Bros (NES) Music - Overworld Theme.mp3" id="6_be522"]
+[ext_resource type="PackedScene" uid="uid://dkgyk4p8cp883" path="res://Bloques/mystery_box.tscn" id="6_h0p22"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_7f5d8"]
+[ext_resource type="PackedScene" uid="uid://nssai6e3wv3e" path="res://Bloques/on_off_block.tscn" id="7_j5ljb"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_h0p22"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
+texture = ExtResource("2_hb5rr")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8, -4, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d21ai"]
+physics_layer_0/collision_layer = 3
+sources/0 = SubResource("TileSetAtlasSource_kdubu")
+
+[sub_resource type="Resource" id="Resource_j5ljb"]
+script = ExtResource("8_h0p22")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Prueba de goombas" type="Node2D"]
+script = ExtResource("1_fjb31")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAACAAAAAAACAAgAAAACAAAAAAADAAgAAAACAAAAAAAEAAgAAAACAAAAAAAFAAgAAAACAAAAAAAGAAgAAAACAAAAAAAHAAgAAAACAAAAAAAIAAgAAAACAAAAAAAJAAgAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAAMAAgAAAACAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAgAAAACAAAAAAAQAAgAAAACAAAAAAARAAgAAAACAAAAAAASAAgAAAACAAAAAAATAAgAAAACAAAAAAAUAAgAAAACAAAAAAAVAAgAAAACAAAAAAAWAAgAAAACAAAAAAAXAAgAAAACAAAAAAAYAAgAAAACAAAAAAAZAAgAAAACAAAAAAAaAAgAAAACAAAAAAAbAAgAAAACAAAAAAAcAAgAAAACAAAAAAAdAAgAAAACAAAAAAAeAAgAAAACAAAAAAAfAAgAAAACAAAAAAAgAAgAAAACAAAAAAAhAAgAAAACAAAAAAAiAAgAAAACAAAAAAAjAAgAAAACAAAAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAACAAAAAAAnAAgAAAACAAAAAAAoAAgAAAACAAAAAAApAAgAAAACAAAAAAAqAAgAAAACAAAAAAArAAgAAAACAAAAAAAsAAgAAAACAAAAAAAtAAgAAAACAAAAAAAuAAgAAAACAAAAAAAvAAgAAAACAAAAAAAwAAgAAAACAAAAAAAxAAgAAAACAAAAAAAyAAgAAAACAAAAAAAzAAgAAAACAAAAAAA0AAgAAAACAAAAAAA1AAgAAAACAAAAAAA2AAgAAAACAAAAAAA3AAgAAAACAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAEAAAANAAYAAAABAAAAAAANAAcAAAABAAEAAAAOAAYAAAACAAAAAAAOAAcAAAACAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAAAAAAQAAYAAAACAAAAAAAQAAcAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_d21ai")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Goomba" parent="Enemies" instance=ExtResource("3_7f5d8")]
+position = Vector2(792, 259)
+horizontal_speed = -30
+
+[node name="Goomba4" parent="Enemies" instance=ExtResource("3_7f5d8")]
+position = Vector2(408, 357)
+
+[node name="Goomba2" parent="Enemies" instance=ExtResource("3_7f5d8")]
+position = Vector2(552, 357)
+
+[node name="Goomba3" parent="Enemies" instance=ExtResource("3_7f5d8")]
+position = Vector2(328, 357)
+
+[node name="Mario" parent="." instance=ExtResource("4_h0p22")]
+position = Vector2(237, 6)
+scale = Vector2(3, 3)
+motion_mode = 0
+Player_mode = 0
+
+[node name="Bricks" type="Node" parent="."]
+
+[node name="Brick2" parent="Bricks" instance=ExtResource("5_j5ljb")]
+position = Vector2(376, 80)
+scale = Vector2(3, 3)
+
+[node name="Brick" parent="Bricks" instance=ExtResource("5_j5ljb")]
+position = Vector2(328, 240)
+scale = Vector2(3, 3)
+
+[node name="Brick3" parent="Bricks" instance=ExtResource("5_j5ljb")]
+position = Vector2(424, 240)
+scale = Vector2(3, 3)
+
+[node name="Brick4" parent="Bricks" instance=ExtResource("5_j5ljb")]
+position = Vector2(472, 240)
+scale = Vector2(3, 3)
+
+[node name="Mystery Box" parent="Bricks" instance=ExtResource("6_h0p22")]
+position = Vector2(280, 240)
+scale = Vector2(3, 3)
+bonus_type = 2
+
+[node name="Mystery Box2" parent="Bricks" instance=ExtResource("6_h0p22")]
+position = Vector2(24, 240)
+scale = Vector2(3, 3)
+bonus_type = 2
+invisible = true
+
+[node name="On-off block" parent="Bricks" instance=ExtResource("7_j5ljb")]
+position = Vector2(328, 80.0001)
+scale = Vector2(3, 3)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_be522")
+
+[node name="Brick" parent="." instance=ExtResource("5_j5ljb")]
+position = Vector2(376, 240)
+scale = Vector2(3, 3)
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+scale = Vector2(0.947957, 0.956818)
+script = ExtResource("7_7f5d8")
+tween_resource = SubResource("Resource_j5ljb")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"

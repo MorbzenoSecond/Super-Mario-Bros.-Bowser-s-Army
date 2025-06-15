@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=4 uid="uid://dtmwob3lgiuek"]
+
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://Mario/Fondo.png" id="1_tpgt6"]
+[ext_resource type="Script" uid="uid://bou5hfkw5m2mx" path="res://area_2d.gd" id="2_pp0uk"]
+[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://enemy}/goomba.tscn" id="2_vtboj"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/mario.tscn" id="3_pp0uk"]
+[ext_resource type="PackedScene" uid="uid://di3eirwna2f8r" path="res://Bullet/Cannon/Cannon.tscn" id="5_p7pkq"]
+[ext_resource type="PackedScene" uid="uid://biknwpwud3pkg" path="res://Checkpoint.tscn" id="6_4plbv"]
+[ext_resource type="Script" uid="uid://c0wxt4v0ypxx5" path="res://cambio de escena.gd" id="7_nx1dr"]
+[ext_resource type="AudioStream" uid="uid://d36pfiybggyhy" path="res://music/Super Mario 3D World - Main Theme -  HD.mp3" id="8_nv3kh"]
+[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="9_x7o0c"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7s4b"]
+texture = ExtResource("1_tpgt6")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8, -4, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vtboj"]
+physics_layer_0/collision_layer = 3
+sources/0 = SubResource("TileSetAtlasSource_d7s4b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp0uk"]
+size = Vector2(234, 297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nv3kh"]
+size = Vector2(56, 66)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Mario" parent="." instance=ExtResource("3_pp0uk")]
+position = Vector2(-24, -24)
+scale = Vector2(3, 3)
+motion_mode = 0
+Player_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="Mario"]
+scale = Vector2(3, 3)
+offset = Vector2(100, -100)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAACAAAAAAACAAgAAAACAAAAAAADAAgAAAACAAAAAAAEAAgAAAACAAAAAAAFAAgAAAACAAAAAAAGAAgAAAACAAAAAAAHAAgAAAACAAAAAAAIAAgAAAACAAAAAAAJAAgAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAAMAAgAAAACAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAgAAAACAAAAAAAQAAgAAAACAAAAAAARAAgAAAACAAAAAAASAAgAAAACAAAAAAATAAgAAAACAAAAAAAUAAgAAAACAAAAAAAVAAgAAAACAAAAAAAWAAgAAAACAAAAAAAXAAgAAAACAAAAAAAYAAgAAAACAAAAAAAZAAgAAAACAAAAAAAaAAgAAAACAAAAAAAbAAgAAAACAAAAAAAcAAgAAAACAAAAAAAdAAgAAAACAAAAAAAeAAgAAAACAAAAAAAfAAgAAAACAAAAAAAgAAgAAAACAAAAAAAhAAgAAAACAAAAAAAiAAgAAAACAAAAAAAjAAgAAAACAAAAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAACAAAAAAAnAAgAAAACAAAAAAAoAAgAAAACAAAAAAApAAgAAAACAAAAAAAqAAgAAAACAAAAAAArAAgAAAACAAAAAAAsAAgAAAACAAAAAAAtAAgAAAACAAAAAAAuAAgAAAACAAAAAAAvAAgAAAACAAAAAAAwAAgAAAACAAAAAAAxAAgAAAACAAAAAAAyAAgAAAACAAAAAAAzAAgAAAACAAAAAAA0AAgAAAACAAAAAAA1AAgAAAACAAAAAAA2AAgAAAACAAAAAAA3AAgAAAACAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAEAAAANAAYAAAABAAAAAAANAAcAAAABAAEAAAAOAAYAAAACAAAAAAAOAAcAAAACAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAAAAAAQAAYAAAACAAAAAAAQAAcAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_vtboj")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_pp0uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(125, 236.5)
+shape = SubResource("RectangleShape2D_pp0uk")
+
+[node name="Goomba" parent="Area2D" instance=ExtResource("2_vtboj")]
+position = Vector2(284, 357)
+
+[node name="Goomba2" parent="Area2D" instance=ExtResource("2_vtboj")]
+position = Vector2(696, 256)
+
+[node name="RigidBody2D" parent="Area2D" instance=ExtResource("5_p7pkq")]
+position = Vector2(616, 240)
+
+[node name="Goomba3" parent="Area2D" instance=ExtResource("2_vtboj")]
+position = Vector2(464, 357)
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("2_pp0uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(440, 237)
+shape = SubResource("RectangleShape2D_pp0uk")
+
+[node name="Goomba" parent="Area2D2" instance=ExtResource("2_vtboj")]
+position = Vector2(744, 352)
+
+[node name="Goomba2" parent="Area2D2" instance=ExtResource("2_vtboj")]
+position = Vector2(824, 259)
+
+[node name="RigidBody2D" parent="Area2D2" instance=ExtResource("5_p7pkq")]
+position = Vector2(616, 144)
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_4plbv")]
+position = Vector2(48, 336)
+
+[node name="Area2D3" type="Area2D" parent="."]
+script = ExtResource("7_nx1dr")
+changed_zone = "res://Bloques/prueba_de_bloques.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(284, 120)
+shape = SubResource("RectangleShape2D_nv3kh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_nv3kh")
+parameters/looping = false
+
+[node name="Start_point" parent="." instance=ExtResource("6_4plbv")]
+position = Vector2(-24, -48)
+invisible = true
+
+[node name="UI" parent="." instance=ExtResource("9_x7o0c")]
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Mario" method="_on_area_2d_area_exited"]
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D2" to="Mario" method="_on_area_2d_area_exited"]
+[connection signal="area_exited" from="Area2D2" to="Area2D2" method="_on_area_exited"]
+[connection signal="body_entered" from="Area2D2" to="Mario" method="_on_area_2d_2_body_entered"]
+[connection signal="area_entered" from="Area2D3" to="Area2D3" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D3" to="Mario" method="_on_area_2d_3_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]

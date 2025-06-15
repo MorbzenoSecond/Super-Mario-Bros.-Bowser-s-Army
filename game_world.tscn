@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://uk4qcnrxoyl0"]
+
+[ext_resource type="Script" uid="uid://tpgpgm5v1a0l" path="res://game_world.gd" id="1_bvgre"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="1_hly68"]
+[ext_resource type="AudioStream" uid="uid://cakbs782u722k" path="res://music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3" id="3_ea1x0"]
+
+[node name="GameWorld" type="Node2D"]
+script = ExtResource("1_bvgre")
+start_scene = "res://level_1_1.tscn"
+
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="Mario" parent="." instance=ExtResource("1_hly68")]
+position = Vector2(-166, -48)
+scale = Vector2(3, 3)
+motion_mode = 0
+platform_wall_layers = 7
+Player_mode = 1
+
+[node name="PlayerCam" type="Camera2D" parent="Mario"]
+position = Vector2(78.6667, -2)
+scale = Vector2(0.333333, 0.333333)
+limit_smoothed = true
+drag_vertical_enabled = true
+drag_vertical_offset = -1.0
+
+[node name="AutoscrollCamera" type="Camera2D" parent="."]
+enabled = false
+
+[node name="WorldMap" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ea1x0")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=4 uid="uid://bev6rg04jv6p8"]
+
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://Mario/Fondo.png" id="1_l7bkb"]
+[ext_resource type="Script" uid="uid://ndwi76il2w3u" path="res://Bloques/prueba_de_bloques.gd" id="1_y4qco"]
+[ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/mario.tscn" id="2_a8hwn"]
+[ext_resource type="PackedScene" uid="uid://dl2l6f5sdpxm3" path="res://Bloques/blue_red_blocks.tscn" id="3_y4qco"]
+[ext_resource type="PackedScene" uid="uid://nssai6e3wv3e" path="res://Bloques/on_off_block.tscn" id="4_a8hwn"]
+[ext_resource type="AudioStream" uid="uid://cakbs782u722k" path="res://Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3" id="6_w6in7"]
+[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="7_lk3bn"]
+[ext_resource type="PackedScene" uid="uid://msmsddp3ecl4" path="res://Power ups/coin.tscn" id="8_8w3su"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6in7"]
+texture = ExtResource("1_l7bkb")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8, -4, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 8, -4, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4, -8, 4, 8, -4, 8, -8, 8)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lk3bn"]
+physics_layer_0/collision_layer = 3
+sources/0 = SubResource("TileSetAtlasSource_w6in7")
+
+[node name="Prueba de bloques" type="Node2D"]
+script = ExtResource("1_y4qco")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAACAAAAAAACAAgAAAACAAAAAAADAAgAAAACAAAAAAAEAAgAAAACAAAAAAAFAAgAAAACAAAAAAAGAAgAAAACAAAAAAAHAAgAAAACAAAAAAAIAAgAAAACAAAAAAAJAAgAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAAMAAgAAAACAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAgAAAACAAAAAAAQAAgAAAACAAAAAAARAAgAAAACAAAAAAASAAgAAAACAAAAAAATAAgAAAACAAAAAAAUAAgAAAACAAAAAAAVAAgAAAACAAAAAAAWAAgAAAACAAAAAAAXAAgAAAACAAAAAAAYAAgAAAACAAAAAAAZAAgAAAACAAAAAAAaAAgAAAACAAAAAAAbAAgAAAACAAAAAAAcAAgAAAACAAAAAAAdAAgAAAACAAAAAAAeAAgAAAACAAAAAAAfAAgAAAACAAAAAAAgAAgAAAACAAAAAAAhAAgAAAACAAAAAAAiAAgAAAACAAAAAAAjAAgAAAACAAAAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAACAAAAAAAnAAgAAAACAAAAAAAoAAgAAAACAAAAAAApAAgAAAACAAAAAAAqAAgAAAACAAAAAAArAAgAAAACAAAAAAAsAAgAAAACAAAAAAAtAAgAAAACAAAAAAAuAAgAAAACAAAAAAAvAAgAAAACAAAAAAAwAAgAAAACAAAAAAAxAAgAAAACAAAAAAAyAAgAAAACAAAAAAAzAAgAAAACAAAAAAA0AAgAAAACAAAAAAA1AAgAAAACAAAAAAA2AAgAAAACAAAAAAA3AAgAAAACAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAEAAAANAAYAAAABAAAAAAANAAcAAAABAAEAAAAOAAYAAAACAAAAAAAOAAcAAAACAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAAAAAAQAAYAAAACAAAAAAAQAAcAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_lk3bn")
+
+[node name="Mario" parent="." instance=ExtResource("2_a8hwn")]
+position = Vector2(168, 352)
+scale = Vector2(3, 3)
+motion_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="Mario"]
+position = Vector2(34.3333, 10.3333)
+
+[node name="bloques" type="Node" parent="."]
+
+[node name="Blue-red blocks" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(432, 248)
+scale = Vector2(3, 3)
+start_color = 0
+
+[node name="Blue-red blocks2" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(384, 248)
+scale = Vector2(3, 3)
+start_color = 0
+
+[node name="Blue-red blocks3" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(336, 248)
+scale = Vector2(3, 3)
+state = false
+
+[node name="Blue-red blocks4" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(289, 248)
+scale = Vector2(3, 3)
+state = false
+
+[node name="On-off block" parent="bloques" instance=ExtResource("4_a8hwn")]
+position = Vector2(24, 248)
+scale = Vector2(3, 3)
+State = true
+
+[node name="Blue-red blocks5" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(240, 248)
+scale = Vector2(3, 3)
+start_color = 0
+
+[node name="Blue-red blocks6" parent="bloques" instance=ExtResource("3_y4qco")]
+position = Vector2(480, 248)
+scale = Vector2(3, 3)
+state = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_w6in7")
+autoplay = true
+
+[node name="BeatTimer" type="Timer" parent="."]
+wait_time = 4.03
+autostart = true
+
+[node name="UI" parent="." instance=ExtResource("7_lk3bn")]
+
+[node name="Coin" parent="." instance=ExtResource("8_8w3su")]
+position = Vector2(240, 128)
+scale = Vector2(3, 3)
+
+[connection signal="state_changed" from="bloques/On-off block" to="." method="_on_onoff_block_state_changed"]
+[connection signal="timeout" from="BeatTimer" to="." method="_on_beat_timer_timeout"]

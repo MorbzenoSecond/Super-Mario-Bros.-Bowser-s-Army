@@ -1,0 +1,201 @@
+[gd_scene load_steps=21 format=3 uid="uid://dgny7xe7nlgya"]
+
+[ext_resource type="Script" uid="uid://vvsrfjdxnaou" path="res://teclas.gd" id="1_pikce"]
+[ext_resource type="Texture2D" uid="uid://c68v4tfod8tvb" path="res://bandera/teclas.png" id="2_qnyrk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07hlr"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(0, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggxe2"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(0, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpf8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07hlr")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggxe2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x5i6"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yyus"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(32, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mm37r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x5i6")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yyus")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2blcc"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(16, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tdul"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(16, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ylbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2blcc")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tdul")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yen2"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(48, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n1gw"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(48, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oy266"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yen2")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n1gw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgknx"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(80, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jouwh"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(80, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ur5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgknx")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jouwh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yffic"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(48, 34, 47, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi3wn"]
+atlas = ExtResource("2_qnyrk")
+region = Rect2(0, 34, 47, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvc62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yffic")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi3wn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Teclas" type="CanvasLayer"]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+script = ExtResource("1_pikce")
+
+[node name="up" type="AnimatedSprite2D" parent="."]
+position = Vector2(34.1667, 168)
+sprite_frames = SubResource("SpriteFrames_qpf8q")
+animation = &"click"
+
+[node name="left" type="AnimatedSprite2D" parent="."]
+position = Vector2(18.1667, 184)
+sprite_frames = SubResource("SpriteFrames_mm37r")
+animation = &"click"
+
+[node name="right" type="AnimatedSprite2D" parent="."]
+position = Vector2(50.1667, 184)
+sprite_frames = SubResource("SpriteFrames_5ylbx")
+animation = &"click"
+
+[node name="down" type="AnimatedSprite2D" parent="."]
+position = Vector2(34.1667, 184)
+sprite_frames = SubResource("SpriteFrames_oy266")
+animation = &"click"
+
+[node name="shift" type="AnimatedSprite2D" parent="."]
+position = Vector2(50.1667, 168)
+sprite_frames = SubResource("SpriteFrames_4ur5t")
+animation = &"click"
+
+[node name="space" type="AnimatedSprite2D" parent="."]
+position = Vector2(34.1667, 200)
+sprite_frames = SubResource("SpriteFrames_kvc62")
+animation = &"click"
