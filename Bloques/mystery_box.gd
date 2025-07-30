@@ -5,40 +5,60 @@ class_name Mystery_box
 enum bonusType {
 	COIN,
 	SHROOM,
-	FLOWER
+	FLOWER,
+	STAR
 }
 const FIRE_FLOWER_SCENE = preload("res://Power ups/fire_flower.tscn")
+const SHROOM_SCENE = preload("res://Bloques/mushroom.tscn")
 const COIN_SCENE = preload("res://Power ups/coin.tscn")
-@onready var animated_sprite_2d = $Sprite2D
+const STAR_SCENE = preload("res://star.tscn")
+@onready var sprite = $Sprite2D
 @export var bonus_type: bonusType = bonusType.COIN
 @export var invisible: bool = false
+@onready var animation = $AnimationPlayer
 
 var is_empty = false
 
+func _process(delta: float) -> void:
+	if $RayCast2D.is_colliding() and invisible:
+		$CollisionShape2D. disabled = false
+	elif !is_empty and invisible:
+		$CollisionShape2D. disabled = true
+
 func _ready() -> void:
 	if invisible:
-		animated_sprite_2d.play("invisible")
+		sprite.play("invisible")
+		$CollisionShape2D.disabled = true
 	else:
-		animated_sprite_2d.play("default")
+		sprite.play("default")
 
-func bump(player_mode: Player.PlayerMode):
+func bump(player_mode: Player.PlayerMode, direction):
 	if is_empty:
 		return
-	super.bump(player_mode)
+	super.bump(player_mode, direction)
 	make_empty()
 	match bonus_type:
 		bonusType.COIN:
-			spawn_coin()
+			spawn_coin(direction)
 		bonusType.SHROOM:
-			spawn_shroom()
+			if player_mode == Player.PlayerMode.BIG:
+				spawn_flower(direction)
+			else:
+				spawn_shroom(direction)
 		bonusType.FLOWER:
-			spawn_flower()
+			spawn_flower(direction)
+		bonusType.STAR:
+			spawn_star(direction)
+
 
 func make_empty():
+	self.animation.play("less_size")
+	$CollisionShape2D. disabled = false
+	call_deferred("set_process", false)
 	is_empty = true
-	animated_sprite_2d.play("empty")
+	sprite.play("empty")
 
-func spawn_coin():
+func spawn_coin(direction):
 	var coin = COIN_SCENE.instantiate()
 	coin.global_position = global_position + Vector2 (0,-8)
 	var Level = get_tree().current_scene
@@ -48,15 +68,37 @@ func spawn_coin():
 	coin.area.monitoring = false
 	Level.control_coins(1)
 	var spawn_tween = get_tree().create_tween()
-	spawn_tween.tween_property(coin, "position", position + Vector2(0,-80), 0.4)
-	spawn_tween.tween_property(coin, "position", position + Vector2(0,-8), 0.4)
+	if direction == "up":
+		spawn_tween.tween_property(coin, "position", position + Vector2(0,-80), 0.4)
+		spawn_tween.tween_property(coin, "position", position + Vector2(0,-8), 0.4)
+	elif direction == "down":
+		spawn_tween.tween_property(coin, "position", position + Vector2(0,80), 0.4)
+		spawn_tween.tween_property(coin, "position", position + Vector2(0,8), 0.4)
 	await spawn_tween.finished
 	coin.queue_free()
 
-func spawn_shroom():
-	print("shroom")
+func spawn_shroom(direction):
+	var shroom = SHROOM_SCENE.instantiate()
+	if direction == "up":
+		shroom.global_position = global_position + Vector2 (0,-7)
+	elif direction == "down":
+		shroom.global_position = global_position + Vector2 (0,7)
+	get_parent().add_child(shroom) 
 
-func spawn_flower():
+func spawn_flower(direction):
 	var flower = FIRE_FLOWER_SCENE.instantiate()
-	flower.global_position = global_position + Vector2 (0,-7)
+	if direction == "up":
+		flower.global_position = global_position + Vector2 (0,-7)
+	elif direction == "down":
+		flower.global_position = global_position + Vector2 (0,7)
 	get_parent().add_child(flower) 
+	flower.spawn(direction)
+
+func spawn_star(direction):
+	var star = STAR_SCENE.instantiate()
+	if direction == "up":
+		star.global_position = global_position + Vector2 (0,-7)
+	elif direction == "down":
+		star.global_position = global_position + Vector2 (0,7)
+	get_parent().add_child(star) 
+	star.spawn(direction)

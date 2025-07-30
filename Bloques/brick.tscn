@@ -4,17 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://dttw2ibfmtb6o" path="res://Bloques/Ladrillos.png" id="2_mt0q5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llic7"]
-size = Vector2(46, 46)
+size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5p85m"]
 size = Vector2(46, 7)
 
-[node name="Brick" type="StaticBody2D" groups=["Brick_golpeable"]]
-collision_layer = 7
+[node name="Brick" type="StaticBody2D" groups=["Brick_golpeable", "Brick_rompible"]]
+collision_layer = 524295
+collision_mask = 524289
 script = ExtResource("1_5p85m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2.875, 2.875)
+scale = Vector2(3, 3)
 texture = ExtResource("2_mt0q5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,5 +27,10 @@ collision_layer = 15
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
-position = Vector2(0, -26)
+position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_5p85m")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -108,7 +108,7 @@ func explote():
 		
 		for brick in get_tree().get_nodes_in_group("Brick_golpeable"):
 			if global_position.distance_to(brick.global_position) < 150:
-				brick.bump(Player.PlayerMode.FIRE)
+				brick.bump(Player.PlayerMode.FIRE, "up")
 
 		if body and body.is_in_group("Bombs") and body != self:
 			body.prepare()

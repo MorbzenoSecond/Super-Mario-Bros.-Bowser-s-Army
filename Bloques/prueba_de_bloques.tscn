@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://ndwi76il2w3u" path="res://Bloques/prueba_de_bloques.gd" id="1_y4qco"]
 [ext_resource type="PackedScene" uid="uid://dl2l6f5sdpxm3" path="res://Bloques/blue_red_blocks.tscn" id="3_y4qco"]
 [ext_resource type="PackedScene" uid="uid://nssai6e3wv3e" path="res://Bloques/on_off_block.tscn" id="4_a8hwn"]
-[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="7_lk3bn"]
 [ext_resource type="PackedScene" uid="uid://msmsddp3ecl4" path="res://Power ups/coin.tscn" id="8_8w3su"]
 [ext_resource type="AudioStream" uid="uid://cakbs782u722k" path="res://music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3" id="8_bvkp5"]
 [ext_resource type="PackedScene" uid="uid://8kx2wsgj8fkj" path="res://goomba de dialogo.tscn" id="10_p3yip"]
 [ext_resource type="Texture2D" uid="uid://bn527fcndkoh4" path="res://Bloques/Bloque de pregunta gigante.png" id="11_bvkp5"]
 [ext_resource type="PackedScene" uid="uid://duc6vwj0d8q4y" path="res://Enemies/Koopa/Koopa.tscn" id="11_c6mt2"]
 [ext_resource type="PackedScene" uid="uid://biknwpwud3pkg" path="res://Checkpoint.tscn" id="11_oswk3"]
+[ext_resource type="PackedScene" uid="uid://cwxxea211osfr" path="res://final_flag.tscn" id="12_c6mt2"]
 [ext_resource type="PackedScene" uid="uid://b5x07bsssvg6a" path="res://pipe.tscn" id="13_oswk3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6in7"]
@@ -116,8 +116,6 @@ stream = ExtResource("8_bvkp5")
 wait_time = 4.0
 autostart = true
 
-[node name="UI" parent="." instance=ExtResource("7_lk3bn")]
-
 [node name="Coin" parent="." instance=ExtResource("8_8w3su")]
 position = Vector2(240, 128)
 
@@ -179,6 +177,7 @@ scale = Vector2(1, 1)
 position = Vector2(32, 336)
 checkpoint_id = "1"
 scene_pat = "res://Bloques/prueba_de_bloques.tscn"
+new_music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
 
 [node name="Pipe" parent="." instance=ExtResource("13_oswk3")]
 position = Vector2(960, 168)
@@ -186,9 +185,10 @@ scale = Vector2(1, 1)
 path_to_scene = "res://Test/prueba_de_goombas.tscn"
 cordenades = Vector2(624, 248)
 path_activate = true
-new_music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+
+[node name="FinalFlag" parent="." instance=ExtResource("12_c6mt2")]
+position = Vector2(1352, -88)
 
 [connection signal="body_exited" from="Node2D" to="." method="_on_node_2d_body_exited"]
 [connection signal="body_exited" from="Node2D" to="Node2D" method="_on_body_exited"]
-[connection signal="state_changed" from="bloques/On-off block" to="." method="_on_onoff_block_state_changed"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_timer_timeout"]

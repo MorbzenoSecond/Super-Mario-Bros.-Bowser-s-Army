@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbay4wqkkgib3"]
+[gd_scene load_steps=23 format=3 uid="uid://bbay4wqkkgib3"]
 
 [ext_resource type="Script" uid="uid://be5353asm7wod" path="res://ui.gd" id="1_fyqef"]
 [ext_resource type="Texture2D" uid="uid://bleogilxixy8r" path="res://Power ups/Coin.png" id="2_m6e0p"]
@@ -82,6 +82,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1024, 528)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ColorRect:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ibotj"]
 resource_name = "enter music"
@@ -156,6 +168,38 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1112, 528), Vector2(728, 528), Vector2(584, 528), Vector2(552, 528)]
+}
+
+[sub_resource type="Animation" id="Animation_waa4j"]
+resource_name = "fade_in_level"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 2.07053),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y4yjw"]
+resource_name = "fade out level"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_nltto"]
@@ -314,6 +358,8 @@ tracks/5/keys = {
 _data = {
 &"RESET": SubResource("Animation_27fn8"),
 &"enter music": SubResource("Animation_ibotj"),
+&"fade_in_level": SubResource("Animation_waa4j"),
+&"fade_out_level": SubResource("Animation_y4yjw"),
 &"send back": SubResource("Animation_nltto"),
 &"send front": SubResource("Animation_n5ude")
 }
@@ -369,6 +415,13 @@ font_size = 32
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_fyqef")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -231.0
+offset_top = -102.0
+offset_right = 1343.0
+offset_bottom = 758.0
+color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -434,6 +487,7 @@ wait_time = 7.5
 one_shot = true
 
 [node name="Teclas" parent="." instance=ExtResource("7_y4yjw")]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 clip_contents = true

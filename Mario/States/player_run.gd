@@ -16,6 +16,7 @@ func Physics_Update(delta: float) -> void:
 		player.get_current_sprite().speed_scale = speed_factor
 		player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_SPEED, player.ACCELERATION * delta)
 
+	
 	if player.velocity.x < 0:
 		player.get_current_sprite().flip_h = true
 	if player.velocity.x > 0:
@@ -40,3 +41,6 @@ func Physics_Update(delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_down"):
 		Transitioned.emit(self, "PlayerDuckEnter")
+
+	if Input.is_action_just_pressed("ui_up") and player.in_fence:
+		Transitioned.emit(self, "PlayerInFence")

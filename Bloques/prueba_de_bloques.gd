@@ -8,7 +8,7 @@ var path_to_scene
 func _ready() -> void:
 	on_off_block.state_changed.connect(_on_block_state_changed)
 	beat_timer.start() # Inicia el timer
-	super.control_music_label("Super Mario 3D World", "Beep Block Skyway")
+	#super.control_music_label("Super Mario 3D World", "Beep Block Skyway")
 #
 func _on_beat_timer_timeout() -> void:
 	on_off_block.toggle_state() # Cambia su estado, emitirá la señal

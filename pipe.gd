@@ -23,10 +23,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _process(delta: float) -> void:
 	if player_is_in and Input.is_action_just_pressed("ui_down"):
-		print(player.global_position)
 		timer.start()
 		player.global_position.x = marker.global_position.x
 		player.enter_tube()
+
+func _on_transition_entered(_body: Node2D, path, cordenades, music):
+	call_deferred("emit_signal", "goto_room", load(path) as PackedScene, cordenades as Vector2, music)
+
+func _on_quit_entered(_body: Node2D):
+	emit_signal("goto_main")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):

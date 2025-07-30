@@ -59,6 +59,8 @@ size = Vector2(16, 16)
 
 [node name="Blue-red blocks" type="StaticBody2D" groups=["color-blocks"]]
 position = Vector2(13, 14)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_sp7ur")
 start_color = 1
 state = true

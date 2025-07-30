@@ -64,6 +64,5 @@ func shell_size():
 	area_collision.scale = Vector2(0.5,0.5)
 	
 func update_shader():
-	print("Actualizando shader, red =", red)
 	animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 	animated_sprite_2d.material.set_shader_parameter("red", red)

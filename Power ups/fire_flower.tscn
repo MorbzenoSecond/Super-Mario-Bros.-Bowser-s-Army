@@ -3,36 +3,36 @@
 [ext_resource type="Script" uid="uid://bmy1cwf1dvbvf" path="res://Power ups/fire_flower.gd" id="1_ftisv"]
 [ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://Power ups/MUSHROOM.png" id="2_0o87m"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftisv"]
+atlas = ExtResource("2_0o87m")
+region = Rect2(17, 4, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o87m"]
+atlas = ExtResource("2_0o87m")
+region = Rect2(65, 4, 14, 14)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0lftr"]
 atlas = ExtResource("2_0o87m")
-region = Rect2(0, 16, 16, 16)
+region = Rect2(113, 4, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcf37"]
 atlas = ExtResource("2_0o87m")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxk27"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bpwwy"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(48, 16, 16, 16)
+region = Rect2(161, 4, 14, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qrkmf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ftisv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o87m")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0lftr")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vcf37")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nxk27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bpwwy")
 }],
 "loop": true,
 "name": &"default",
@@ -45,13 +45,13 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftisv"]
 size = Vector2(17.3333, 16)
 
-[node name="Fire flower" type="Area2D"]
+[node name="Fire flower" type="CharacterBody2D"]
 scale = Vector2(3, 3)
 script = ExtResource("1_ftisv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qrkmf")
-frame_progress = 0.470645
+frame_progress = 0.735473
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aha6j")

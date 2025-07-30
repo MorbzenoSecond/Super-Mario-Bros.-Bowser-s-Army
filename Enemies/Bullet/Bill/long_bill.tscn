@@ -126,7 +126,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Long_Bill" type="RigidBody2D"]
+[node name="Long_Bill" type="RigidBody2D" groups=["Enemies"]]
 light_mask = 4
 visibility_layer = 8
 rotation = 3.14159

@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwxxea211osfr"]
+
+[ext_resource type="Script" uid="uid://bpycmrolnwdld" path="res://final_flag.gd" id="1_b0tyi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0tyi"]
+
+[node name="FinalFlag" type="Node2D"]
+position = Vector2(2, 0)
+script = ExtResource("1_b0tyi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 9.0
+offset_right = 143.0
+offset_bottom = 87.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -37.0
+offset_top = 428.0
+offset_right = 31.0
+offset_bottom = 494.0
+color = Color(0.377804, 0.16654, 0.16654, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-414, -78)
+points = PackedVector2Array(411, 506)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = -21.0
+offset_right = 13.0
+offset_bottom = 9.0
+color = Color(0.812278, 0.77778, 0.123015, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+visible = false
+offset_left = 1.0
+offset_top = 420.0
+offset_right = 145.0
+offset_bottom = 494.0
+color = Color(0.988783, 0.00668559, 0.00668559, 1)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(-1, 378)
+shape = SubResource("RectangleShape2D_b0tyi")
+target_position = Vector2(1, -428)
+max_results = 2
+collision_mask = 7
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

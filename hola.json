@@ -1,0 +1,16 @@
+{
+	"game_progress": {
+		"level_1": {
+			"completed": true,
+			"coins": 98,
+			"star": true,
+			"secrets": 1
+		},
+		"level_2": {
+			"completed": false,
+			"coins": 45,
+			"star": false,
+			"secrets": 0
+		}
+	}
+}

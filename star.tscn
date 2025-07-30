@@ -1,0 +1,156 @@
+[gd_scene load_steps=17 format=3 uid="uid://0kxfy56m6mix"]
+
+[ext_resource type="Script" uid="uid://bgo6lpftl1w2l" path="res://star.gd" id="1_e2x7v"]
+[ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://Power ups/MUSHROOM.png" id="2_c2gop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujs67"]
+size = Vector2(10, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rso3d"]
+size = Vector2(17.3333, 14.6667)
+
+[sub_resource type="Animation" id="Animation_hlfdc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rso3d"]
+resource_name = "fully"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ujs67"]
+resource_name = "spawn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tc7db"]
+_data = {
+&"RESET": SubResource("Animation_hlfdc"),
+&"fully": SubResource("Animation_rso3d"),
+&"spawn": SubResource("Animation_ujs67")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2x7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7oe7"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(33, 21, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvwch"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(81, 21, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi5u8"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(129, 21, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ar2v"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(177, 21, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynkmc"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(225, 21, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktok1"]
+atlas = ExtResource("2_c2gop")
+region = Rect2(273, 21, 14, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ro5ko"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_d7oe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvwch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi5u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ar2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynkmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktok1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Star" type="CharacterBody2D"]
+physics_interpolation_mode = 2
+scale = Vector2(3, 3)
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource("1_e2x7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ujs67")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.76837e-07, -0.333333)
+shape = SubResource("RectangleShape2D_rso3d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tc7db")
+}
+
+[node name="Raycast" type="RayCast2D" parent="."]
+target_position = Vector2(7, 0)
+collision_mask = 7
+hit_from_inside = true
+
+[node name="Star" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_e2x7v")
+position = Vector2(0, 0.5)
+sprite_frames = SubResource("SpriteFrames_ro5ko")
+frame_progress = 0.151606
+
+[node name="Down" type="RayCast2D" parent="."]
+target_position = Vector2(0, 7.33333)
+collision_mask = 524295
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

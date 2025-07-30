@@ -6,9 +6,6 @@ func Enter() -> void:
 	$Timer.start()
 
 func Physics_Update(delta: float) -> void:
-	
-	
-	player.get_current_sprite().play("walk")
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if Input.is_action_pressed("enter"):
 		var speed_factor = clamp(abs(player.velocity.x) / player.RUN_MAX_SPEED, 0, 5)
@@ -27,7 +24,6 @@ func Physics_Update(delta: float) -> void:
 		Transitioned.emit(self, "PlayerIdle")
 		$Timer.stop()
 
-
 	if player.is_on_floor() and Input.is_action_just_pressed("space"):
 		player.get_current_sprite().speed_scale = 1
 		player.velocity.y = player.JUMP_FORCE
@@ -43,7 +39,12 @@ func Physics_Update(delta: float) -> void:
 		$Timer.stop()
 	if Input.is_action_just_pressed("ui_down"):
 		Transitioned.emit(self, "PlayerDuckEnter")
+	if  !player.is_on_floor() and player.velocity.y > 200:
+		print("fall")
+		Transitioned.emit(self, "PlayerFall")
 
+	if Input.is_action_just_pressed("ui_up") and player.in_fence:
+		Transitioned.emit(self, "PlayerInFence")
 
 func _on_timer_timeout() -> void:
 	var new_dust = player.dust.instantiate()

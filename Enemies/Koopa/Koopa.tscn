@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bqm8bo6ao4q6g" path="res://Enemies/Koopa/koopa.gd" id="1_tgwte"]
 [ext_resource type="Texture2D" uid="uid://pxr12au1quo5" path="res://Enemies/Koopa/Koopa Exportable.png" id="1_xjc6k"]
 [ext_resource type="Shader" uid="uid://dotm6yfkpslgc" path="res://Enemies/Koopa/Koopa.gdshader" id="2_kce2r"]
-[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://Enemies/Super Mario Bros- Goomba Stomp Sound.mp3" id="3_82s7y"]
+[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://Enemies/Goomba/Super Mario Bros- Goomba Stomp Sound.mp3" id="3_82s7y"]
 [ext_resource type="Script" uid="uid://c26gyx3n3aw6n" path="res://State/State_Machine.gd" id="4_p8rd5"]
 [ext_resource type="Script" uid="uid://pg6tmodih83x" path="res://Enemies/Koopa/koopa_walk.gd" id="5_mvgmj"]
 [ext_resource type="Script" uid="uid://b6kboyeqmk65a" path="res://Enemies/Koopa/koopa_shell.gd" id="6_dr2br"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hi4v2"]
 shader = ExtResource("2_kce2r")
-shader_parameter/red = false
+shader_parameter/red = true
 shader_parameter/OLDCOLOR1 = Color(0.231373, 0.427451, 0.270588, 1)
 shader_parameter/OLDCOLOR2 = Color(0.215686, 0.529412, 0.2, 1)
 shader_parameter/OLDCOLOR3 = Color(0.192157, 0.678431, 0.0941176, 1)
@@ -21,7 +21,7 @@ shader_parameter/NEWCOLOR1 = Color(0.313726, 0.0588235, 0.0470588, 1)
 shader_parameter/NEWCOLOR2 = Color(0.631373, 0.0941176, 0, 1)
 shader_parameter/NEWCOLOR3 = Color(0.909804, 0.137255, 0.00392157, 1)
 shader_parameter/NEWCOLOR4 = Color(0.913725, 0.227451, 0.109804, 1)
-shader_parameter/NEWCOLOR5 = Color(0.913725, 0.227451, 0.109804, 1)
+shader_parameter/NEWCOLOR5 = Color(0.921569, 0.317647, 0.211765, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcn6l"]
 atlas = ExtResource("1_xjc6k")
@@ -278,6 +278,7 @@ script = ExtResource("7_rq3oa")
 wait_time = 0.1
 
 [node name="Back" type="RayCast2D" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -28.6666)
@@ -286,12 +287,14 @@ collision_mask = 6
 hit_from_inside = true
 
 [node name="Front" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(0, -28.6666)
 target_position = Vector2(-28, 0)
 collision_mask = 6
 hit_from_inside = true
 
 [node name="Floor" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(-13.3333, -16)
 target_position = Vector2(0, 38.3333)
 collision_mask = 4

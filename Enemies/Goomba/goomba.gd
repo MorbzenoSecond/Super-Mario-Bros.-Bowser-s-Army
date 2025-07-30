@@ -4,7 +4,7 @@ extends Enemy
 func _ready() -> void:
 	$AnimatedSprite2D.play("walk")
 	initial_position = global_position
-	#super.inactive()
+	$AnimationPlayer.play("RESET")
 
 func _physics_process(delta: float) -> void:
 	turn_cooldown -= delta
@@ -40,16 +40,10 @@ func call_child_ready():
 	$Area2D.set_deferred("monitoring", false)
 	await get_tree().create_timer(0.7).timeout
 	$AnimatedSprite2D.visible = false
-
+	super.inactive()
+ 
 func call_child_active():
 	animated_sprite_2d.play("walk")
 
-func die_by_block():
-	print("die by block")
-	super.die_by_block()
-	$CollisionShape2D.call_deferred("set_disabled", true)
-	gravity = 0
-	$Area2D.set_deferred("monitorable", false)
-	$Area2D.set_deferred("monitoring", false)
-	await get_tree().create_timer(2.7).timeout
-	$AnimatedSprite2D.visible = false
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	super.active()

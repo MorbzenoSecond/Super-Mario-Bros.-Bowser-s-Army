@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ptk3kj75axrj"]
+
+[ext_resource type="Script" uid="uid://oqeuhl0ljfr8" path="res://world_map.gd" id="1_y2wwp"]
+[ext_resource type="PackedScene" uid="uid://c2dtsjk8i8aqt" path="res://map_level.tscn" id="2_l8kh1"]
+
+[node name="WorldMap" type="Node2D"]
+script = ExtResource("1_y2wwp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 999.0
+offset_bottom = 645.0
+color = Color(0.80549, 0.153771, 0.153771, 1)
+
+[node name="Map_level" parent="." instance=ExtResource("2_l8kh1")]
+position = Vector2(700, 195)
+level_id = "1"
+level_name = "level 1-1"
+path_to_scene = "res://Bloques/prueba_de_bloques.tscn"
+cordenades = Vector2(960, 104)
+music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+
+[node name="Map_level2" parent="." instance=ExtResource("2_l8kh1")]
+position = Vector2(48, 49)
+level_id = "2"
+level_name = "level 1-1"
+path_to_scene = "res://1_1.tscn"
+cordenades = Vector2(960, 104)
+path_activate = true
+music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"

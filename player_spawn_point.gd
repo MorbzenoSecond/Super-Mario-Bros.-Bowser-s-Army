@@ -5,7 +5,7 @@ var last_checkpoint_scene = ""
 var last_checkpoint_position = Vector2.ZERO
 var respawn_pending = false
 
-func set_checkpoint(scene_path: String, position: Vector2):
+func set_checkpoint(scene_path: String, position: Vector2, checkpointid):
 	last_checkpoint_scene = scene_path
 	last_checkpoint_position = position
 

@@ -7,7 +7,7 @@ var muerto : bool = false
 func _ready() -> void:
 	z_index = -1
 
-func die():
+func hit():
 	muerto = true
 	gravity_scale = 0.1
 	set_collision_layer_value(1, false)

@@ -1,35 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://uk4qcnrxoyl0"]
+[gd_scene load_steps=10 format=3 uid="uid://uk4qcnrxoyl0"]
 
 [ext_resource type="Script" uid="uid://tpgpgm5v1a0l" path="res://game_world.gd" id="1_bvgre"]
 [ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="1_hly68"]
-[ext_resource type="AudioStream" uid="uid://cakbs782u722k" path="res://music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3" id="3_ea1x0"]
+[ext_resource type="AudioStream" uid="uid://cpwu0j48nhpmx" path="res://music/Super Mario World Music_ Level Complete.mp3" id="3_e3xe6"]
+[ext_resource type="PackedScene" uid="uid://ptk3kj75axrj" path="res://WorldMap.tscn" id="4_e08lw"]
+[ext_resource type="PackedScene" uid="uid://bqwm0srcvdy6x" path="res://world_player.tscn" id="5_e3xe6"]
+[ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="6_mcbma"]
+
+[sub_resource type="Animation" id="Animation_e7o6u"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ik71a"]
+resource_name = "fade out"
+length = 10.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15365"]
+_data = {
+&"RESET": SubResource("Animation_e7o6u"),
+&"fade out": SubResource("Animation_ik71a")
+}
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_bvgre")
-start_scene = "res://level_1_1.tscn"
 
 [node name="Levels" type="Node2D" parent="."]
 
+[node name="AutoscrollCamera" type="Camera2D" parent="."]
+enabled = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_e3xe6")
+
+[node name="EffectMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="WorldMap" parent="." instance=ExtResource("4_e08lw")]
+position = Vector2(-3, 5)
+path_to_scene = "res://Bloques/prueba_de_bloques.tscn"
+cordenades = Vector2(960, 104)
+path_activate = true
+new_music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+
+[node name="WorldPlayer" parent="." instance=ExtResource("5_e3xe6")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_15365")
+}
+
+[node name="UI" parent="." instance=ExtResource("6_mcbma")]
+layer = 0
+visible = false
+
 [node name="Mario" parent="." instance=ExtResource("1_hly68")]
-position = Vector2(-166, -48)
+z_index = 1
+position = Vector2(376, 403)
 scale = Vector2(3, 3)
 motion_mode = 0
+floor_max_angle = 1.309
 platform_wall_layers = 7
 Player_mode = 1
 
 [node name="PlayerCam" type="Camera2D" parent="Mario"]
 position = Vector2(78.6667, -2)
 scale = Vector2(0.333333, 0.333333)
-limit_smoothed = true
-drag_vertical_enabled = true
-drag_vertical_offset = -1.0
-
-[node name="AutoscrollCamera" type="Camera2D" parent="."]
 enabled = false
-
-[node name="WorldMap" type="Node2D" parent="."]
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_ea1x0")
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 1.0
+drag_vertical_offset = -1.0
+drag_bottom_margin = 0.6

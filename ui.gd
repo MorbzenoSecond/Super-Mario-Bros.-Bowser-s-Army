@@ -9,6 +9,13 @@ class_name UI
 @onready var timer = $Timer
 @onready var area2d = $MarginContainer2/ColorRect/Area2D as Area2D
 
+func fade_level():
+	animationplayer.play("fade_out_level")
+	await animationplayer.animation_finished
+	fade_in_level()
+
+func fade_in_level():
+	animationplayer.play("fade_in_level")
 
 func _ready() -> void:
 	area2d.monitorable = false

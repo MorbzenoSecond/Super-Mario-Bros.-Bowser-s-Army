@@ -8,11 +8,13 @@ class_name Enemy
 @onready var death = $die
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 @onready var collision = $CollisionShape2D
+
 @onready var area_collision = $Area2D/CollisionShape2D
 var initial_position: Vector2
 var muerto : bool = false
+var is_active : bool = false 
 var initial_direction:=-1
-
+var world:Node2D
 
 var turn_cooldown := 0.0
 const TURN_DELAY := 0.2
@@ -21,11 +23,16 @@ func _ready() -> void:
 	initial_position = global_position
 	animated_sprite_2d.play("walk")
 	initial_direction = sign(horizontal_speed)
+	world.flag_reached.connect(all_die)
 	$CollisionShape2D.disabled = false
 	$Area2D.monitorable = true
 	$Area2D.monitoring = true
 	$AnimatedSprite2D.visible = true
-	
+
+func all_die():
+	if is_active:
+		die_by_block()
+
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
@@ -36,33 +43,24 @@ func call_child_ready():
 	pass
 
 func die_by_block():
-	var death_tween = get_tree().create_tween()
-	death.play()
 	muerto = true
-	z_index = 10
+	death.play()
 	horizontal_speed = 0
+	$CollisionShape2D.call_deferred("set_disabled", true)
+	gravity = 0
+	$Area2D.set_deferred("monitorable", false)
+	$Area2D.set_deferred("monitoring", false)
 	animated_sprite_2d.play("death_by_brick")
+	$AnimationPlayer.play("die_by_block")
 
-	# Primera rotación suave hacia arriba y un poco a un lado
-	death_tween.tween_property(self, "rotation_degrees", rotation_degrees + 45, 0.3)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)
-	
-	death_tween.parallel().tween_property(self, "position", position + Vector2(50, -50), 0.5)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)
-
-	# Segunda rotación y caída suave
-	death_tween.chain().tween_property(self, "rotation_degrees", rotation_degrees + 750, 3.0)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_IN_OUT)
-
-	death_tween.parallel().tween_property(self, "position", position + Vector2(500, 1500), 3.0)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_IN)
-		
 func active():
+	is_active = true
 	rotation_degrees = 0
+	var mario = get_node("/root/GameWorld/Mario")
+	print(position.distance_to(mario.position))
+	$AnimationPlayer.play("RESET")
+	if position.distance_to(mario.position)<400:
+		return
 	call_child_active()
 	gravity = 300
 	muerto = false
@@ -80,6 +78,7 @@ func call_child_active():
 	pass
 
 func inactive():
+	is_active = false
 	$AnimatedSprite2D.visible = false
 	super.set_physics_process(false)
 	global_position = initial_position

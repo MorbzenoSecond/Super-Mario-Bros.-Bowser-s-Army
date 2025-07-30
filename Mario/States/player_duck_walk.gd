@@ -13,6 +13,8 @@ func Physics_Update(delta: float) -> void:
 		player.get_current_sprite().flip_h = false
 	if player.velocity.x == 0:
 		Transitioned.emit(self, "PlayerDuck")
+	if !player.get_floor_normal().x == 0:
+		Transitioned.emit(self, "PlayerSliding")
 
 
 	if player.is_on_floor() and Input.is_action_just_pressed("space"):

@@ -16,6 +16,7 @@ func Physics_Update(delta : float):
 	if has_entered:
 		if !Input.is_action_pressed("ui_down"):
 			Transitioned.emit(self, "PlayerIdle")
-
+	if !player.get_floor_normal().x == 0:
+		Transitioned.emit(self, "PlayerSliding")
 func _on_timer_timeout() -> void:
 	has_entered = true

@@ -12,8 +12,8 @@ func _ready() -> void:
 	else:
 		animated_sprite_2d.play("Off")
 
-func bump(player_mode: Player.PlayerMode):
-	super.bump(player_mode)
+func bump(player_mode: Player.PlayerMode, direction):
+	super.bump(player_mode, direction)
 	if block_State:
 		animated_sprite_2d.play("Off")
 		print ("apagado")

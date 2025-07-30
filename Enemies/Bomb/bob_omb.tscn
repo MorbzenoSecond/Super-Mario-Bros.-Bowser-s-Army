@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0nk8c182kb2k" path="res://Enemies/Bomb/bob_omb.gd" id="1_5iefm"]
 [ext_resource type="Texture2D" uid="uid://cj04bc15afat3" path="res://Enemies/Bomb/Bomb.png" id="1_w1u3p"]
 [ext_resource type="Shader" uid="uid://cm3e8mkrj5g4d" path="res://Enemies/Bomb/bob_omb.gdshader" id="2_ijqey"]
-[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://Enemies/Super Mario Bros- Goomba Stomp Sound.mp3" id="4_r5djn"]
+[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://Enemies/Goomba/Super Mario Bros- Goomba Stomp Sound.mp3" id="4_r5djn"]
 [ext_resource type="Script" uid="uid://cr3xrjp53g533" path="res://Enemies/Bomb/explosion.gd" id="5_amh33"]
 [ext_resource type="Texture2D" uid="uid://cd55innb4ec58" path="res://Enemies/Bomb/CIRCULO DE BOMBA.png" id="6_xwu7k"]
 
