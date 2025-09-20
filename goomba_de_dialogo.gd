@@ -25,6 +25,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func  _process(_delta: float) -> void:
+
 	var player = get_tree().get_nodes_in_group("Player")[0]
 	if player_is_in and !dialogue_started:
 		if Input.is_action_pressed("Up"):

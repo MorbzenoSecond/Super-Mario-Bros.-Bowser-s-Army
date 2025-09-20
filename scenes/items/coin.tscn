@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://msmsddp3ecl4"]
+
+[ext_resource type="Script" uid="uid://cw0m0ck6twkpt" path="res://scenes/items/coin.gd" id="1_kr7ko"]
+[ext_resource type="Texture2D" uid="uid://bleogilxixy8r" path="res://assets/sprites/things sprite/Coin.png" id="1_setxb"]
+[ext_resource type="AudioStream" uid="uid://432vqbeslj7r" path="res://assets/sounds/Mario Coin Sound - Sound Effect (HD).mp3" id="3_lr2a7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t11da"]
+atlas = ExtResource("1_setxb")
+region = Rect2(1, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e764u"]
+atlas = ExtResource("1_setxb")
+region = Rect2(17, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weiq1"]
+atlas = ExtResource("1_setxb")
+region = Rect2(33, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cp4d"]
+atlas = ExtResource("1_setxb")
+region = Rect2(49, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b82bw"]
+atlas = ExtResource("1_setxb")
+region = Rect2(65, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6stmk"]
+atlas = ExtResource("1_setxb")
+region = Rect2(81, 0, 14, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kr7ko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t11da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e764u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weiq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cp4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b82bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6stmk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lr2a7"]
+radius = 8.08462
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kr7ko"]
+radius = 10.3333
+
+[node name="Coin" type="CharacterBody2D" groups=["coins"]]
+scale = Vector2(3, 3)
+motion_mode = 1
+floor_snap_length = 1.2
+script = ExtResource("1_kr7ko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1.66667)
+sprite_frames = SubResource("SpriteFrames_kr7ko")
+frame_progress = 0.361774
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.83333)
+shape = SubResource("CircleShape2D_lr2a7")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_kr7ko")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lr2a7")
+volume_db = -8.8
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.166667, -1.5)
+scale = Vector2(2.35, 1.91667)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

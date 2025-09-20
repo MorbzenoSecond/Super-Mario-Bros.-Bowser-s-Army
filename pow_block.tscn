@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://outtfla0qxyq"]
+[gd_scene load_steps=12 format=3 uid="uid://outtfla0qxyq"]
 
 [ext_resource type="Script" uid="uid://cn4towsseb8la" path="res://pow_block.gd" id="1_857b2"]
-[ext_resource type="Texture2D" uid="uid://d3fjbjrheag2i" path="res://Bloques/Bloques.png" id="2_blx04"]
+[ext_resource type="Texture2D" uid="uid://d3fjbjrheag2i" path="res://assets/tilesets/blocks.png" id="2_blx04"]
+[ext_resource type="Texture2D" uid="uid://l3vgw0gi11q1" path="res://assets/sprites/things sprite/Bloques_exportables.png" id="3_blx04"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_857b2"]
 atlas = ExtResource("2_blx04")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nu1ie"]
-atlas = ExtResource("2_blx04")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4id3"]
+atlas = ExtResource("3_blx04")
 region = Rect2(34, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nygy6"]
@@ -23,7 +24,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nu1ie")
+"texture": SubResource("AtlasTexture_a4id3")
 }],
 "loop": true,
 "name": &"empty",
@@ -130,6 +131,7 @@ script = ExtResource("1_857b2")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nygy6")
+animation = &"empty"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_llic7")

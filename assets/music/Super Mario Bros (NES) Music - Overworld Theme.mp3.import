@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5kbid6fal8dy"
+path="res://.godot/imported/Super Mario Bros (NES) Music - Overworld Theme.mp3-396a0160467759acbb4edac407488a97.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+dest_files=["res://.godot/imported/Super Mario Bros (NES) Music - Overworld Theme.mp3-396a0160467759acbb4edac407488a97.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

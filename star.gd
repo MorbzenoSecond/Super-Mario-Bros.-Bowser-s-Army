@@ -10,7 +10,7 @@ class_name Super_star
 @onready var raycast = $Raycast
 @onready var down = $Down
 
-@export var afterimage_scene = preload("res://after_image.tscn")
+@export var afterimage_scene = preload("res://assets/visual effects/after_image.tscn")
 var afterimage_timer := 0.0
 var afterimage_interval := 0.1 
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tpgpgm5v1a0l" path="res://game_world.gd" id="1_bvgre"]
 [ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="1_hly68"]
-[ext_resource type="AudioStream" uid="uid://cpwu0j48nhpmx" path="res://music/Super Mario World Music_ Level Complete.mp3" id="3_e3xe6"]
+[ext_resource type="AudioStream" uid="uid://cpwu0j48nhpmx" path="res://assets/music/Super Mario World Music_ Level Complete.mp3" id="3_e3xe6"]
 [ext_resource type="PackedScene" uid="uid://ptk3kj75axrj" path="res://WorldMap.tscn" id="4_e08lw"]
 [ext_resource type="PackedScene" uid="uid://bqwm0srcvdy6x" path="res://world_player.tscn" id="5_e3xe6"]
 [ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="6_mcbma"]
@@ -28,7 +28,7 @@ script = ExtResource("1_bvgre")
 [node name="AutoscrollCamera" type="Camera2D" parent="."]
 enabled = false
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["music"]]
 stream = ExtResource("3_e3xe6")
 
 [node name="EffectMusic" type="AudioStreamPlayer" parent="."]
@@ -36,7 +36,6 @@ volume_db = -80.0
 
 [node name="WorldMap" parent="." instance=ExtResource("4_e08lw")]
 position = Vector2(-3, 5)
-path_to_scene = "res://Bloques/prueba_de_bloques.tscn"
 cordenades = Vector2(960, 104)
 path_activate = true
 new_music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
@@ -50,7 +49,6 @@ libraries = {
 
 [node name="UI" parent="." instance=ExtResource("6_mcbma")]
 layer = 0
-visible = false
 
 [node name="Mario" parent="." instance=ExtResource("1_hly68")]
 z_index = 1

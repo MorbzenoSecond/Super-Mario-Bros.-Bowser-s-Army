@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cakbs782u722k"
+path="res://.godot/imported/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3-e755d7bba574c70343e5736f5d5baab2.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3"
+dest_files=["res://.godot/imported/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3-e755d7bba574c70343e5736f5d5baab2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

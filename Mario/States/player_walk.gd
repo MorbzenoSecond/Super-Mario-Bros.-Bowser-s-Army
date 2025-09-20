@@ -45,9 +45,6 @@ func Physics_Update(delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_up") and player.in_fence:
 		Transitioned.emit(self, "PlayerInFence")
-
-func _on_timer_timeout() -> void:
-	var new_dust = player.dust.instantiate()
-	player.get_parent().add_child(new_dust)
-	new_dust.global_position = player.marker.global_position
-	$Timer.start()
+	
+func Exit():
+	player.get_current_sprite().speed_scale = 1

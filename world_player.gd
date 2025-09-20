@@ -9,13 +9,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_left"):
-		global_position.x -= 1
+		global_position.x -= 100 * delta
 
 	if Input.is_action_pressed("ui_right"):
-		global_position.x += 1
+		global_position.x += 100 * delta
 
 	if Input.is_action_pressed("ui_down"):
-		global_position.y += 1
+		global_position.y += 20 * delta
 
 	if Input.is_action_pressed("ui_up"):
-		global_position.y -= 1
+		global_position.y -= 100 * delta

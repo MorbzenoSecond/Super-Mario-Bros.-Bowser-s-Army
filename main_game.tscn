@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl5bp5gyi4x78"]
+[gd_scene load_steps=3 format=3 uid="uid://cu08ws7mur3g7"]
 
 [ext_resource type="Script" uid="uid://d24jx844a28fy" path="res://main_game.gd" id="1_ykeeq"]
-[ext_resource type="AudioStream" uid="uid://d36pfiybggyhy" path="res://music/Super Mario 3D World - Main Theme -  HD.mp3" id="2_yx7mw"]
+[ext_resource type="AudioStream" uid="uid://d36pfiybggyhy" path="res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3" id="2_yx7mw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ykeeq")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=4 uid="uid://dl3ajpph4krpa"]
 
 [ext_resource type="Script" uid="uid://5776k0dgpcro" path="res://node_2d.gd" id="1_52m40"]
-[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://bandera/Fondo.png" id="2_rv0tv"]
-[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://Enemies/Goomba/goomba.tscn" id="3_isuyh"]
-[ext_resource type="PackedScene" uid="uid://di3eirwna2f8r" path="res://Enemies/Bullet/Cannon/Cannon.tscn" id="4_dj4lm"]
-[ext_resource type="PackedScene" uid="uid://dkfqtofx032h6" path="res://Enemies/Bullet/Bill/bill.tscn" id="5_ijk1a"]
+[ext_resource type="Texture2D" uid="uid://dok571e0ydtve" path="res://assets/sprites/things to delete later/Fondo.png" id="2_rv0tv"]
+[ext_resource type="PackedScene" uid="uid://50llo1qi88j0" path="res://scenes/characters/Enemies/Goomba/goomba.tscn" id="3_isuyh"]
+[ext_resource type="PackedScene" uid="uid://di3eirwna2f8r" path="res://scenes/characters/Enemies/Bullet/Cannon/Cannon.tscn" id="4_dj4lm"]
+[ext_resource type="PackedScene" uid="uid://dkfqtofx032h6" path="res://scenes/characters/Enemies/Bullet/Bill/bill.tscn" id="5_ijk1a"]
 [ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="6_yst8l"]
-[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://Bloques/brick.tscn" id="7_331hi"]
-[ext_resource type="AudioStream" uid="uid://5kbid6fal8dy" path="res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3" id="8_d01w6"]
+[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://scenes/maps mechanics/blocks/brick.tscn" id="7_331hi"]
+[ext_resource type="AudioStream" uid="uid://5kbid6fal8dy" path="res://assets/music/Super Mario Bros (NES) Music - Overworld Theme.mp3" id="8_d01w6"]
 [ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="9_rv0tv"]
-[ext_resource type="PackedScene" uid="uid://msmsddp3ecl4" path="res://Power ups/coin.tscn" id="10_isuyh"]
+[ext_resource type="PackedScene" uid="uid://msmsddp3ecl4" path="res://scenes/items/coin.tscn" id="10_isuyh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52m40"]
 texture = ExtResource("2_rv0tv")

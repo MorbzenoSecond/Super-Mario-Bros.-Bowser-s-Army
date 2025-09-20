@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://0kxfy56m6mix"]
 
 [ext_resource type="Script" uid="uid://bgo6lpftl1w2l" path="res://star.gd" id="1_e2x7v"]
-[ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://Power ups/MUSHROOM.png" id="2_c2gop"]
+[ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://assets/sprites/things sprite/MUSHROOM.png" id="2_c2gop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujs67"]
 size = Vector2(10, 12)

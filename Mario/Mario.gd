@@ -18,13 +18,27 @@ var is_talking = false
 var direction = 0
 var star = false
 var in_fence = false
+var using_fence = false
 var snap = 32
 var sliding = false
+var falling = false
+var in_yoshi = false
 @onready var animation_player = $AnimationPlayer
-@export var afterimage_scene = preload("res://after_image.tscn")
-const FIREBALL_SCENE = preload("res://fire ball.tscn")
+@export var afterimage_scene = preload("res://assets/visual effects/after_image.tscn")
+const FIREBALL_SCENE = preload("res://scenes/items/proyectiles/fire ball.tscn")
+const yoshi = preload("res://scenes/characters/yoshi.tscn")
+
 var afterimage_timer := 0.0
 var afterimage_interval := 0.05  # Cada cuánto deja una silueta
+@export_group("Yoshi data")
+@export var yoshi_MAX_SPEED = 300.0
+@export var yoshi_RUN_MAX_SPEED = 600
+@export var yoshi_ACCELERATION = 600.0
+@export var yoshi_JUMP_ACCELERATION = 800.0
+@export var yoshi_FRICTION = -500.0
+@export var yoshi_JUMP_FORCE = -1350.0
+@export var yoshi_JUMP_CUTOFF = -50.0
+@export_group("")
 
 @export var Player_mode: PlayerMode = PlayerMode.SMALL
 @export_group("stomping")
@@ -39,7 +53,6 @@ var afterimage_interval := 0.05  # Cada cuánto deja una silueta
 @onready var Area_collision = $Area2D/CollisionShape2D.shape as RectangleShape2D
 @onready var Iframe_timer:= $Iframe
 @onready var marker := $Marker2D
-@export var dust: PackedScene
 var Iframe_active = false
 @onready var behind_inner = $left_inner
 @onready var behind_outer = $left_outer
@@ -79,8 +92,6 @@ func get_current_sprite()->AnimatedSprite2D:
 	return $Small
 
 func _ready() -> void:
-	var instance = dust.instantiate()
-	instance.global_position = $Marker2D.global_position
 	if PlayerSpawnPoint.respawn_pending:
 		global_position = PlayerSpawnPoint.last_checkpoint_position
 		PlayerSpawnPoint.respawn_pending = false
@@ -88,7 +99,6 @@ func _ready() -> void:
 	set_physics_process(true)
 	respawn_position = global_position
 	update_active_sprite()
-	get_current_sprite().animation = "idle"
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -171,7 +181,6 @@ func handle_movement_collision(collision: KinematicCollision2D):
 			(collision.get_collider() as Block).bump(Player_mode, "up")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("entro")
 	var enemy = area.get_parent()
 	if enemy is Enemy:
 		handle_enemy_collision(enemy)
@@ -188,7 +197,32 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		handle_star_collision(enemy)
 	elif enemy is Bomb:
 		handle_bob_omb_collision(enemy)
+	elif enemy.is_in_group("Enemies"):
+		handle_dry_collision(enemy)
 
+func handle_dry_collision(enemy):
+	if enemy == null:
+		return
+	if star:
+		enemy.die_by_block()
+		return
+	if sliding:
+		enemy.die_by_block()
+		return
+	if global_position.y < enemy.global_position.y - 30:
+		enemy.hit()
+		on_enemy_stomped()
+	else:
+		if !Iframe_active:
+			_i_frame_start()
+			if !Player_mode == PlayerMode.SMALL:
+				print("golpea a mario")
+				Player_mode = PlayerMode.SMALL
+				update_active_sprite()
+			else:
+				die()
+		else: 
+			return
 
 func handle_bob_omb_collision(enemy:Bomb):
 	if enemy == null:
@@ -316,6 +350,9 @@ func handle_mushshroom_collision(enemy:Shroom):
 		rainbow()
 
 func on_enemy_stomped():
+	if using_fence:
+		return
+		
 	if Input.is_key_pressed(KEY_SPACE):
 		GRAVITY = 900.0
 		velocity.y = stomp_y_velocity - 800

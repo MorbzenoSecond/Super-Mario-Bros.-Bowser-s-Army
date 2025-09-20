@@ -12,18 +12,18 @@ offset_bottom = 645.0
 color = Color(0.80549, 0.153771, 0.153771, 1)
 
 [node name="Map_level" parent="." instance=ExtResource("2_l8kh1")]
-position = Vector2(700, 195)
+position = Vector2(687, 30)
 level_id = "1"
 level_name = "level 1-1"
-path_to_scene = "res://Bloques/prueba_de_bloques.tscn"
+path_to_scene = "res://scenes/maps mechanics/blocks/prueba_de_bloques.tscn"
 cordenades = Vector2(960, 104)
-music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+music = "res://assets/music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3"
 
 [node name="Map_level2" parent="." instance=ExtResource("2_l8kh1")]
 position = Vector2(48, 49)
 level_id = "2"
 level_name = "level 1-1"
-path_to_scene = "res://1_1.tscn"
-cordenades = Vector2(960, 104)
+path_to_scene = "res://scenes/levels/tests levels/level_1_1.tscn"
+cordenades = Vector2(384, 448)
 path_activate = true
-music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
+music = "res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3"

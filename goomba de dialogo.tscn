@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://8kx2wsgj8fkj"]
 
 [ext_resource type="Script" uid="uid://d3d2j01jys1vl" path="res://goomba_de_dialogo.gd" id="1_k6s4o"]
-[ext_resource type="Texture2D" uid="uid://c7nsc6hl2cyfs" path="res://Enemies/Goomba/goombas.png" id="1_p3mlk"]
-[ext_resource type="Texture2D" uid="uid://ceptr8xngdxmm" path="res://Enemies/Goomba/goombas-sheet.png" id="3_kutuy"]
-[ext_resource type="AudioStream" uid="uid://bvirsufk4ac1l" path="res://Enemies/Goomba/Super Mario Party Goomba Voice Clips.mp3" id="3_o1ea3"]
+[ext_resource type="Texture2D" uid="uid://c7nsc6hl2cyfs" path="res://scenes/characters/Enemies/Goomba/goombas.png" id="1_p3mlk"]
+[ext_resource type="Texture2D" uid="uid://ceptr8xngdxmm" path="res://scenes/characters/Enemies/Goomba/goombas-sheet.png" id="3_kutuy"]
+[ext_resource type="AudioStream" uid="uid://bvirsufk4ac1l" path="res://assets/sounds/Super Mario Party Goomba Voice Clips.mp3" id="3_o1ea3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6s4o"]
 size = Vector2(50.6667, 31.3333)

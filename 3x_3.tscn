@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://caq5frhn6jtgk"]
 
-[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://Bloques/brick.tscn" id="1_vq455"]
+[ext_resource type="PackedScene" uid="uid://dklqy63qiphac" path="res://scenes/maps mechanics/blocks/brick.tscn" id="1_vq455"]
 
 [node name="3x3" type="Node2D"]
 

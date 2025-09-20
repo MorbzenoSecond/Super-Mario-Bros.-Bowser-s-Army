@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://bbay4wqkkgib3"]
 
 [ext_resource type="Script" uid="uid://be5353asm7wod" path="res://ui.gd" id="1_fyqef"]
-[ext_resource type="Texture2D" uid="uid://bleogilxixy8r" path="res://Power ups/Coin.png" id="2_m6e0p"]
-[ext_resource type="Shader" uid="uid://coswkw8xg4l6c" path="res://ui.gdshader" id="3_27fn8"]
-[ext_resource type="Texture2D" uid="uid://d3fjbjrheag2i" path="res://Bloques/Bloques.png" id="4_nltto"]
-[ext_resource type="FontFile" uid="uid://pd838cce85ve" path="res://bandera/Super-Mario-World.ttf" id="5_ibotj"]
-[ext_resource type="Shader" uid="uid://cwjdsmiuuvym3" path="res://sound.gdshader" id="5_n5ude"]
+[ext_resource type="Shader" uid="uid://coswkw8xg4l6c" path="res://assets/shaders/ui.gdshader" id="3_27fn8"]
+[ext_resource type="Texture2D" uid="uid://d3fjbjrheag2i" path="res://assets/tilesets/blocks.png" id="4_nltto"]
+[ext_resource type="FontFile" uid="uid://pd838cce85ve" path="res://assets/fonts/Super-Mario-World.ttf" id="5_ibotj"]
+[ext_resource type="Shader" uid="uid://cwjdsmiuuvym3" path="res://assets/shaders/sound.gdshader" id="5_n5ude"]
+[ext_resource type="Texture2D" uid="uid://dttw2ibfmtb6o" path="res://scenes/maps mechanics/blocks/Ladrillos.png" id="7_waa4j"]
 [ext_resource type="PackedScene" uid="uid://dgny7xe7nlgya" path="res://teclas.tscn" id="7_y4yjw"]
 
 [sub_resource type="Animation" id="Animation_27fn8"]
@@ -514,7 +514,7 @@ theme_override_constants/separation = 20
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/HBoxContainer"]
 position = Vector2(16, 16)
 scale = Vector2(2.1, 2.1)
-texture = ExtResource("2_m6e0p")
+texture = ExtResource("7_waa4j")
 
 [node name="CoinsLabel" type="Label" parent="Control/MarginContainer/HBoxContainer"]
 layout_mode = 2

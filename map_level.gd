@@ -18,11 +18,9 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("world-player"):
 		player_is_in = true
-	print("hola")
 
 func _on_area_exited(area: Area2D) -> void:
 	player_is_in = false
-	print("adios")
 
 func enter_level():
 	var level = owner

@@ -49,6 +49,8 @@ coins=""
 Brick_rompible=""
 TileMapLayer=""
 Piranna=""
+Mountable="yoshi"
+music=""
 
 [input]
 
