@@ -2,7 +2,8 @@ extends State
 class_name PlayerDuckJump
 
 func Enter() -> void:
-	player.get_current_sprite().animation = "duck_jump"
+	player.get_current_sprite().play("duck_jump")
+	player.actual_animation = "duck_jump"
 
 func Physics_Update(delta: float) -> void:
 	if Input.is_action_just_released("ui_accept") and player.velocity.y < player.JUMP_CUTOFF:

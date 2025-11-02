@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5djn"]
 shader = ExtResource("2_ijqey")
-shader_parameter/progress = 0.625
+shader_parameter/progress = 0.0
 shader_parameter/texture_size = Vector2(10, 10)
 shader_parameter/float_dist = 0.0
 shader_parameter/progress_rand_range = 0.1

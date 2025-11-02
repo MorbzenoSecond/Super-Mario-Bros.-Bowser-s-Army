@@ -98,7 +98,7 @@ animations = [{
 size = Vector2(16, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki1l8"]
-size = Vector2(16, 4)
+size = Vector2(16, 2)
 
 [node name="conveyor_belt" type="StaticBody2D"]
 collision_layer = 7
@@ -125,5 +125,5 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color(0, 1, 0.0933201, 1)
-position = Vector2(0, -11)
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ki1l8")

@@ -3,6 +3,7 @@ class_name PlayerWalk
 
 func Enter() -> void:
 	player.get_current_sprite().play("walk")
+	player.actual_animation = "walk"
 	$Timer.start()
 
 func Physics_Update(delta: float) -> void:
@@ -31,9 +32,9 @@ func Physics_Update(delta: float) -> void:
 		$Timer.stop()
 	if player.is_on_floor() and direction != 0 and sign(direction) != sign(player.velocity.x) :
 		player.get_current_sprite().speed_scale = 1
-		Transitioned.emit(self, "PlayerFriction")
+		player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_SPEED, player.ACCELERATION * delta)
 		$Timer.stop()
-	if player.is_on_floor() and direction != 0 and abs(player.velocity.x) == 500:
+	if player.is_on_floor() and direction != 0 and abs(player.velocity.x) == 400:
 		player.get_current_sprite().speed_scale = 1
 		Transitioned.emit(self, "PlayerRun")
 		$Timer.stop()

@@ -1,8 +1,13 @@
 extends Enemy
+
 var original_positions = {}
+var body_parts = {}
 
 func _ready() -> void:
 	super._ready()
+
+	body_parts = $BodyParts.get_children()
+
 	for part in $BodyParts.get_children():
 		part.rearmed()
 		original_positions[part] = part.position
@@ -46,14 +51,14 @@ func hit():
 	$CollisionShape2D.set_deferred("disabled", true)
 	muerto = true
 	$Timer.start()
-	for part in $BodyParts.get_children():
+	for part in body_parts:
 		var global_pos = part.global_position    
 		part.global_position = global_pos 
 		part.disarm()      
 
 func regroup():
 	var tween = create_tween()
-	for part in $BodyParts.get_children():
+	for part in body_parts:
 		part.collision.set_deferred("disabled", true)
 		part.rearm(original_positions[part])
 		#tween.tween_property(part, "rotation", 0, 0.2)
@@ -61,12 +66,12 @@ func regroup():
 	$Timer2.start()
 
 func _on_timer_timeout() -> void:
-	for part in $BodyParts.get_children():
+	for part in body_parts:
 		part.prepare_rearm()
 	regroup()
 
 func _on_timer_2_timeout() -> void:
-	for part in $BodyParts.get_children():
+	for part in body_parts:
 		part.rearmed()
 	$CollisionShape2D.set_deferred("disabled", false)
 	$Area2D.set_deferred ("monitoring", true)

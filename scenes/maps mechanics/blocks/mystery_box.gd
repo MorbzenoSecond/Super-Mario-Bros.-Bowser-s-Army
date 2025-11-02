@@ -42,14 +42,13 @@ func bump(player_mode: Player.PlayerMode, direction):
 			spawn_coin(direction)
 		bonusType.SHROOM:
 			if player_mode == Player.PlayerMode.BIG:
-				spawn_flower(direction)
+				spawn_power_up(direction, SHROOM_SCENE)
 			else:
-				spawn_shroom(direction)
+				spawn_power_up(direction, SHROOM_SCENE)
 		bonusType.FLOWER:
-			spawn_flower(direction)
+			spawn_power_up(direction, FIRE_FLOWER_SCENE)
 		bonusType.STAR:
-			spawn_star(direction)
-
+			spawn_power_up(direction, STAR_SCENE)
 
 func make_empty():
 	self.animation.play("less_size")
@@ -60,45 +59,90 @@ func make_empty():
 
 func spawn_coin(direction):
 	var coin = COIN_SCENE.instantiate()
-	coin.global_position = global_position + Vector2 (0,-8)
 	var Level = get_tree().current_scene
 	Level.add_child(coin)
-	coin.coin_noice.play()
-	coin.area.monitorable = false
-	coin.area.monitoring = false
-	Level.control_coins(1)
-	var spawn_tween = get_tree().create_tween()
 	if direction == "up":
-		spawn_tween.tween_property(coin, "position", position + Vector2(0,-80), 0.4)
-		spawn_tween.tween_property(coin, "position", position + Vector2(0,-8), 0.4)
+		coin.global_position = global_position + Vector2 (0,-8)
+		coin.grab(false)
 	elif direction == "down":
-		spawn_tween.tween_property(coin, "position", position + Vector2(0,80), 0.4)
-		spawn_tween.tween_property(coin, "position", position + Vector2(0,8), 0.4)
-	await spawn_tween.finished
-	coin.queue_free()
+		coin.global_position = global_position + Vector2 (0,8)
+		coin.grab(true)
 
-func spawn_shroom(direction):
-	var shroom = SHROOM_SCENE.instantiate()
+func spawn_power_up(direction, new_power_up):
+	var power_up = new_power_up.instantiate()
 	if direction == "up":
-		shroom.global_position = global_position + Vector2 (0,-7)
+		power_up.global_position = global_position + Vector2 (0,-7)
 	elif direction == "down":
-		shroom.global_position = global_position + Vector2 (0,7)
-	get_parent().add_child(shroom) 
+		power_up.global_position = global_position + Vector2 (0,7)
+	get_parent().add_child(power_up) 
+	power_up.spawn(direction)
 
-func spawn_flower(direction):
-	var flower = FIRE_FLOWER_SCENE.instantiate()
-	if direction == "up":
-		flower.global_position = global_position + Vector2 (0,-7)
-	elif direction == "down":
-		flower.global_position = global_position + Vector2 (0,7)
-	get_parent().add_child(flower) 
-	flower.spawn(direction)
-
-func spawn_star(direction):
-	var star = STAR_SCENE.instantiate()
-	if direction == "up":
-		star.global_position = global_position + Vector2 (0,-7)
-	elif direction == "down":
-		star.global_position = global_position + Vector2 (0,7)
-	get_parent().add_child(star) 
-	star.spawn(direction)
+#func bump(player_mode: Player.PlayerMode, direction):
+	#if is_empty:
+		#return
+	#super.bump(player_mode, direction)
+	#make_empty()
+	#match bonus_type:
+		#bonusType.COIN:
+			#spawn_coin(direction)
+		#bonusType.SHROOM:
+			#if player_mode == Player.PlayerMode.BIG:
+				#spawn_flower(direction)
+			#else:
+				#spawn_shroom(direction)
+		#bonusType.FLOWER:
+			#spawn_flower(direction)
+		#bonusType.STAR:
+			#spawn_star(direction)
+#
+#func make_empty():
+	#self.animation.play("less_size")
+	#$CollisionShape2D. disabled = false
+	#call_deferred("set_process", false)
+	#is_empty = true
+	#sprite.play("empty")
+#
+#func spawn_coin(direction):
+	#var coin = COIN_SCENE.instantiate()
+	#var Level = get_tree().current_scene
+	#Level.add_child(coin)
+	#if direction == "up":
+		#coin.global_position = global_position + Vector2 (0,-8)
+		#coin.grab(false)
+	#elif direction == "down":
+		#coin.global_position = global_position + Vector2 (0,8)
+		#coin.grab(true)
+#
+#func spawn_power_up(direction):
+	#var power_up = SHROOM_SCENE.instantiate()
+	#if direction == "up":
+		#power_up.global_position = global_position + Vector2 (0,-7)
+	#elif direction == "down":
+		#power_up.global_position = global_position + Vector2 (0,7)
+	#get_parent().add_child(power_up) 
+#
+#func spawn_shroom(direction):
+	#var shroom = SHROOM_SCENE.instantiate()
+	#if direction == "up":
+		#shroom.global_position = global_position + Vector2 (0,-7)
+	#elif direction == "down":
+		#shroom.global_position = global_position + Vector2 (0,7)
+	#get_parent().add_child(shroom) 
+#
+#func spawn_flower(direction):
+	#var flower = FIRE_FLOWER_SCENE.instantiate()
+	#if direction == "up":
+		#flower.global_position = global_position + Vector2 (0,-7)
+	#elif direction == "down":
+		#flower.global_position = global_position + Vector2 (0,7)
+	#get_parent().add_child(flower) 
+	#flower.spawn(direction)
+#
+#func spawn_star(direction):
+	#var star = STAR_SCENE.instantiate()
+	#if direction == "up":
+		#star.global_position = global_position + Vector2 (0,-7)
+	#elif direction == "down":
+		#star.global_position = global_position + Vector2 (0,7)
+	#get_parent().add_child(star) 
+	#star.spawn(direction)

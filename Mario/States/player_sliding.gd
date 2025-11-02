@@ -28,4 +28,5 @@ func Physics_Update(delta: float) -> void:
 		Transitioned.emit(self, "PlayerIdle")
 
 func Exit():
+	player.get_current_sprite().rotation = deg_to_rad(0)
 	player.sliding = false

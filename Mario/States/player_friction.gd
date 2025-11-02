@@ -2,7 +2,9 @@ extends State
 class_name PlayerFriction
 
 func Enter() -> void:
-	player.get_current_sprite().animation = "friction"
+	player.get_current_sprite().play("friction")
+	player.actual_animation = "idle"
+	
 
 func Physics_Update(delta: float) -> void:
 	if player.velocity.x > 0:

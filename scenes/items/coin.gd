@@ -18,10 +18,8 @@ func _ready() -> void:
 		CoinType.onehundred:
 			total_coins = 100
 
-
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	can_be_pushed_down = true
-
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	can_be_pushed_down = false# Replace with function body.

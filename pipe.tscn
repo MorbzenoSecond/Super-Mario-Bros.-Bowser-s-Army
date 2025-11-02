@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7r7"]
 size = Vector2(20, 8)
 
-[node name="Pipe" type="RigidBody2D"]
+[node name="Pipe" type="RigidBody2D" groups=["Pipes"]]
 scale = Vector2(3, 3)
 mass = 1000.0
 gravity_scale = 0.0

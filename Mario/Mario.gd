@@ -64,10 +64,44 @@ var Iframe_active = false
 @onready var down = $down
 @onready var fireball_shoot = $fireball_shoot
 @onready var starTime = $StarTime
+@export var skin : String = "res://Mario/Mario_cappy_skin.png" 
+var actual_animation : String
 var wall_jump_direction : int
 
+func _on_change_skin(new_skin):
+	var sheet = load(new_skin)
+	var frames = SpriteFrames.new()
+	var animationsArray = ["idle", "walk", "duck", "duck_enter", "duck_jump",
+		"falling", "friction", "in fence", "jump", "left_right_fence",
+		"mario_in_wall", "pound", "pound_fall", "riding_yoshi_idle",
+		"run", "run_jump", "stare", "talking", "up_down-fence", "walking_duck"]
+	var animationsFramesArray = [2,10,5,5,5,7,5,5,7,5,5,10,5,5,10,5,3,2,5,5]
+	var animationsLoopArray = [true, true, false, true, false, false, false, true, 
+	false, true, true, false, true, true, true, true, true, true, true, true]
+
+	var animationsSectionArray = [Vector2(0,1), Vector2(6,9), Vector2(26,26), Vector2(25,25),
+		Vector2(31,32), Vector2(17,18), Vector2(22,23), Vector2(37,37),
+		Vector2(14,16), Vector2(41,43), Vector2(36,36), Vector2(33,34),
+		Vector2(35,35), Vector2(45,45), Vector2(10,13), Vector2(19,19),
+		Vector2(2,5), Vector2(20,21), Vector2(37,40), Vector2(27,30)]
+
+	for i in range(animationsArray.size()):
+		var anim_name = animationsArray[i]
+		frames.add_animation(anim_name)
+		frames.set_animation_speed(anim_name, animationsFramesArray[i])
+		frames.set_animation_loop(anim_name, animationsLoopArray[i])
+
+		for e in range(animationsSectionArray[i].x, animationsSectionArray[i].y + 1):
+			var frame = AtlasTexture.new()
+			frame.atlas = sheet
+			frame.region = Rect2(e * 42, 0, 42, 50)
+			frames.add_frame(anim_name, frame)
+
+	$Big.sprite_frames = frames
+	update_active_sprite()
 
 func update_active_sprite():
+	get_current_sprite().play(actual_animation)
 	for sprite in[$Small, $Fire, $Big]:
 		sprite.visible = false
 	match Player_mode:
@@ -81,6 +115,7 @@ func update_active_sprite():
 			_big_collision()
 			$Fire.visible = true
 
+
 func get_current_sprite()->AnimatedSprite2D:
 	match Player_mode:
 		PlayerMode.SMALL:
@@ -92,13 +127,13 @@ func get_current_sprite()->AnimatedSprite2D:
 	return $Small
 
 func _ready() -> void:
+	_on_change_skin(skin)
 	if PlayerSpawnPoint.respawn_pending:
 		global_position = PlayerSpawnPoint.last_checkpoint_position
 		PlayerSpawnPoint.respawn_pending = false
 	is_dead= false
 	set_physics_process(true)
 	respawn_position = global_position
-	update_active_sprite()
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -391,7 +426,7 @@ func exit_tube():
 	call_deferred("set_collision_layer_value", 1, true)
 	call_deferred("set_collision_mask_value", 1, true)
 	
-	$AnimationPlayer.play_backwards(pipe_exit_animation) 
+	$AnimationPlayer.play(pipe_exit_animation) 
 	await $AnimationPlayer.animation_finished
 	z_index = 1000
 	call_deferred("set_physics_process", true)

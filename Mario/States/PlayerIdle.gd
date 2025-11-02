@@ -3,6 +3,7 @@ class_name PlayerIdle
 
 func Enter():
 	player.get_current_sprite().play("idle")
+	player.actual_animation = "idle"
 	player.GRAVITY = 900.0
 	player.velocity.x = 0
 

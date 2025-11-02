@@ -155,7 +155,7 @@ position = Vector2(720, 120)
 scale = Vector2(3, 3)
 
 [node name="Koopa" parent="." instance=ExtResource("11_c6mt2")]
-position = Vector2(1264, 336)
+position = Vector2(1251, 368)
 scale = Vector2(1, 1)
 
 [node name="Checkpoint" parent="." instance=ExtResource("11_oswk3")]
@@ -165,12 +165,13 @@ checkpoint_id = "1"
 [node name="Pipe" parent="." instance=ExtResource("13_oswk3")]
 position = Vector2(960, 168)
 scale = Vector2(1, 1)
-path_to_scene = "res://Test/prueba_de_goombas.tscn"
-cordenades = Vector2(624, 248)
+path_to_scene = "res://scenes/levels/tests levels/prueba_de_goombas.tscn"
+conection = "1"
 path_activate = true
 
 [node name="FinalFlag" parent="." instance=ExtResource("12_c6mt2")]
 position = Vector2(1352, -88)
+distance = 1
 
 [connection signal="body_exited" from="Node2D" to="." method="_on_node_2d_body_exited"]
 [connection signal="body_exited" from="Node2D" to="Node2D" method="_on_body_exited"]

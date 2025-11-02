@@ -1,6 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwxxea211osfr"]
+[gd_scene load_steps=10 format=3 uid="uid://cwxxea211osfr"]
 
 [ext_resource type="Script" uid="uid://bpycmrolnwdld" path="res://scenes/maps mechanics/things/final_flag.gd" id="1_b0tyi"]
+[ext_resource type="Texture2D" uid="uid://bnmb70eioaeme" path="res://assets/sprites/things sprite/banderas_bowser.png" id="2_idfsd"]
+[ext_resource type="Texture2D" uid="uid://bi0klhw1ybxlo" path="res://assets/sprites/things sprite/banderas_mario.png" id="3_p3pj3"]
+[ext_resource type="Texture2D" uid="uid://dybyhhhfr73th" path="res://assets/sprites/pole.png" id="4_p3pj3"]
+
+[sub_resource type="Shader" id="Shader_88c0q"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idfsd"]
+render_priority = 0
+shader = SubResource("Shader_88c0q")
+
+[sub_resource type="Gradient" id="Gradient_kx7vc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.333333, 0.666667, 0.983607)
+colors = PackedColorArray(0.505882, 0.505882, 0.505882, 1, 0.894118, 0.894118, 0.894118, 1, 0.678431, 0.678431, 0.678431, 1, 0.505882, 0.505882, 0.505882, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_idfsd"]
+gradient = SubResource("Gradient_kx7vc")
+width = 1
+height = 6
+fill_to = Vector2(0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0tyi"]
 
@@ -8,41 +31,21 @@
 position = Vector2(2, 0)
 script = ExtResource("1_b0tyi")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 1.0
-offset_top = 9.0
-offset_right = 143.0
-offset_bottom = 87.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -37.0
+offset_left = -36.0
 offset_top = 428.0
-offset_right = 31.0
+offset_right = 32.0
 offset_bottom = 494.0
 color = Color(0.377804, 0.16654, 0.16654, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_idfsd")
 position = Vector2(-414, -78)
-points = PackedVector2Array(411, 506)
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = -18.0
-offset_top = -21.0
-offset_right = 13.0
-offset_bottom = 9.0
-color = Color(0.812278, 0.77778, 0.123015, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect4" type="ColorRect" parent="."]
-visible = false
-offset_left = 1.0
-offset_top = 420.0
-offset_right = 145.0
-offset_bottom = 494.0
-color = Color(0.988783, 0.00668559, 0.00668559, 1)
+points = PackedVector2Array(412, 506, 412, 506)
+width = 20.0
+texture = SubResource("GradientTexture2D_idfsd")
+texture_mode = 2
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(-1, 378)
@@ -55,5 +58,22 @@ collide_with_bodies = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="BanderasBowser" type="Sprite2D" parent="."]
+scale = Vector2(4.60714, 4.5)
+texture = ExtResource("2_idfsd")
+offset = Vector2(15.9535, 10.6111)
+
+[node name="BanderasMario" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(73.5, 456.875)
+scale = Vector2(4.60714, 4.33824)
+texture = ExtResource("3_p3pj3")
+
+[node name="Pole" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("4_p3pj3")
+offset = Vector2(0, -3)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,6 +3,7 @@ class_name PlayerStare
 
 func Enter():
 	player.get_current_sprite().play("stare")
+	player.actual_animation = "stare"
 	player.velocity.x = 0
 
 func Physics_Update(_delta : float):

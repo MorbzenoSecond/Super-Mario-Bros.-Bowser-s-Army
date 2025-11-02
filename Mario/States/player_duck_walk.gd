@@ -3,6 +3,7 @@ class_name PlayerDuckWalk
 
 func Enter() -> void:
 	player.get_current_sprite().play("walking_duck")
+	player.actual_animation = "walking_duck"
 
 func Physics_Update(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")

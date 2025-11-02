@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d3gfjx8gte7qo"
+path="res://.godot/imported/cambio_de_skin.dialogue-89893f8db00b68c77e78702c51b95e95.tres"
+
+[deps]
+
+source_file="res://dialogues/cambio_de_skin.dialogue"
+dest_files=["res://.godot/imported/cambio_de_skin.dialogue-89893f8db00b68c77e78702c51b95e95.tres"]
+
+[params]
+
+defaults=true

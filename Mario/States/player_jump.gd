@@ -3,6 +3,7 @@ class_name PlayerJump
 
 func Enter() -> void:
 	player.get_current_sprite().play("jump") 
+	player.actual_animation = "jump"
 
 func Physics_Update(delta: float) -> void:
 	var player = owner

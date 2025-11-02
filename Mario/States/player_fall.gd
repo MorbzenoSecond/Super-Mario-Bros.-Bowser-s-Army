@@ -3,7 +3,8 @@ class_name PlayerFall
 
 func Enter() -> void:
 	player.falling = true
-	player.get_current_sprite().animation = "falling"
+	player.get_current_sprite().play("falling")
+	player.actual_animation = "falling"
 
 func Physics_Update(delta: float) -> void:
 	var direction : = Input.get_axis("ui_left", "ui_right")

@@ -27,4 +27,4 @@ func _on_quit_entered(_body: Node2D):
 
 func _enter_level(path_to_scene, cordenades, new_music):
 	var game = owner
-	game._on_goto_room(load(path_to_scene) as PackedScene,cordenades,new_music)
+	game._on_goto_room(load(path_to_scene) as PackedScene,new_music, false, "0")

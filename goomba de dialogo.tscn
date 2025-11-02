@@ -70,7 +70,7 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Node2D" type="Area2D"]
+[node name="Goomba de dialogo" type="Area2D"]
 scale = Vector2(3, 3)
 script = ExtResource("1_k6s4o")
 
@@ -91,4 +91,5 @@ stream = ExtResource("3_o1ea3")
 ignore_time_scale = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

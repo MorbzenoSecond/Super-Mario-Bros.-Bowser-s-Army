@@ -2,7 +2,8 @@ extends State
 class_name PlayerRunJump
 
 func Enter() -> void:
-	player.get_current_sprite().animation = "run_jump"
+	player.get_current_sprite().play("run_jump")
+	player.actual_animation = "run_jump"
 
 func Physics_Update(delta: float) -> void:
 	#$AudioStreamPlayer2D.play()

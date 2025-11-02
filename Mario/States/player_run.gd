@@ -3,6 +3,7 @@ class_name PlayerRun
 
 func Enter() -> void:
 	player.get_current_sprite().play("run")
+	player.actual_animation = "run"
 
 func Physics_Update(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")

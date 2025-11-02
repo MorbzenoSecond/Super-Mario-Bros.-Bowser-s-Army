@@ -33,8 +33,8 @@ func finished():
 func _stablish_current_music(new_music):
 	call_deferred("emit_signal", "new_music", new_music)
 
-func _on_transition_entered(_body: Node2D, path, cordenades, music):
-	call_deferred("emit_signal", "goto_room", load(path) as PackedScene, cordenades as Vector2, music)
+func _on_transition_entered(_body: Node2D, path, music, pipe, conection):
+	call_deferred("emit_signal", "goto_room", load(path) as PackedScene, music, pipe, conection)
 
 func _on_quit_entered(_body: Node2D):
 	emit_signal("goto_main")

@@ -1,16 +1,21 @@
-{
-	"game_progress": {
-		"level_1": {
-			"completed": true,
-			"coins": 98,
-			"star": true,
-			"secrets": 1
+{"levels":{
+	"level_1":{
+		"GoldenCoins":{
+			"coin_1":false,
+			"coin_2":false,
+			"coin_3":false},
+		"GoldenFlagStatus":false,"LevelCoins":0.0,
+		"LevelStatus":false
 		},
-		"level_2": {
-			"completed": false,
-			"coins": 45,
-			"star": false,
-			"secrets": 0
+	"level_2":{
+		"GoldenCoins":{
+			"coin_1":false,
+			"coin_2":true,
+			"coin_3":true
+			},
+		"GoldenFlagStatus":false,
+		"LevelCoins":0.0,
+		"LevelStatus":true
 		}
 	}
 }

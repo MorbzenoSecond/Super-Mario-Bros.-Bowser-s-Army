@@ -6,7 +6,6 @@ class_name Gameworld
 @onready var music = $Music
 @onready var effectmusic = $EffectMusic
 signal end_game
-
 @export var start_scene:String
 var current_music:String
 var respawn_music:String
@@ -14,8 +13,11 @@ var current_level:Node2D
 var old_level:Node2D
 var star = false
 
+signal reloadMap()
+
 #This runs as soon as an instance of "game.tscn" enters the scene tree, which means whenever you add it with "add_child()"
 func _ready():
+	LevelDataManager.load_data()
 	pass
 	#var packed_scene = load(start_scene) as PackedScene
 	#if packed_scene == null:
@@ -37,16 +39,34 @@ func _flag_reached():
 	music.play()
 	$UI.fade_level()
 
-func _on_goto_room(scene:PackedScene, new_mario_position:Vector2, new_music):
-	print("hola")
+func _on_goto_room(scene:PackedScene, new_music, pipe: bool, conection):
+
 	_in_a_level()
-	$Mario.global_position = new_mario_position
-	#If we instance the new level insted of using change_scene(), we can do our setup in between. 
-	#like using a tween to slowly move the camera to the new area.
-	#get_tree().paused=true
+	_new_level(scene,new_music)
+	await get_tree().process_frame
+	
+	if pipe:
+		$Mario.global_position = _get_pipes_on_level(conection)
+	else:
+		$Mario.global_position = PlayerSpawnPoint.start_point
+
+func _get_pipes_on_level(pipe_conection):
+	var pipes = current_level.get_tree().get_nodes_in_group("Pipes")
+	for pipe in pipes:
+		if pipe.conection == pipe_conection:
+			print("Pipe encontrada en:", pipe.global_position)
+			return pipe.global_position + Vector2(0, -50)
+	
+	# Si no se encontró ninguna pipe con esa conexión
+	print("No se encontró una pipe con conexión:", pipe_conection)
+	return null
+
+func _new_level(scene, new_music):
+		#get_tree().paused=true
 	#ScreenFader.fade_out()
 	#await ScreenFader.faded_out
 	var new_level = scene.instantiate()
+	print("la nueva musica es", new_music)
 	$Levels.add_child(new_level)
 	if !new_music == "": 
 		music.stream = load(new_music)
@@ -65,8 +85,8 @@ func _on_goto_room(scene:PackedScene, new_mario_position:Vector2, new_music):
 	get_tree().paused=false
 	if old_level:
 		old_level.queue_free()
-	print("hola", PlayerSpawnPoint.start_point)
-	$Mario.global_position = PlayerSpawnPoint.start_point
+
+
 func _on_goto_main():
 	#get_tree().paused=true
 	emit_signal("end_game")
@@ -141,8 +161,11 @@ func _in_a_level():
 func _in_world_map():
 	if is_instance_valid(current_level):
 		current_level.queue_free()
-
 	$Mario/PlayerCam.enabled = false
+	await get_tree().process_frame
+	connect_level_signals()
+	await get_tree().process_frame
+	emit_signal("reloadMap")
 	$Mario.hide()
 	$WorldPlayer.show()
 	$WorldMap.in_level = false
@@ -150,3 +173,10 @@ func _in_world_map():
 	$Music.play()
 	$WorldMap.show()
 	$WorldPlayer.call_deferred("set_process", true)
+
+func connect_level_signals():
+	var levels = get_tree().get_nodes_in_group("mapLevel")
+	for level in levels:
+		print(level)
+		if not level.is_connected("reloadMap", Callable(self, "_on_reloadMap")):
+			level.connect("reloadMap", Callable(self, "_on_reloadMap"))

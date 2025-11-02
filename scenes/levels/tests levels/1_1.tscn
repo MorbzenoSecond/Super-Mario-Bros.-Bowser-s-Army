@@ -605,7 +605,6 @@ position = Vector2(661, 280)
 
 [node name="Pow Block" parent="." instance=ExtResource("11_hch24")]
 position = Vector2(938, 360)
-scale = Vector2(3, 3)
 
 [node name="Coin2" parent="." instance=ExtResource("10_ojr5p")]
 position = Vector2(2290, 271)
@@ -624,7 +623,6 @@ position = Vector2(752, 280)
 
 [node name="Pow Block2" parent="." instance=ExtResource("11_hch24")]
 position = Vector2(1368, 360)
-scale = Vector2(3, 3)
 
 [node name="Koopa" parent="." instance=ExtResource("12_ga6ik")]
 position = Vector2(848, 504)

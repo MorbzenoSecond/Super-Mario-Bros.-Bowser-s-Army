@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://ud1v52ogq2tm"]
+
+[ext_resource type="Script" uid="uid://br7s5xavtno2q" path="res://scenes/characters/Enemies/Boo/boo.gd" id="1_a6dyy"]
+[ext_resource type="Texture2D" uid="uid://bisqessryopuf" path="res://scenes/characters/Enemies/Boo/boo.png" id="2_bh5kr"]
+[ext_resource type="Texture2D" uid="uid://ba7lrn5ib40v6" path="res://scenes/characters/Enemies/Boo/boo_bush.png" id="2_oneyd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh5kr"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6dyy"]
+size = Vector2(32, 370.667)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af76f"]
+atlas = ExtResource("2_oneyd")
+region = Rect2(0, 0, 19, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oneyd"]
+atlas = ExtResource("2_bh5kr")
+region = Rect2(2, 0, 20, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq47u"]
+atlas = ExtResource("2_bh5kr")
+region = Rect2(24, 0, 20, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkjm6"]
+atlas = ExtResource("2_bh5kr")
+region = Rect2(46, 0, 20, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkjm6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af76f")
+}],
+"loop": true,
+"name": &"blush",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oneyd")
+}],
+"loop": true,
+"name": &"boo_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq47u")
+}],
+"loop": true,
+"name": &"boo_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkjm6")
+}],
+"loop": true,
+"name": &"boo_3",
+"speed": 5.0
+}]
+
+[node name="Boo" type="Area2D" groups=["BOO"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_a6dyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, -2.07126e-06)
+shape = SubResource("RectangleShape2D_bh5kr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0.968418, 0.127555, 0.239635, 1)
+self_modulate = Color(0.825856, 0.0544653, 0.0544653, 1)
+shape = SubResource("RectangleShape2D_a6dyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hkjm6")
+animation = &"boo_3"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 8.324
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -45.3333
+offset_top = -29.3333
+offset_right = 47.6667
+offset_bottom = -6.33333
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

@@ -2,10 +2,10 @@ extends Node2D
 
 var player_is_in = false
 var mario_has_entered = false
-@onready var pole = $ColorRect3
-@onready var flag = $ColorRect
+@onready var pole = $Pole
+@onready var flag = $BanderasBowser
 @onready var base = $ColorRect2
-@onready var mario_flad = $ColorRect4
+@onready var mario_flad = $BanderasMario
 @onready var shape = $ShapeCast2D
 @export var distance = 5
 var global_flag_pos
@@ -17,7 +17,7 @@ var mario_touch_pos
 func _ready() -> void:
 	if distance == 0:
 		distance = 1
-	flag.position.y = (-distance * 64) + 30
+	flag.position.y = (-distance * 64) 
 	pole.position.y = (-distance * 64) 
 	
 	# Obtenemos la posición global del flag y de la base
@@ -25,7 +25,7 @@ func _ready() -> void:
 	global_mario_flag_pos = Vector2(mario_flad.global_position.x,mario_flad.global_position.y) 
 	# Transformamos las posiciones globales a locales dentro del Line2D
 	var local_flag_pos = $Line2D.to_local(global_flag_pos)
-	$Line2D.add_point(local_flag_pos)
+	$Line2D.add_point(local_flag_pos-Vector2(15,0))
 	
 	var cast_direction = flag.global_position - shape.global_position
 	shape.target_position = cast_direction
@@ -56,6 +56,11 @@ func _process(_delta: float) -> void:
 
 func enter_level():
 	var level = owner
+	LevelDataManager.data["levels"][GameState.actualLevel]["LevelStatus"] = true
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_1"] = GameState.specialCoins["coin_1"]
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_2"] = GameState.specialCoins["coin_2"]
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_3"] = GameState.specialCoins["coin_3"]
+	LevelDataManager.save()
 	level.level_end()
 
 func get_flag_down():

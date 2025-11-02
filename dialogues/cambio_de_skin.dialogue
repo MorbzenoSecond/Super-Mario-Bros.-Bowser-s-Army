@@ -1,0 +1,10 @@
+~ start
+do play_noises(1.5, "talk")
+Goomba: Hola mario, [wait=1]quieres cambiar de skin?
+- Mario basico
+	do change_mario_skin("res://Mario/Mario exportable.png")
+- Mario fuego
+	do change_mario_skin("res://Mario/Mario Fuego exportable.png")
+- Mario cappy
+	do change_mario_skin("res://Mario/Mario_cappy_skin.png")
+=> END

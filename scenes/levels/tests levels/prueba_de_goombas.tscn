@@ -89,16 +89,13 @@ invisible = true
 
 [node name="On-off block" parent="bloques" instance=ExtResource("7_j5ljb")]
 position = Vector2(328, 80.0001)
-scale = Vector2(3, 3)
 
 [node name="Blue-red blocks" parent="bloques" instance=ExtResource("8_3bkjh")]
 position = Vector2(128, 48)
-scale = Vector2(3, 3)
 state = false
 
 [node name="Blue-red blocks2" parent="bloques" instance=ExtResource("8_3bkjh")]
 position = Vector2(176, 48)
-scale = Vector2(3, 3)
 start_color = 0
 
 [node name="Brick5" parent="bloques" instance=ExtResource("5_j5ljb")]
@@ -151,13 +148,12 @@ shape = SubResource("RectangleShape2D_cnq4c")
 [node name="Checkpoint" parent="." instance=ExtResource("15_cnq4c")]
 position = Vector2(32, 164)
 checkpoint_id = "2"
-scene_pat = "res://Test/prueba_de_goombas.tscn"
 
 [node name="Pipe" parent="." instance=ExtResource("15_dagfl")]
 position = Vector2(624, 312)
 scale = Vector2(1, 1)
 path_to_scene = "res://Bloques/prueba_de_bloques.tscn"
-cordenades = Vector2(960, 104)
+conection = "1"
 path_activate = true
 new_music = "res://music/Super Mario 3D World - Main Theme -  HD.mp3"
 
