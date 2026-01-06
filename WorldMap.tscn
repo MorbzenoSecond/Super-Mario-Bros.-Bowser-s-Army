@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ptk3kj75axrj"]
+[gd_scene load_steps=4 format=3 uid="uid://ptk3kj75axrj"]
 
 [ext_resource type="Script" uid="uid://oqeuhl0ljfr8" path="res://world_map.gd" id="1_y2wwp"]
 [ext_resource type="PackedScene" uid="uid://c2dtsjk8i8aqt" path="res://map_level.tscn" id="2_l8kh1"]
+[ext_resource type="PackedScene" uid="uid://b1585h4ysfbh0" path="res://scenes/world_map_scenes/world_map_paths.tscn" id="3_aypb6"]
 
 [node name="WorldMap" type="Node2D"]
+physics_interpolation_mode = 2
 script = ExtResource("1_y2wwp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -12,19 +14,50 @@ offset_right = 999.0
 offset_bottom = 646.0
 color = Color(0.80549, 0.153771, 0.153771, 1)
 
-[node name="Map_level" parent="." instance=ExtResource("2_l8kh1")]
-position = Vector2(687, 30)
-level_id = "1"
-level_name = "level_1"
-path_to_scene = "res://scenes/maps mechanics/blocks/prueba_de_bloques.tscn"
-cordenades = Vector2(960, 104)
-music = "res://assets/music/Beep Block Skyway (w Beeps)  - Music From Super Mario 3D World OST (Original Unextended Version).mp3"
-
 [node name="Map_level2" parent="." instance=ExtResource("2_l8kh1")]
-position = Vector2(66, 30)
+position = Vector2(151, 97)
 level_id = "2"
 level_name = "level_2"
 path_to_scene = "res://scenes/levels/tests levels/level_1_1.tscn"
 cordenades = Vector2(384, 448)
 path_activate = true
 music = "res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3"
+
+[node name="Map_level3" parent="." instance=ExtResource("2_l8kh1")]
+position = Vector2(35, 35)
+level_id = "1"
+level_name = "level_1"
+path_to_scene = "res://boss_scenario_test.tscn"
+cordenades = Vector2(384, 448)
+path_activate = true
+music = "res://assets/music/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3"
+
+[node name="World_map_paths" parent="." instance=ExtResource("3_aypb6")]
+scale = Vector2(1, 1)
+path_id = "level_1"
+
+[node name="Marker2D" parent="World_map_paths/Points" index="0"]
+position = Vector2(149, 97)
+
+[node name="Marker2D2" parent="World_map_paths/Points" index="1"]
+position = Vector2(148, 207)
+
+[node name="Marker2D3" parent="World_map_paths/Points" index="2"]
+position = Vector2(366, 189)
+
+[node name="Marker2D4" type="Marker2D" parent="World_map_paths/Points" index="3"]
+position = Vector2(366, 318)
+
+[node name="Marker2D5" type="Marker2D" parent="World_map_paths/Points" index="4"]
+position = Vector2(779, 189)
+
+[node name="Marker2D6" type="Marker2D" parent="World_map_paths/Points" index="5"]
+position = Vector2(844, 531)
+
+[node name="direction_taked" parent="World_map_paths" index="1"]
+position = Vector2(401, 52)
+
+[node name="Line2D" parent="World_map_paths" index="4"]
+points = PackedVector2Array(148, 98, 148, 205)
+
+[editable path="World_map_paths"]

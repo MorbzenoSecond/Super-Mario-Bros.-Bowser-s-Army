@@ -14,7 +14,7 @@ func _ready() -> void:
 	update_state(state)
 	
 
-func _on_state_changed(new_state: bool) -> void:
+func _on_state_changed(new_state: bool, _block_id) -> void:
 	# Azul sigue la señal tal cual, rojo lo invierte
 	if start_color == color.blue:
 		update_state(new_state)

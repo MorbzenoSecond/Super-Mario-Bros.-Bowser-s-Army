@@ -4,21 +4,23 @@ var data = {
 	"levels": {
 		"level_1": {
 			"LevelStatus": false,
+			"path_unlocken": false,
 			"LevelCoins": 0,
 			"GoldenCoins": {
-				"coin_1": false,
-				"coin_2": false,
-				"coin_3": false
+				"special_coin_1": false,
+				"special_coin_2": false,
+				"special_coin_3": false
 			},
 			"GoldenFlagStatus": false
 		},
 		"level_2": {
 			"LevelStatus": false,
+			"path_unlocken": true,
 			"LevelCoins": 0,
 			"GoldenCoins": {
-				"coin_1": false,
-				"coin_2": false,
-				"coin_3": false
+				"special_coin_1": false,
+				"special_coin_2": false,
+				"special_coin_3": false
 			},
 			"GoldenFlagStatus": false
 		}

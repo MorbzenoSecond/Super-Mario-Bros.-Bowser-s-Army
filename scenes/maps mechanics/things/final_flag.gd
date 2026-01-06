@@ -7,7 +7,10 @@ var mario_has_entered = false
 @onready var base = $ColorRect2
 @onready var mario_flad = $BanderasMario
 @onready var shape = $ShapeCast2D
+
 @export var distance = 5
+@export var unlock_path : String = ""
+
 var global_flag_pos
 var global_mario_flag_pos
 var mario_touched = false
@@ -43,7 +46,6 @@ func _physics_process(_delta: float) -> void:
 			player_is_in = true
 			mario_touch_pos = shape.get_collision_point(0)
 			print(mario_touch_pos)
-			
 
 func _process(_delta: float) -> void:
 	var level = owner
@@ -57,9 +59,10 @@ func _process(_delta: float) -> void:
 func enter_level():
 	var level = owner
 	LevelDataManager.data["levels"][GameState.actualLevel]["LevelStatus"] = true
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_1"] = GameState.specialCoins["coin_1"]
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_2"] = GameState.specialCoins["coin_2"]
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_3"] = GameState.specialCoins["coin_3"]
+	LevelDataManager.data["levels"][unlock_path]["path_unlocken"] = true
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["special_coin_1"] = GameState.specialCoins["special_coin_1"]
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["special_coin_2"] = GameState.specialCoins["special_coin_2"]
+	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["special_coin_3"] = GameState.specialCoins["special_coin_3"]
 	LevelDataManager.save()
 	level.level_end()
 
@@ -72,8 +75,8 @@ func get_flag_down():
 	if mario_flad.global_position.y> mario_touch_pos.y:
 		mario_flad.global_position.y -= 1
 		mario_flad.visible = true
-		if  mario_touch_pos.y < pole.global_position.y +40:
-			mario_flad.color = Color(1.0, 0.84, 0.0)
+		#if  mario_touch_pos.y < pole.global_position.y +40:
+			#mario_flad.color = Color(1.0, 0.84, 0.0)
 
 func _on_timer_timeout() -> void:
 	enter_level()

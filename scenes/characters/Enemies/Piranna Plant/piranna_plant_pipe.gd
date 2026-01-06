@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name pirrana_plant
+
 var NormalArray = [Color(0.63, 0.06, 0.06, 1), Color(0.77, 0.18, 0.17, 1), 
 				Color(0.84, 0.13, 0.13, 1), Color(1, 0.31, 0.31, 1)]
 var PoisonArray = [Color(0.26, 0.20, 0.45, 1), Color(0.44, 0.37, 0.62, 1), 

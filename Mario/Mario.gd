@@ -27,6 +27,7 @@ var in_yoshi = false
 @export var afterimage_scene = preload("res://assets/visual effects/after_image.tscn")
 const FIREBALL_SCENE = preload("res://scenes/items/proyectiles/fire ball.tscn")
 const yoshi = preload("res://scenes/characters/yoshi.tscn")
+const MESSAGE_SCENE = preload("res://usefull gd/in_game_message.tscn")
 
 var afterimage_timer := 0.0
 var afterimage_interval := 0.05  # Cada cuánto deja una silueta
@@ -48,7 +49,7 @@ var afterimage_interval := 0.05  # Cada cuánto deja una silueta
 @export_group("")
 @onready var Fire := $Fire
 @onready var collision:= $CollisionShape2D
-@onready var shape = $CollisionShape2D.shape as RectangleShape2D
+#@onready var shape = $CollisionShape2D.shape 
 @onready var area = $Area2D
 @onready var Area_collision = $Area2D/CollisionShape2D.shape as RectangleShape2D
 @onready var Iframe_timer:= $Iframe
@@ -168,6 +169,9 @@ func _physics_process(delta: float) -> void:
 	in_fence = get_tile_fence_state()
 
 func _process(delta):
+	#if Input.is_action_pressed("enter"):
+		#toggle()
+	
 	afterimage_timer += delta
 	if afterimage_timer >= afterimage_interval and star:
 		afterimage_timer = 0.0
@@ -175,7 +179,7 @@ func _process(delta):
 
 func get_tile_fence_state() -> bool:
 	var tilemap: TileMapLayer = get_tree().get_first_node_in_group("TileMapLayer")
-	
+
 	if not tilemap: 
 		return false
 
@@ -216,24 +220,20 @@ func handle_movement_collision(collision: KinematicCollision2D):
 			(collision.get_collider() as Block).bump(Player_mode, "up")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	var enemy = area.get_parent()
-	if enemy is Enemy:
-		handle_enemy_collision(enemy)
-	elif enemy is Bullet:
+	var father = area.get_parent()
+	if father is Enemy:
+		handle_enemy_collision(father)
+	elif father is Bullet:
 		if area.name == "TopArea":
-			handle_bullet_top_collision(enemy)
+			handle_bullet_top_collision(father)
 		else:
-			handle_bullet_collision(enemy)
-	elif enemy is Shroom:
-		handle_mushshroom_collision(enemy)
-	elif enemy is Fire_flower:
-		handle_fire_flower_collision(enemy)
-	elif enemy is Super_star:
-		handle_star_collision(enemy)
-	elif enemy is Bomb:
-		handle_bob_omb_collision(enemy)
-	elif enemy.is_in_group("Enemies"):
-		handle_dry_collision(enemy)
+			handle_bullet_collision(father)
+	elif father is PowerUps:
+		handle_power_ups_collision(father)
+	elif father is Bomb:
+		handle_bob_omb_collision(father)
+	elif father.is_in_group("Enemies"):
+		handle_dry_collision(father)
 
 func handle_dry_collision(enemy):
 	if enemy == null:
@@ -366,23 +366,21 @@ func handle_proyectil_collision(damage_type):
 		else: 
 			return
 
-func handle_fire_flower_collision(enemy:Fire_flower):
-	Player_mode = PlayerMode.FIRE
-	update_active_sprite()
-	enemy.used()
-
-
-func handle_star_collision(enemy:Super_star):
-	star = true
-	rainbow()
-	starTime.start()
-	var music = get_parent().mario_super_star()
-
-func handle_mushshroom_collision(enemy:Shroom):
-	Player_mode = PlayerMode.BIG
-	update_active_sprite()
-	if star:
+func handle_power_ups_collision(power_up):
+	if power_up is Shroom:
+		send_message()
+		Player_mode = PlayerMode.BIG
+		update_active_sprite()
+		if star:
+			rainbow()
+	elif power_up is Fire_flower:
+		Player_mode = PlayerMode.FIRE
+		update_active_sprite()
+	elif power_up is Super_star:
+		star = true
 		rainbow()
+		starTime.start()
+		var music = get_parent().mario_super_star()
 
 func on_enemy_stomped():
 	if using_fence:
@@ -395,6 +393,7 @@ func on_enemy_stomped():
 		velocity.y = stomp_y_velocity
 
 func die():     
+	get_tree().paused = true
 	var game = owner
 	game.mario_die()
 	is_dead = true
@@ -449,6 +448,7 @@ func set_spawnpoint(pos:Vector2):
 	respawn_position = pos
 	
 func respawn():
+	get_tree().paused = false
 	global_position=respawn_position
 	_ready()
 
@@ -466,3 +466,16 @@ func desactivate_rainbow():
 	var mat := get_current_sprite().material as ShaderMaterial
 	if mat:
 		mat.set_shader_parameter("rainbow_enabled", false)
+
+func toggle():
+	get_tree().paused = !get_tree().paused
+
+func send_message():
+	var message = MESSAGE_SCENE.instantiate()
+	var level = get_parent()
+	level.add_child(message)
+	message.global_position = global_position + Vector2(0, -12)
+	if Player_mode == PlayerMode.SMALL:
+		message.setup(load("res://assets/sprites/particles_sprites/Mushroom_plus.png"), null)
+	else:
+		message.setup(null, 1000)

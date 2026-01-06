@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbaxx05e2hatj"]
+
+[ext_resource type="Script" uid="uid://ctr6ggk0dmoy1" path="res://scenes/bosses/Army_goomba/army_goomba_particles.gd" id="1_iv4tp"]
+
+[sub_resource type="Curve" id="Curve_iv4tp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.790588, 0.918312), 0.0, 0.0, 0, 0, Vector2(0.917647, 0.235637), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_kwr77"]
+offsets = PackedFloat32Array(0.56391, 1)
+colors = PackedColorArray(0.710448, 0.138325, 0.028165, 0.517, 0.506, 0.184, 0.122, 0)
+
+[node name="ARMY_GOOMBA_PARTICLES" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_iv4tp")
+
+[node name="dust" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.7
+one_shot = true
+speed_scale = 1.4
+explosiveness = 1.0
+randomness = 0.12
+fract_delta = false
+emission_shape = 3
+emission_rect_extents = Vector2(80, 1)
+direction = Vector2(0, 1)
+spread = 124.91
+gravity = Vector2(0, -101)
+initial_velocity_min = 20.09
+initial_velocity_max = 20.09
+angular_velocity_min = -238.93
+angular_velocity_max = 25.83
+angle_min = -238.9
+angle_max = 258.2
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_iv4tp")
+color = Color(0.505882, 0.184314, 0.121569, 1)
+color_ramp = SubResource("Gradient_kwr77")
+
+[connection signal="finished" from="dust" to="." method="_on_dust_finished"]

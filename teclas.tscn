@@ -166,6 +166,7 @@ animations = [{
 }]
 
 [node name="Teclas" type="CanvasLayer"]
+visible = false
 scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 0)
 script = ExtResource("1_pikce")

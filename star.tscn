@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://0kxfy56m6mix"]
+[gd_scene load_steps=19 format=3 uid="uid://0kxfy56m6mix"]
 
 [ext_resource type="Script" uid="uid://bgo6lpftl1w2l" path="res://star.gd" id="1_e2x7v"]
 [ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://assets/sprites/things sprite/MUSHROOM.png" id="2_c2gop"]
+[ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_d7oe7"]
+[ext_resource type="AudioStream" uid="uid://c3ufvqnhqpjd2" path="res://assets/sounds/star_appears.wav" id="3_c2gop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujs67"]
 size = Vector2(10, 12)
@@ -64,6 +66,11 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e2x7v"]
+shader = ExtResource("2_d7oe7")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.5
+shader_parameter/shine_size = 1.0
+shader_parameter/shine_angle = 45.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7oe7"]
 atlas = ExtResource("2_c2gop")
@@ -117,7 +124,7 @@ animations = [{
 
 [node name="Star" type="CharacterBody2D"]
 physics_interpolation_mode = 2
-scale = Vector2(3, 3)
+scale = Vector2(3.45, 2)
 collision_layer = 524288
 collision_mask = 524288
 script = ExtResource("1_e2x7v")
@@ -143,7 +150,7 @@ target_position = Vector2(7, 0)
 collision_mask = 7
 hit_from_inside = true
 
-[node name="Star" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_e2x7v")
 position = Vector2(0, 0.5)
 sprite_frames = SubResource("SpriteFrames_ro5ko")
@@ -153,4 +160,10 @@ frame_progress = 0.151606
 target_position = Vector2(0, 7.33333)
 collision_mask = 524295
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_c2gop")
+volume_db = 8.0
+autoplay = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

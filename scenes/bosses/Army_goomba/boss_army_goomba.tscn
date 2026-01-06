@@ -1,0 +1,846 @@
+[gd_scene load_steps=56 format=3 uid="uid://d4hassdpk8rn4"]
+
+[ext_resource type="Script" uid="uid://5rvfr47c3j0d" path="res://scenes/bosses/Army_goomba/boss_army_goomba.gd" id="1_g0xbc"]
+[ext_resource type="Texture2D" uid="uid://0d71y6q6ms66" path="res://scenes/bosses/Army_goomba/sprites/Army goomba-Recovered.png" id="1_i0ti0"]
+[ext_resource type="Script" uid="uid://dm0plw6lg552s" path="res://scenes/bosses/Army_goomba/main_body.gd" id="2_n8mwq"]
+[ext_resource type="AudioStream" uid="uid://dav5uqigheddp" path="res://assets/sounds/Heavy_step_1.wav" id="3_ygt0e"]
+[ext_resource type="PackedScene" uid="uid://bdk7r6h4vg6gy" path="res://scenes/bosses/Army_goomba/army_goomba_cannon.tscn" id="4_a6cn6"]
+[ext_resource type="Texture2D" uid="uid://rne7lua0ukel" path="res://scenes/bosses/Army_goomba/sprites/ceja-army_goomba.png" id="5_a6cn6"]
+[ext_resource type="Script" uid="uid://c26gyx3n3aw6n" path="res://State/State_Machine.gd" id="6_pyhy8"]
+[ext_resource type="Script" uid="uid://bai7qh1fbh5nj" path="res://scenes/bosses/Army_goomba/states/army_goomba_idle.gd" id="7_pbtvl"]
+[ext_resource type="Script" uid="uid://0iqbo6pf2i8a" path="res://scenes/bosses/Army_goomba/states/army_goomba_walk.gd" id="8_pbtvl"]
+[ext_resource type="Script" uid="uid://bvv1ho0ytfu1x" path="res://scenes/bosses/Army_goomba/states/army_goomba_run.gd" id="9_b2f7c"]
+[ext_resource type="Script" uid="uid://cl7bqsn7eismj" path="res://scenes/bosses/Army_goomba/states/ArmyGoombaJump.gd" id="10_o8m8j"]
+[ext_resource type="Script" uid="uid://dob4ir5hqgacr" path="res://scenes/bosses/Army_goomba/states/army_goomba_turn.gd" id="12_teoeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_faxgp"]
+size = Vector2(29.378, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teoeg"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(0, 159, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bti3k"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(49, 159, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o73re"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(98, 159, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41c4q"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(147, 159, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjt58"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(0, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8twf"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(49, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si3ao"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(98, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy4s7"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(147, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp5fy"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(196, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns7pp"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(245, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6ccg"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(294, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5cb5"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(343, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2qos"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(392, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mncgj"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(441, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shbmb"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(490, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnjym"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(539, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h13m6"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(588, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j75f"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(637, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7xsr"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(0, 53, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rnrl"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(49, 53, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3s6f"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(98, 53, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28ehw"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(0, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dslc"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(49, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgejk"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(98, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m31i5"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(147, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o3c3"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(196, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jxxl"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(245, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caaea"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(294, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k50rg"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(343, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ql71"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(392, 106, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut75h"]
+atlas = ExtResource("1_i0ti0")
+region = Rect2(441, 106, 48, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pyhy8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teoeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bti3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o73re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41c4q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjt58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8twf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si3ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy4s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp5fy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns7pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6ccg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5cb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2qos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mncgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shbmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnjym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h13m6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j75f")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7xsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rnrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3s6f")
+}],
+"loop": true,
+"name": &"turn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28ehw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dslc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgejk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m31i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o3c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jxxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caaea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k50rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ql71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ut75h")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2t3w"]
+atlas = ExtResource("5_a6cn6")
+region = Rect2(0, 0, 36, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygt0e"]
+atlas = ExtResource("5_a6cn6")
+region = Rect2(37, 0, 36, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teoeg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2t3w")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygt0e")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6cn6"]
+size = Vector2(36, 55.8333)
+
+[sub_resource type="Animation" id="Animation_n8mwq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_body/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_body/Army_goomba_cannon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -22)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_body/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_body/Marker2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 65.3333)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_body/AnimatedSprite2D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_body/Sprite2D:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"1"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_body/Sprite2D:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("main_body/Sprite2D:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g0xbc"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_body/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_body/Army_goomba_cannon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-2, -22), Vector2(-2, -23), Vector2(-2, -24), Vector2(-2, -23)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_body/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-4, -13), Vector2(-4, -14), Vector2(-4, -15), Vector2(-4, -14)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_body/AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_body/Sprite2D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"1"]
+}
+
+[sub_resource type="Animation" id="Animation_a6cn6"]
+resource_name = "run"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_body/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_body/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_body/Sprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_body/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_body/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-6, -7), Vector2(-7, -7), Vector2(-6, -7), Vector2(-5, -9), Vector2(-4, -10), Vector2(-3, -11), Vector2(-4, -9), Vector2(-7, -7), Vector2(-8, -7), Vector2(-6, -7), Vector2(-5, -9), Vector2(-4, -10), Vector2(-3, -11), Vector2(-4, -9)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_body/Army_goomba_cannon:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-5, -18), Vector2(-6, -18), Vector2(-5, -18), Vector2(-4, -19), Vector2(-3, -20), Vector2(-2, -21), Vector2(-3, -20), Vector2(-6, -18), Vector2(-7, -18), Vector2(-5, -18), Vector2(-4, -19), Vector2(-3, -20), Vector2(-2, -21), Vector2(-3, -20)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_body")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [5],
+"method": &"step"
+}, {
+"args": [5],
+"method": &"step"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pxlgi"]
+resource_name = "turn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_body/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_body/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"turn"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"orientar_personaje"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_body/Army_goomba_cannon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"turn"
+}, {
+"args": [],
+"method": &"end_turn"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_body/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-2, -14), Vector2(1, -14), Vector2(0, -14)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_body/Sprite2D:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ns7pp"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_body/Army_goomba_cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-3, -22), Vector2(-2, -23), Vector2(-2, -24), Vector2(-2, -24), Vector2(-3, -23), Vector2(-3, -22), Vector2(-2, -23), Vector2(-2, -24), Vector2(-2, -24), Vector2(-3, -23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_body/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-5, -12), Vector2(-4, -14), Vector2(-4, -15), Vector2(-4, -15), Vector2(-5, -13), Vector2(-5, -12), Vector2(-4, -14), Vector2(-4, -15), Vector2(-4, -15), Vector2(-5, -13)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_body/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_body")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [2],
+"method": &"step"
+}, {
+"args": [2],
+"method": &"step"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_body/Marker2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, 22), Vector2(1, 22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_body/AnimatedSprite2D:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_body/Sprite2D:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"1"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a6cn6"]
+_data = {
+&"RESET": SubResource("Animation_n8mwq"),
+&"idle": SubResource("Animation_g0xbc"),
+&"run": SubResource("Animation_a6cn6"),
+&"turn": SubResource("Animation_pxlgi"),
+&"walk": SubResource("Animation_ns7pp")
+}
+
+[node name="Boss_Army_Goomba" type="Node2D"]
+position = Vector2(0, -66)
+scale = Vector2(3, 3)
+script = ExtResource("1_g0xbc")
+
+[node name="main_body" type="CharacterBody2D" parent="."]
+position = Vector2(-0.12201, 21.6288)
+collision_layer = 6
+collision_mask = 4
+script = ExtResource("2_n8mwq")
+
+[node name="footsteps" type="AudioStreamPlayer2D" parent="main_body"]
+position = Vector2(0.12201, -21.6288)
+stream = ExtResource("3_ygt0e")
+volume_db = 12.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="main_body"]
+visible = false
+position = Vector2(-1.189, 4.37124)
+shape = SubResource("RectangleShape2D_faxgp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_body"]
+position = Vector2(-1, 0)
+rotation = -6.28319
+sprite_frames = SubResource("SpriteFrames_pyhy8")
+animation = &"idle"
+
+[node name="Army_goomba_cannon" parent="main_body" instance=ExtResource("4_a6cn6")]
+position = Vector2(-2, -22)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="main_body"]
+z_index = 12
+position = Vector2(-4, -12)
+sprite_frames = SubResource("SpriteFrames_teoeg")
+animation = &"1"
+
+[node name="Area2D" type="Area2D" parent="main_body"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="main_body/Area2D"]
+position = Vector2(-1.189, -6.37876)
+shape = SubResource("RectangleShape2D_a6cn6")
+
+[node name="Marker2D" type="Marker2D" parent="main_body"]
+position = Vector2(-3, 65.3333)
+
+[node name="State_machine" type="Node" parent="main_body" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_pyhy8")
+initial_state = NodePath("ArmyGoombaIdle")
+
+[node name="ArmyGoombaIdle" type="Node" parent="main_body/State_machine"]
+script = ExtResource("7_pbtvl")
+
+[node name="Timer" type="Timer" parent="main_body/State_machine/ArmyGoombaIdle"]
+one_shot = true
+
+[node name="ArmyGoombaWalk" type="Node" parent="main_body/State_machine"]
+script = ExtResource("8_pbtvl")
+
+[node name="Timer" type="Timer" parent="main_body/State_machine/ArmyGoombaWalk"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="main_body/State_machine/ArmyGoombaWalk"]
+wait_time = 0.2
+
+[node name="ArmyGoombaPrepareSprint" type="Node" parent="main_body/State_machine"]
+
+[node name="ArmyGoombaFinishSprint" type="Node" parent="main_body/State_machine"]
+
+[node name="ArmyGoombaSprint" type="Node" parent="main_body/State_machine"]
+script = ExtResource("9_b2f7c")
+
+[node name="Timer" type="Timer" parent="main_body/State_machine/ArmyGoombaSprint"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ArmyGoombaJump" type="Node" parent="main_body/State_machine"]
+script = ExtResource("10_o8m8j")
+
+[node name="ArmyGoombaTurn" type="Node" parent="main_body/State_machine"]
+script = ExtResource("12_teoeg")
+
+[node name="Timer" type="Timer" parent="main_body/State_machine/ArmyGoombaTurn"]
+
+[node name="ArmyGoombaMarioAbove" type="Node" parent="main_body/State_machine"]
+
+[node name="ArmyGoombaFreeFire" type="Node" parent="main_body/State_machine"]
+
+[node name="ArmyGoombaPrepareJump" type="Node" parent="main_body/State_machine"]
+
+[node name="ArmyGoombaFinishJump" type="Node" parent="main_body/State_machine"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a6cn6")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="main_body/Area2D" to="main_body" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="main_body/Area2D" to="main_body" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="main_body/State_machine/ArmyGoombaIdle/Timer" to="main_body/State_machine/ArmyGoombaIdle" method="_on_timer_timeout"]
+[connection signal="timeout" from="main_body/State_machine/ArmyGoombaWalk/Timer" to="main_body/State_machine/ArmyGoombaWalk" method="_on_timer_timeout"]
+[connection signal="timeout" from="main_body/State_machine/ArmyGoombaWalk/Timer2" to="main_body/State_machine/ArmyGoombaWalk" method="_on_timer_2_timeout"]
+[connection signal="timeout" from="main_body/State_machine/ArmyGoombaSprint/Timer" to="main_body/State_machine/ArmyGoombaSprint" method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="main_body/State_machine/ArmyGoombaTurn" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="main_body" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="main_body/State_machine/ArmyGoombaTurn" method="_on_timer_2_timeout"]

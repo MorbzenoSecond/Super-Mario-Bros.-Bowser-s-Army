@@ -4,7 +4,6 @@ var last_position : Vector2
 var sprite
 
 func disarm():
-	scale.x *= -1
 	$CollisionShape2D.call_deferred("set_disabled", false)
 	linear_velocity.y = -450
 	linear_velocity.x = randf_range(-80,80)
@@ -16,7 +15,6 @@ func prepare_rearm():
 	angular_velocity = 0
 
 func rearm(position):
-	scale.x *= -1
 	var mat = get_sprite()
 	if mat:
 		mat.set_shader_parameter("active", true)
@@ -36,12 +34,3 @@ func get_sprite():
 			var mat := sprite.material as ShaderMaterial
 			return mat
 	return null
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

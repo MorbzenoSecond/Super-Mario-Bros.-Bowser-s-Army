@@ -46,7 +46,6 @@ func shoot():
 	#var mouse_pos = get_global_mouse_position()
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("se detuvi")
 	$AnimatedSprite2D.play("default")
 	$AnimatedSprite2D/AnimatedSprite2D.play("default")
 

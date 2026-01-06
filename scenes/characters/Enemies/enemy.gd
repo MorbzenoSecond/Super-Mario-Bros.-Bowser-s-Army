@@ -2,13 +2,12 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var horizontal_speed := -30
-@export var gravity := 300.0
+@export var gravity := 600.0
 @onready var ray_cast_front = $Front
 @onready var ray_cast_back = $Back
 @onready var death = $die
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 @onready var collision = $CollisionShape2D
-
 @onready var area_collision = $Area2D/CollisionShape2D
 var initial_position: Vector2
 var muerto : bool = false
@@ -18,6 +17,8 @@ var world:Node2D
 
 var turn_cooldown := 0.0
 const TURN_DELAY := 0.2
+
+const MESSAGE_SCENE = preload("res://usefull gd/in_game_message.tscn")
 
 func _ready() -> void:
 	
@@ -44,6 +45,12 @@ func _turn():
 	turn_cooldown = TURN_DELAY
 
 func hit():
+	var message = MESSAGE_SCENE.instantiate()
+	var level = get_parent()
+	level.add_child(message)
+	message.global_position = global_position + Vector2(0, -60)
+	message.setup(null, 200)
+
 	call_child_ready()
 
 func call_child_ready():

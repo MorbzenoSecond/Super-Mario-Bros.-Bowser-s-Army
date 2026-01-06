@@ -8,7 +8,7 @@ enum color {
 @onready var collion = $CollisionShape2D
 @export var start_color: color = color.blue
 @export var state: bool
-@export var speed: int = 100
+@export var speed: int = 200
 @onready var shader_mat : ShaderMaterial= $Sprite2D.material as ShaderMaterial
 var new_color
 
@@ -24,12 +24,10 @@ func _process(delta: float) -> void:
 		else:
 			body.global_position.x -= speed * delta
 
-	
-
-func _on_state_changed(new_state: bool) -> void:
+func _on_state_changed(new_state: bool, _block_id) -> void:
 	if start_color == color.blue:
 		update_state(new_state)
-	else: # color.red
+	else: # color.r
 		update_state(!new_state)
 
 func update_state(active: bool) -> void:
@@ -48,6 +46,7 @@ func update_state(active: bool) -> void:
 
 func blue_coveyor():
 	new_color = "blue"
+	$AnimatedSprite2D2.play("default")
 	sprite.play()
 	sprite.material.set("shader_param/NEWCOLOR1", Color("7c8df3"))
 	sprite.material.set("shader_param/NEWCOLOR2", Color("5b6ee1"))
@@ -56,6 +55,7 @@ func blue_coveyor():
 
 func red_coveyor():
 	new_color = "red"
+	$AnimatedSprite2D2.play_backwards("default")
 	sprite.play_backwards()
 	sprite.material.set("shader_param/NEWCOLOR1", Color("cc4040"))
 	sprite.material.set("shader_param/NEWCOLOR2", Color("ac3232"))

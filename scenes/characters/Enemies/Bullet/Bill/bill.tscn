@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkfqtofx032h6"]
+[gd_scene load_steps=9 format=3 uid="uid://dkfqtofx032h6"]
 
 [ext_resource type="Script" uid="uid://qo7f3yeu8vr6" path="res://scenes/characters/Enemies/Bullet/Bill/bill.gd" id="1_mwynq"]
 [ext_resource type="Texture2D" uid="uid://davpanj4w5msv" path="res://scenes/characters/Enemies/Bullet/Bill/Bullet.png" id="2_fsdkx"]
@@ -39,12 +39,13 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7odhm"]
+size = Vector2(69, 36)
+
 [node name="bill" type="RigidBody2D" groups=["Enemies"]]
 light_mask = 4
 visibility_layer = 8
-position = Vector2(1, 0)
-rotation = 3.14159
-collision_layer = 4
+collision_layer = 0
 collision_mask = 0
 mass = 1000.0
 gravity_scale = 0.0
@@ -52,6 +53,7 @@ script = ExtResource("1_mwynq")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["Enemies"]]
 rotation = -3.14159
+scale = Vector2(0.3, 0.3)
 polygon = PackedVector2Array(-30, 0, -5, -15, 33, -15, 33, 14, -5, 14)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -67,9 +69,9 @@ enable_node_path = NodePath("../AnimatedSprite2D")
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemies"]]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-rotation = -3.14159
-polygon = PackedVector2Array(-35, 0, -16, -24, 32, -24, 32, 16, -13, 17)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7odhm")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -23,8 +23,6 @@ func control_coins(amount:int) -> void:
 func control_music_label(game:String, song:String):
 	ui.set_game_and_music(game, song)
 
-
-
 func finished():
 	get_tree().call_group("Enemies", "all_die")
 	get_tree().call_group("coins", "_fall_by_force")

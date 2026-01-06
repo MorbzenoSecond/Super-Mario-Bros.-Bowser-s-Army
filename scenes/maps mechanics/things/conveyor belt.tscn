@@ -98,7 +98,7 @@ animations = [{
 size = Vector2(16, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki1l8"]
-size = Vector2(16, 2)
+size = Vector2(6, 2)
 
 [node name="conveyor_belt" type="StaticBody2D"]
 collision_layer = 7
@@ -113,7 +113,7 @@ frame_progress = 0.566682
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_4lh5y")
-frame_progress = 0.964068
+frame_progress = 0.395551
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2.5)

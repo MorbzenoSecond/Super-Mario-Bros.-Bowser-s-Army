@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://c42avhghdu6dv"]
+
+[ext_resource type="Script" uid="uid://b3h23trfanf6p" path="res://scenes/characters/Enemies/fuzzy/fuzzy.gd" id="1_h4nje"]
+[ext_resource type="Texture2D" uid="uid://brytr6xasq2nl" path="res://scenes/characters/Enemies/fuzzy/Fuzzy.png" id="2_i3rgf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tylc"]
+atlas = ExtResource("2_i3rgf")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_628io"]
+atlas = ExtResource("2_i3rgf")
+region = Rect2(0, 23, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lgor"]
+atlas = ExtResource("2_i3rgf")
+region = Rect2(0, 46, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fswpr"]
+atlas = ExtResource("2_i3rgf")
+region = Rect2(0, 69, 24, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmviy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tylc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_628io")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lgor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fswpr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Fuzzy" type="AnimatableBody2D"]
+script = ExtResource("1_h4nje")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cmviy")
+frame_progress = 0.746301
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

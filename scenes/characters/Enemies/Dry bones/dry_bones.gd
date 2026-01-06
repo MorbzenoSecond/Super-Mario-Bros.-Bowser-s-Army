@@ -1,5 +1,7 @@
 extends Enemy
 
+@onready var sound = $die
+
 var original_positions = {}
 var body_parts = {}
 
@@ -45,6 +47,9 @@ func call_child_active():
 	pass
 
 func hit():
+	super.hit()
+	sound.stream = load("res://scenes/characters/Enemies/Dry bones/GUESS_SE_O_KRN_Crash.wav")
+	sound.play()
 	$AnimationPlayer.play("RESET")
 	$Area2D.set_deferred("monitoring", false)
 	$Area2D.set_deferred("monitorable", false)
@@ -57,6 +62,8 @@ func hit():
 		part.disarm()      
 
 func regroup():
+	sound.stream = load("res://scenes/characters/Enemies/Dry bones/GUESS_SE_O_KRN_Reborn.wav")
+	sound.play()
 	var tween = create_tween()
 	for part in body_parts:
 		part.collision.set_deferred("disabled", true)

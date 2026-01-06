@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0lcudab4npu0"]
+
+[ext_resource type="Script" uid="uid://cqcalfc0jxrg1" path="res://usefull gd/in_game_message.gd" id="1_okmco"]
+[ext_resource type="FontFile" uid="uid://pd838cce85ve" path="res://assets/fonts/Super-Mario-World.ttf" id="2_iysnb"]
+
+[node name="In_game_message" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(2, 2)
+script = ExtResource("1_okmco")
+
+[node name="points" type="Label" parent="."]
+offset_left = -30.3333
+offset_top = -9.33333
+offset_right = 30.6667
+offset_bottom = 8.66667
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_iysnb")
+text = "100"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

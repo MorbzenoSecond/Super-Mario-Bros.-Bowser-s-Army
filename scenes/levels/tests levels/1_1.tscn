@@ -656,6 +656,8 @@ distance = -3
 
 [node name="Checkpoint" parent="." instance=ExtResource("8_bw7gx")]
 position = Vector2(497, 468)
+checkpoint_id = "1"
+start_point = true
 
 [node name="PokeyHead2" parent="." instance=ExtResource("20_bw7gx")]
 position = Vector2(750, 443)

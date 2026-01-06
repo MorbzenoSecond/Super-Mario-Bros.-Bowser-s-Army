@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://kcwth0jacrva" path="res://scenes/characters/Enemies/Dry bones/dry_bones.gdshader" id="5_h2y3e"]
 [ext_resource type="Texture2D" uid="uid://c2c7tvxu02lhx" path="res://scenes/characters/Enemies/Dry bones/body parts/brazo d.png" id="5_k47si"]
 [ext_resource type="Script" uid="uid://bv8sl5pv3kylm" path="res://scenes/characters/Enemies/Dry bones/dry_bones_body_part.gd" id="5_yju6r"]
-[ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://assets/sounds/Super Mario Bros- Goomba Stomp Sound.mp3" id="7_0rt8f"]
+[ext_resource type="AudioStream" uid="uid://cgons2dagigdc" path="res://scenes/characters/Enemies/Dry bones/GUESS_SE_O_KRN_Crash.wav" id="9_k47si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qic4a"]
 size = Vector2(48, 67.5)
@@ -193,51 +193,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_k47si"]
 radius = 22.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yju6r"]
-bounce = 0.5
-absorbent = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qntip"]
-shader = ExtResource("5_h2y3e")
-shader_parameter/active = false
-shader_parameter/flame_color = Color(0.2, 0.462745, 1, 1)
-shader_parameter/intensity = 0.75
-shader_parameter/flicker_speed = 9.087
-shader_parameter/radius = 0.94
-shader_parameter/flicker_offset = Vector2(-0.1, 0.1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epgnt"]
-atlas = ExtResource("4_yju6r")
-region = Rect2(0, 0, 14, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p88ia"]
-atlas = ExtResource("4_yju6r")
-region = Rect2(14, 0, 14, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ktxiy"]
-atlas = ExtResource("4_yju6r")
-region = Rect2(28, 0, 14, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tlkyt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_epgnt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p88ia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ktxiy")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_04mc0"]
-radius = 21.0
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2y3e"]
 bounce = 0.5
 absorbent = true
@@ -383,6 +338,51 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qntip"]
 radius = 12.0416
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yju6r"]
+bounce = 0.5
+absorbent = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qntip"]
+shader = ExtResource("5_h2y3e")
+shader_parameter/active = false
+shader_parameter/flame_color = Color(0.2, 0.462745, 1, 1)
+shader_parameter/intensity = 0.75
+shader_parameter/flicker_speed = 9.087
+shader_parameter/radius = 0.94
+shader_parameter/flicker_offset = Vector2(-0.1, 0.1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epgnt"]
+atlas = ExtResource("4_yju6r")
+region = Rect2(0, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p88ia"]
+atlas = ExtResource("4_yju6r")
+region = Rect2(14, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktxiy"]
+atlas = ExtResource("4_yju6r")
+region = Rect2(28, 0, 14, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlkyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epgnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p88ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktxiy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04mc0"]
+radius = 21.0
 
 [sub_resource type="Animation" id="Animation_cnuv8"]
 length = 0.001
@@ -1327,26 +1327,6 @@ shape = SubResource("CircleShape2D_k47si")
 disabled = true
 debug_color = Color(0.7, 0, 0.0601075, 0.42)
 
-[node name="head" type="RigidBody2D" parent="BodyParts"]
-position = Vector2(-13.5, -74.5)
-collision_layer = 0
-collision_mask = 4
-physics_material_override = SubResource("PhysicsMaterial_yju6r")
-gravity_scale = 0.0
-script = ExtResource("5_yju6r")
-
-[node name="AnimatedSprite_head" type="AnimatedSprite2D" parent="BodyParts/head"]
-material = SubResource("ShaderMaterial_qntip")
-position = Vector2(0, -2)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_tlkyt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyParts/head"]
-position = Vector2(-2.5, -2.5)
-shape = SubResource("CircleShape2D_04mc0")
-disabled = true
-debug_color = Color(0.7, 0, 0.0789387, 0.42)
-
 [node name="front hand" type="RigidBody2D" parent="BodyParts"]
 position = Vector2(0, 2)
 collision_layer = 0
@@ -1389,13 +1369,34 @@ shape = SubResource("CircleShape2D_qntip")
 disabled = true
 debug_color = Color(0.7, 0, 0.0492228, 0.42)
 
+[node name="head" type="RigidBody2D" parent="BodyParts"]
+position = Vector2(-13.5, -74.5)
+collision_layer = 0
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_yju6r")
+gravity_scale = 0.0
+script = ExtResource("5_yju6r")
+
+[node name="AnimatedSprite_head" type="AnimatedSprite2D" parent="BodyParts/head"]
+material = SubResource("ShaderMaterial_qntip")
+position = Vector2(0, -2)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tlkyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyParts/head"]
+position = Vector2(-2.5, -2.5)
+shape = SubResource("CircleShape2D_04mc0")
+disabled = true
+debug_color = Color(0.7, 0, 0.0789387, 0.42)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_novex")
 }
 
 [node name="die" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_0rt8f")
+stream = ExtResource("9_k47si")
+volume_db = 8.0
 
 [node name="Back" type="RayCast2D" parent="."]
 modulate = Color(0.846477, 0.000176977, 0.124509, 1)

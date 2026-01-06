@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mai7adxewhgw"
+path="res://.godot/imported/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3-3f1e6af590f1120b6e2f7f64fefb9b14.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3"
+dest_files=["res://.godot/imported/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3-3f1e6af590f1120b6e2f7f64fefb9b14.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

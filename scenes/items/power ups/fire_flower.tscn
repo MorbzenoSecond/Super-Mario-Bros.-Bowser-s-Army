@@ -1,7 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://0vn6563mp551"]
+[gd_scene load_steps=12 format=3 uid="uid://0vn6563mp551"]
 
 [ext_resource type="Script" uid="uid://bmy1cwf1dvbvf" path="res://scenes/items/power ups/fire_flower.gd" id="1_ftisv"]
 [ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://assets/sprites/things sprite/MUSHROOM.png" id="2_0o87m"]
+[ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_nhas1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtuhj"]
+shader = ExtResource("2_nhas1")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.5
+shader_parameter/shine_size = 1.0
+shader_parameter/shine_angle = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftisv"]
 atlas = ExtResource("2_0o87m")
@@ -46,10 +54,11 @@ size = Vector2(14, 14)
 size = Vector2(17.3333, 16)
 
 [node name="Fire flower" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(3.35, 2)
 script = ExtResource("1_ftisv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dtuhj")
 sprite_frames = SubResource("SpriteFrames_qrkmf")
 frame_progress = 0.735473
 
@@ -61,3 +70,5 @@ shape = SubResource("RectangleShape2D_aha6j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-4.76837e-07, -1)
 shape = SubResource("RectangleShape2D_ftisv")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

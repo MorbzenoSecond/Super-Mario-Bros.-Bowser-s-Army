@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uk4qcnrxoyl0"]
+[gd_scene load_steps=12 format=3 uid="uid://uk4qcnrxoyl0"]
 
 [ext_resource type="Script" uid="uid://tpgpgm5v1a0l" path="res://game_world.gd" id="1_bvgre"]
 [ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="1_hly68"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ptk3kj75axrj" path="res://WorldMap.tscn" id="4_e08lw"]
 [ext_resource type="PackedScene" uid="uid://bqwm0srcvdy6x" path="res://world_player.tscn" id="5_e3xe6"]
 [ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="6_mcbma"]
+[ext_resource type="Script" uid="uid://b2dboi146xtsy" path="res://usefull gd/camera_shake.gd" id="7_ik71a"]
 
 [sub_resource type="Animation" id="Animation_e7o6u"]
 length = 0.001
@@ -22,7 +23,7 @@ _data = {
 
 [sub_resource type="Environment" id="Environment_mcbma"]
 
-[node name="GameWorld" type="Node2D"]
+[node name="GameWorld" type="Node2D" groups=["gameWorld"]]
 script = ExtResource("1_bvgre")
 
 [node name="Levels" type="Node2D" parent="."]
@@ -31,9 +32,11 @@ script = ExtResource("1_bvgre")
 enabled = false
 
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["music"]]
+process_mode = 3
 stream = ExtResource("3_e3xe6")
 
 [node name="EffectMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 volume_db = -80.0
 
 [node name="WorldMap" parent="." instance=ExtResource("4_e08lw")]
@@ -41,8 +44,6 @@ position = Vector2(-3, 5)
 cordenades = Vector2(960, 104)
 path_activate = true
 new_music = "res://music/Super Mario Bros (NES) Music - Overworld Theme.mp3"
-
-[node name="WorldPlayer" parent="." instance=ExtResource("5_e3xe6")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -54,14 +55,14 @@ layer = 0
 
 [node name="Mario" parent="." instance=ExtResource("1_hly68")]
 z_index = 1
-position = Vector2(376, 403)
+position = Vector2(-1657, -64)
 scale = Vector2(3, 3)
 motion_mode = 0
 floor_max_angle = 1.309
 platform_wall_layers = 7
 Player_mode = 1
 
-[node name="PlayerCam" type="Camera2D" parent="Mario"]
+[node name="PlayerCam" type="Camera2D" parent="Mario" groups=["active_camera"]]
 position = Vector2(78.6667, -2)
 scale = Vector2(0.333333, 0.333333)
 enabled = false
@@ -71,6 +72,9 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 1.0
 drag_vertical_offset = -1.0
 drag_bottom_margin = 0.6
+script = ExtResource("7_ik71a")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mcbma")
+
+[node name="WorldPlayer" parent="." instance=ExtResource("5_e3xe6")]

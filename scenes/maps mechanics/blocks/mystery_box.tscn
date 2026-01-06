@@ -1,7 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkgyk4p8cp883"]
+[gd_scene load_steps=21 format=3 uid="uid://dkgyk4p8cp883"]
 
 [ext_resource type="Script" uid="uid://cbw217ef4h47d" path="res://scenes/maps mechanics/blocks/mystery_box.gd" id="1_68uhd"]
 [ext_resource type="Texture2D" uid="uid://l3vgw0gi11q1" path="res://assets/sprites/things sprite/Bloques_exportables.png" id="2_7cqem"]
+[ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_rusmm"]
+[ext_resource type="AudioStream" uid="uid://bnk1mf2jqrtec" path="res://assets/sounds/Mystery_block_sound_effect.wav" id="3_vic7i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0c3v"]
+shader = ExtResource("2_rusmm")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.64
+shader_parameter/shine_size = 0.28
+shader_parameter/shine_angle = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vic7i"]
 atlas = ExtResource("2_7cqem")
@@ -180,14 +189,14 @@ _data = {
 
 [node name="Mystery Box" type="StaticBody2D" groups=["Brick_golpeable"]]
 z_index = 10
-position = Vector2(13, 14)
 collision_layer = 524295
 collision_mask = 524289
 script = ExtResource("1_68uhd")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_l0c3v")
 sprite_frames = SubResource("SpriteFrames_spicb")
-frame_progress = 0.602445
+animation = &"empty"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_llic7")
@@ -210,3 +219,7 @@ hit_from_inside = true
 libraries = {
 &"": SubResource("AnimationLibrary_spicb")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vic7i")
+volume_db = 8.0

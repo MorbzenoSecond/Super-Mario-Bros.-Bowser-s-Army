@@ -103,7 +103,6 @@ func respawn_from_checkpoint():
 		return
 	current_music = PlayerSpawnPoint.last_checkpoint_music
 	var new_level_scene = load(PlayerSpawnPoint.last_checkpoint_scene)
-	print(new_level_scene)
 	var new_level = new_level_scene.instantiate()
 	
 	# Elimina nivel anterior
@@ -134,6 +133,8 @@ func mario_super_star():
 	star = true
 
 func _process(_delta: float) -> void:
+	#print(get_global_mouse_position())
+	#get_viewport().warp_mouse(get_viewport().get_mouse_position() - Vector2(0,2) * _delta)
 	if star:
 		if !music.volume_db == -80:
 			effectmusic.volume_db += 1
@@ -161,6 +162,8 @@ func _in_a_level():
 func _in_world_map():
 	if is_instance_valid(current_level):
 		current_level.queue_free()
+	LevelDataManager.load_data()
+	print("level finished")
 	$Mario/PlayerCam.enabled = false
 	await get_tree().process_frame
 	connect_level_signals()
@@ -177,6 +180,6 @@ func _in_world_map():
 func connect_level_signals():
 	var levels = get_tree().get_nodes_in_group("mapLevel")
 	for level in levels:
-		print(level)
+		level._on_reloadMap()
 		if not level.is_connected("reloadMap", Callable(self, "_on_reloadMap")):
 			level.connect("reloadMap", Callable(self, "_on_reloadMap"))

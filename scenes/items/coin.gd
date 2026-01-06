@@ -9,6 +9,7 @@ enum CoinType {
 @export var coin_type : CoinType = CoinType.one
 
 func _ready() -> void:
+	super._ready()
 	$AnimatedSprite2D.play("default")
 	match coin_type:
 		CoinType.one:

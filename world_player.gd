@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 		global_position.x += 100 * delta
 
 	if Input.is_action_pressed("ui_down"):
-		global_position.y += 20 * delta
+		global_position.y += 100 * delta
 
 	if Input.is_action_pressed("ui_up"):
 		global_position.y -= 100 * delta

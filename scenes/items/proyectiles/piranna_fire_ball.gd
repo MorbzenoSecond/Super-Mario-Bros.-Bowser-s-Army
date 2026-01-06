@@ -1,5 +1,6 @@
 extends Area2D
 
+
 @export var horizontal_speed = 50
 @export var bounce_force = 250
 @onready var timer := $Timer

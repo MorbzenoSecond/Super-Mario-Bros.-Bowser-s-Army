@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://nssai6e3wv3e"]
+[gd_scene load_steps=10 format=3 uid="uid://nssai6e3wv3e"]
 
 [ext_resource type="Script" uid="uid://bedadl60qxwcv" path="res://scenes/maps mechanics/blocks/on_off_block.gd" id="1_ht7id"]
+[ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_41hn8"]
 [ext_resource type="Texture2D" uid="uid://l3vgw0gi11q1" path="res://assets/sprites/things sprite/Bloques_exportables.png" id="2_uatde"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crl7l"]
+shader = ExtResource("2_41hn8")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.39
+shader_parameter/shine_size = 0.28
+shader_parameter/shine_angle = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41hn8"]
 atlas = ExtResource("2_uatde")
@@ -36,13 +44,14 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5p85m"]
 size = Vector2(16, 2)
 
-[node name="On-off block" type="StaticBody2D" groups=["Brick_golpeable"]]
+[node name="On-off block" type="StaticBody2D" groups=["Brick_golpeable", "color-blocks"]]
 position = Vector2(0, 9.53674e-07)
 scale = Vector2(3, 3)
 collision_layer = 7
 script = ExtResource("1_ht7id")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_crl7l")
 sprite_frames = SubResource("SpriteFrames_iey65")
 animation = &"Off"
 

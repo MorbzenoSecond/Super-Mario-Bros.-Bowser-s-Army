@@ -1,7 +1,9 @@
 extends Bullet
 
+@onready var sprite = $AnimatedSprite2D
+
 func _ready():
-	$AnimatedSprite2D.play("default")  # 🔥 Inicia la animación
+	sprite.play("default")  # 🔥 Inicia la animación
 	gravity_scale = 0
 
 func _on_timer_timeout() -> void:

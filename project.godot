@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Super mario bros"
+config/name="fnaf_purgatory_test"
 run/main_scene="uid://uk4qcnrxoyl0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -28,6 +28,8 @@ LevelDataManager="*res://usefull gd/level_data_manager.gd"
 
 window/size/viewport_width=1000
 window/size/resizable=false
+window/size/always_on_top=true
+window/size/transparent=true
 mouse_cursor/custom_image="uid://mlp77weox0ab"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 window/hdr_2d=true
@@ -55,6 +57,7 @@ music=""
 Pipes=""
 BOO=""
 mapLevel=""
+active_camera=""
 
 [input]
 

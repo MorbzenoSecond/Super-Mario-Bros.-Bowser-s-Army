@@ -8,6 +8,7 @@ enum bonusType {
 	FLOWER,
 	STAR
 }
+
 const FIRE_FLOWER_SCENE = preload("res://scenes/items/power ups/fire_flower.tscn")
 const SHROOM_SCENE = preload("res://scenes/items/power ups/mushroom.tscn")
 const COIN_SCENE = preload("res://scenes/items/coin.tscn")
@@ -26,6 +27,14 @@ func _process(delta: float) -> void:
 		$CollisionShape2D. disabled = true
 
 func _ready() -> void:
+	super._ready()
+	if GameState.check_block_was_destroyed(block_id):
+		print(block_id)
+		sprite.play("empty")
+		$CollisionShape2D. disabled = false
+		call_deferred("set_process", false)
+		is_empty = true
+		return
 	if invisible:
 		sprite.play("invisible")
 		$CollisionShape2D.disabled = true
@@ -49,6 +58,7 @@ func bump(player_mode: Player.PlayerMode, direction):
 			spawn_power_up(direction, FIRE_FLOWER_SCENE)
 		bonusType.STAR:
 			spawn_power_up(direction, STAR_SCENE)
+	$AudioStreamPlayer2D.play()
 
 func make_empty():
 	self.animation.play("less_size")
@@ -61,19 +71,20 @@ func spawn_coin(direction):
 	var coin = COIN_SCENE.instantiate()
 	var Level = get_tree().current_scene
 	Level.add_child(coin)
+	coin.coin_id = global_position
 	if direction == "up":
-		coin.global_position = global_position + Vector2 (0,-8)
+		coin.global_position = global_position + Vector2 (0,-12)
 		coin.grab(false)
 	elif direction == "down":
-		coin.global_position = global_position + Vector2 (0,8)
+		coin.global_position = global_position + Vector2 (0,12)
 		coin.grab(true)
 
 func spawn_power_up(direction, new_power_up):
 	var power_up = new_power_up.instantiate()
 	if direction == "up":
-		power_up.global_position = global_position + Vector2 (0,-7)
+		power_up.global_position = global_position + Vector2 (0,-12)
 	elif direction == "down":
-		power_up.global_position = global_position + Vector2 (0,7)
+		power_up.global_position = global_position + Vector2 (0,12)
 	get_parent().add_child(power_up) 
 	power_up.spawn(direction)
 

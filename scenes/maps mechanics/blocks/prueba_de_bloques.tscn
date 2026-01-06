@@ -161,6 +161,7 @@ scale = Vector2(1, 1)
 [node name="Checkpoint" parent="." instance=ExtResource("11_oswk3")]
 position = Vector2(32, 336)
 checkpoint_id = "1"
+start_point = true
 
 [node name="Pipe" parent="." instance=ExtResource("13_oswk3")]
 position = Vector2(960, 168)
@@ -174,5 +175,4 @@ position = Vector2(1352, -88)
 distance = 1
 
 [connection signal="body_exited" from="Node2D" to="." method="_on_node_2d_body_exited"]
-[connection signal="body_exited" from="Node2D" to="Node2D" method="_on_body_exited"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_timer_timeout"]

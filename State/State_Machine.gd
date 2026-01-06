@@ -7,7 +7,6 @@ var states : Dictionary = {}
 
 
 func _ready() -> void:
-	
 	for child in get_children():
 		if child is State:
 			child.player = get_parent()
@@ -35,4 +34,16 @@ func on_child_transition(state, new_state_name):
 			current_state.Exit()
 		new_state.Enter()
 		current_state = new_state
-		
+
+func change_state(new_state_name: String) -> void:
+	new_state_name = new_state_name.to_lower()
+	var new_state = states.get(new_state_name)
+	if !new_state:
+		push_error("STATE MACHINE: El estado '%s' no existe." % new_state_name)
+		return
+	
+	if current_state:
+		current_state.Exit()
+	
+	new_state.Enter()
+	current_state = new_state

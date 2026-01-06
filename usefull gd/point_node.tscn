@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1rmwmgygl6tv"]
+
+[ext_resource type="Texture2D" uid="uid://l3vgw0gi11q1" path="res://assets/sprites/things sprite/Bloques_exportables.png" id="1_xbotd"]
+
+[node name="Point_node" type="Sprite2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_xbotd")
+region_enabled = true
+region_rect = Rect2(51, 34, 16, 16)

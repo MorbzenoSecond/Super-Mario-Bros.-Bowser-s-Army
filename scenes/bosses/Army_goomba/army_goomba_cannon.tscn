@@ -1,0 +1,143 @@
+[gd_scene load_steps=14 format=3 uid="uid://bdk7r6h4vg6gy"]
+
+[ext_resource type="Script" uid="uid://da3o06p5t27mb" path="res://scenes/bosses/Army_goomba/army_goomba_cannon.gd" id="1_8chat"]
+[ext_resource type="Texture2D" uid="uid://h35sgro6y6cv" path="res://scenes/bosses/Army_goomba/sprites/Army Goomba cannon.png" id="1_w2ldt"]
+[ext_resource type="PackedScene" uid="uid://dkfqtofx032h6" path="res://scenes/characters/Enemies/Bullet/Bill/bill.tscn" id="2_31r6a"]
+[ext_resource type="Shader" uid="uid://kcwth0jacrva" path="res://scenes/characters/Enemies/Dry bones/dry_bones.gdshader" id="4_jhn6i"]
+[ext_resource type="FontFile" uid="uid://pd838cce85ve" path="res://assets/fonts/Super-Mario-World.ttf" id="4_ucwc7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bobmk"]
+shader = ExtResource("4_jhn6i")
+shader_parameter/active = true
+shader_parameter/flame_color = Color(1, 0, 0.0220332, 1)
+shader_parameter/intensity = 0.0
+shader_parameter/flicker_speed = 4.903
+shader_parameter/radius = 1.0
+shader_parameter/flicker_offset = Vector2(0.05, 0.05)
+
+[sub_resource type="Curve2D" id="Curve2D_31r6a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -1)
+}
+point_count = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31r6a"]
+size = Vector2(15, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31r6a"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(88, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucwc7"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(110, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhn6i"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(132, 0, 22, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bobmk"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_31r6a")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ucwc7")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_jhn6i")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhn6i"]
+size = Vector2(16, 4)
+
+[node name="Army_goomba_cannon" type="Node2D"]
+script = ExtResource("1_8chat")
+bullet = ExtResource("2_31r6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2ldt")
+region_enabled = true
+region_rect = Rect2(0, 0, 22, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_bobmk")
+position = Vector2(6, -1)
+rotation = 3.14159
+texture = ExtResource("1_w2ldt")
+offset = Vector2(-6, 1)
+region_enabled = true
+region_rect = Rect2(44, 0, 22, 16)
+
+[node name="Path2D" type="Path2D" parent="Sprite2D3"]
+scale = Vector2(-1, 1)
+curve = SubResource("Curve2D_31r6a")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Sprite2D3/Path2D"]
+scale = Vector2(-1, -1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3"]
+use_parent_material = true
+position = Vector2(-6, 1)
+texture = ExtResource("1_w2ldt")
+region_enabled = true
+region_rect = Rect2(22, 0, 22, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+z_index = 11
+texture = ExtResource("1_w2ldt")
+region_enabled = true
+region_rect = Rect2(66, 0, 22, 16)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="AnimatableBody2D2" type="StaticBody2D" parent="."]
+disable_mode = 2
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D2"]
+position = Vector2(3, -4)
+shape = SubResource("RectangleShape2D_31r6a")
+one_way_collision_margin = 53.1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_bobmk")
+frame = 2
+frame_progress = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 26.0
+offset_top = -12.0
+offset_right = 106.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("4_ucwc7")
+theme_override_font_sizes/font_size = 14
+text = "asdads"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -18.0
+offset_right = 11.0
+offset_bottom = -8.0
+color = Color(1, 0.00676143, 0.00676143, 1)
+
+[node name="Area2D" type="Area2D" parent="ColorRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_jhn6i")
+disabled = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="ColorRect/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -11,10 +11,11 @@ class_name Bomb
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 @onready var explosion_radio = $Explosion_radio as AnimatedSprite2D
 @onready var explosion_effect = $Explosion as Area2D
+@onready var sounds = $AudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var camera: Camera2D = get_tree().get_first_node_in_group("active_camera")
 var muerto : bool = false
 
-var player_colide_uh = false
-var incremental_value  = 0
+var incremental_value  = 0.0 
 var is_about_to_explote = false
 
 var initial_position: Vector2
@@ -31,91 +32,64 @@ func _ready() -> void:
 	initial_position = global_position
 	#inactive()
 
-
 func _physics_process(delta: float) -> void:
 	turn_cooldown -= delta
-
-	if not is_on_floor():
-		velocity.y += 1000 * delta
-	else:
-		velocity.y = 0
-
-	if not attacking:
-		velocity.x = horizontal_speed
-
-		if ray_cast_back.is_colliding() and ray_cast_front.is_colliding() and turn_cooldown <=0 and not muerto:
-			horizontal_speed = 0
-
-		if ray_cast_front.is_colliding() and turn_cooldown <= 0:
-			horizontal_speed *= -1
-			animated_sprite_2d.flip_h = -horizontal_speed < 0
-			player.scale.x = -sign(horizontal_speed)
-			turn_cooldown = TURN_DELAY
-
-		if ray_cast_back.is_colliding() and turn_cooldown <= 0: 
-			horizontal_speed *= -1
-			animated_sprite_2d.flip_h = -horizontal_speed < 0
-			player.scale.x = -sign(horizontal_speed)
-			turn_cooldown = TURN_DELAY
-			
-		if player.is_colliding():
-			var collider = player.get_collider()
-			if collider and collider.is_in_group("Player"):
-				target_position = collider.global_position
-				horizontal_speed = 0 # <- DETIENE EL CAMINAR
-				animated_sprite_2d.play("detected")
-				await get_tree().create_timer(1.0).timeout
-				attacking = true
-				player_colide_uh = true
-
-	if attacking:
-		animated_sprite_2d.speed_scale = 3.0
-		animated_sprite_2d.play("walk")
-		if player_colide_uh:
-			var direction = (target_position - global_position).normalized()
-			velocity.x = direction.x * attack_spped
-		incremental_value = incremental_value + 0.015
-		prepare()
-		if velocity.x > -10 and velocity.x < 10:
-			animated_sprite_2d.play("prepare")
-
+	velocity.y += gravity * delta
 	move_and_slide()
 
+var tween :Tween
 func pisoton():
-	velocity.x = 0
-	attacking = true
-	muerto = true
-	animated_sprite_2d.material.set_shader_parameter("flash_speed", incremental_value - 0.5)
-	animated_sprite_2d.material.set_shader_parameter("flash_strength", incremental_value)
-	if incremental_value > 5:
-		explote()
+	$"State Machine".change_state("PrepareExplosionLegLess")
+	gravity = 900.0
+
+	var angle = randf_range(-PI / 4, -3 * PI / 4)
+	var speed = randf_range(150.0, 200.0)
+	velocity = Vector2.RIGHT.rotated(angle) * speed
+
+	if tween != null and tween.is_running():
+		tween.kill()
+
+	prepare()
+
 
 func prepare():
-	attacking = true
-	muerto = true
+	incremental_value = 0.0
+
+	tween = create_tween()
+
+	tween.tween_property(self, "incremental_value", 5.1, 5.6)
+
+	sounds.stream = load("res://scenes/characters/Enemies/Bomb/EnemyBombhei_BombWait.ogg")
+	sounds.play()
+
+
+func update_shader():
 	animated_sprite_2d.material.set_shader_parameter("flash_speed", incremental_value - 0.5)
 	animated_sprite_2d.material.set_shader_parameter("flash_strength", incremental_value)
 	if incremental_value > 5:
 		explote()
 
 func explote():
-	explosion_effect.monitoring = true
+	$Area2D/CollisionShape2D.disabled = true
+	$Explosion/CollisionShape2D.disabled = false
+	$AnimatedSprite2D.hide()
 	for body in explosion_effect.get_overlapping_bodies():
 		if body and body.is_in_group("Enemies"):
 			body.die_by_block()
 		if body and body.is_in_group("Player"):
 			body.handle_explosion_collision()
-		
-		for brick in get_tree().get_nodes_in_group("Brick_golpeable"):
-			if global_position.distance_to(brick.global_position) < 150:
-				brick.bump(Player.PlayerMode.FIRE, "up")
-
-		if body and body.is_in_group("Bombs") and body != self:
-			body.prepare()
+		if body.is_in_group("Brick_golpeable"):
+			body.bump(Player.PlayerMode.FIRE, "up")
+			print("explosion_in_brick")
 
 	explosion_radio.visible = true
 	explosion_radio.material.set_shader_parameter("flash_strength", 5)
-	await get_tree().create_timer(0.1).timeout
+	$CPUParticles2D.emitting = true
+	camera.trigger_shake(5)
+	await get_tree().create_timer(0.5).timeout
+	$Explosion/CollisionShape2D.disabled = true
+	$CPUParticles2D.emitting = false
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
 
@@ -133,3 +107,8 @@ func inactive():
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Area2D.set_deferred("monitoring", false)
 	$Area2D.set_deferred("monitorable", false)
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	sounds.stream = load("res://scenes/characters/Enemies/Bomb/EnemyBombhei_Bomb.ogg")
+	sounds.play()

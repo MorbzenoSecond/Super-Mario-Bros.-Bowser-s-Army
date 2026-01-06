@@ -1,24 +1,40 @@
 extends Node
 
+var grabbed_coin = {}
+var used_block = {}
+
 var actualLevel:String = ""
 var specialCoins = {
-	"coin_1" = false,
-	"coin_2" = false,
-	"coin_3" = false,
+	"special_coin_1": false,
+	"special_coin_2": false,
+	"special_coin_3": false,
 }
 
-enum Player_mode { SMALL, BIG, FIRE } 
+enum Player_mode { SMALL, BIG, FIRE }
 
 func send_final_resoult():
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_1"] = specialCoins["coin_1"]
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_2"] = specialCoins["coin_2"]
-	LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"]["coin_3"] = specialCoins["coin_3"]
+	for coin in specialCoins:
+		LevelDataManager.data["levels"][GameState.actualLevel]["GoldenCoins"][coin] = specialCoins[coin]
+	grabbed_coin.clear()
 
 func reset_level_data():
-	specialCoins["coin_1"] = false
-	specialCoins["coin_1"] = false
-	specialCoins["coin_1"] = false
+	print("hello world")
+	specialCoins["special_coin_1"] = false
+	specialCoins["special_coin_2"] = false
+	specialCoins["special_coin_3"] = false
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("enter"):
-		print(specialCoins)
+#func _process(delta: float) -> void:
+	#if Input.is_action_just_pressed("enter"):
+		#pass
+
+func had_used_coin(coin_id):
+	grabbed_coin[coin_id] = true 
+
+func check_coin_was_used(coin_id):
+	return grabbed_coin.has(coin_id)
+
+func had_breaked_block(block_id):
+	used_block[block_id] = true
+
+func check_block_was_destroyed(block_id):
+	return used_block.has(block_id)

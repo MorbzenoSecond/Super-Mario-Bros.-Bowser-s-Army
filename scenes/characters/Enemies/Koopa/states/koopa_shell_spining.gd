@@ -29,7 +29,7 @@ func Physics_Update(delta: float) -> void:
 		# Si colisiona con un bloque, activarlo
 		if character.turn_cooldown <= 0:
 			if collider is Block:
-				collider.bump(Player.PlayerMode.FIRE)
+				collider.bump(Player.PlayerMode.FIRE, "up")
 			elif collider is Player:
 				return
 			elif collider is Enemy:
