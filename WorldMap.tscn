@@ -6,6 +6,7 @@
 
 [node name="WorldMap" type="Node2D"]
 physics_interpolation_mode = 2
+position = Vector2(-2, 0)
 script = ExtResource("1_y2wwp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -27,7 +28,7 @@ music = "res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3"
 position = Vector2(35, 35)
 level_id = "1"
 level_name = "level_1"
-path_to_scene = "res://boss_scenario_test.tscn"
+path_to_scene = "res://escenary_test/test_level.tscn"
 cordenades = Vector2(384, 448)
 path_activate = true
 music = "res://assets/music/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3"

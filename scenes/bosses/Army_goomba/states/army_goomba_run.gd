@@ -2,7 +2,7 @@ extends State
 class_name ArmyGoombaSprint
 
 func Enter():
-	player.SPEED_VAL = 140
+	player.SPEED_VAL = 140 * 1.25
 	$Timer.start()
 	$"../../../AnimationPlayer".play("run")
 	if player.mario:

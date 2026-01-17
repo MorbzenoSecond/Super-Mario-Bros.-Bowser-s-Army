@@ -4,10 +4,12 @@ class_name PlayerIdle
 func Enter():
 	player.get_current_sprite().play("idle")
 	player.actual_animation = "idle"
-	player.GRAVITY = 900.0
+	player.GRAVITY = 300.0
 	player.velocity.x = 0
 
 func Physics_Update(_delta : float):
+	if player.velocity.x != 0:
+		Transitioned.emit(self, "PlayerWalk")
 	var input := Input.get_axis("ui_left", "ui_right")
 	if Input.is_action_just_pressed("enter"):
 		Transitioned.emit(self, "PlayerStare")

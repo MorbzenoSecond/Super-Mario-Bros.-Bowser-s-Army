@@ -25,8 +25,7 @@ func _physics_process(_delta: float) -> void:
 				
 				super._turn()
 				floor.position.x = -floor.position.x 
-				animated_sprite_2d.flip_h = -horizontal_speed < 0  # o > 0 según tu sprite
-				# Flip visual del raycast
+				animated_sprite_2d.flip_h = -horizontal_speed < 0 
 
 	var _previous_position = position
 	move_and_slide()
@@ -41,7 +40,7 @@ func call_child_ready():
 			is_spining = true
 
 func die_by_block():
-	super.die_by_block()
+	#super.die_by_block()
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	gravity = 0
 	$Area2D.set_deferred("monitorable", false)
@@ -53,13 +52,11 @@ func die_by_block():
 func shell_size():
 	collision_koopa.shape = collision_koopa.shape.duplicate()
 	area_collision.shape = area_collision.shape.duplicate()
-	collision_koopa.shape.extents = Vector2(35,29)
-	area_collision.shape.extents = Vector2(44,42)
-	collision_koopa.position = Vector2(0,0)
-	area_collision.position = Vector2(0,0)
-	collision_koopa.scale = Vector2(0.5,0.5)
-	area_collision.scale = Vector2(0.5,0.5)
-	
+	collision_koopa.shape.size = Vector2(12,10)
+	area_collision.shape.size = Vector2(14,18)
+	collision_koopa.position.y = -6
+	area_collision.position.y = -8
+	#
 func update_shader():
 	animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 	animated_sprite_2d.material.set_shader_parameter("red", red)

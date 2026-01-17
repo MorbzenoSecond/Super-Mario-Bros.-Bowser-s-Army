@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdk7r6h4vg6gy"]
+[gd_scene load_steps=37 format=3 uid="uid://bdk7r6h4vg6gy"]
 
 [ext_resource type="Script" uid="uid://da3o06p5t27mb" path="res://scenes/bosses/Army_goomba/army_goomba_cannon.gd" id="1_8chat"]
 [ext_resource type="Texture2D" uid="uid://h35sgro6y6cv" path="res://scenes/bosses/Army_goomba/sprites/Army Goomba cannon.png" id="1_w2ldt"]
 [ext_resource type="PackedScene" uid="uid://dkfqtofx032h6" path="res://scenes/characters/Enemies/Bullet/Bill/bill.tscn" id="2_31r6a"]
 [ext_resource type="Shader" uid="uid://kcwth0jacrva" path="res://scenes/characters/Enemies/Dry bones/dry_bones.gdshader" id="4_jhn6i"]
-[ext_resource type="FontFile" uid="uid://pd838cce85ve" path="res://assets/fonts/Super-Mario-World.ttf" id="4_ucwc7"]
+[ext_resource type="AudioStream" uid="uid://c4f4dmn807qaw" path="res://scenes/bosses/Army_goomba/cannon_Shoot.wav" id="6_bobmk"]
+[ext_resource type="Script" uid="uid://c26gyx3n3aw6n" path="res://State/State_Machine.gd" id="7_d23x6"]
+[ext_resource type="Script" uid="uid://cvbktk1vuf5n5" path="res://scenes/bosses/Army_goomba/states/army_goomba_cannon_normal.gd" id="8_ihtnl"]
+[ext_resource type="Script" uid="uid://dh23tuc6l652x" path="res://scenes/bosses/Army_goomba/states/army_goomba_cannon_heat.gd" id="9_ihtnl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bobmk"]
 shader = ExtResource("4_jhn6i")
@@ -15,11 +18,144 @@ shader_parameter/flicker_speed = 4.903
 shader_parameter/radius = 1.0
 shader_parameter/flicker_offset = Vector2(0.05, 0.05)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d23x6"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(308, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihtnl"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(330, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x5ku"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(352, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sec2"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(374, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7frw"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(396, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljrqc"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(418, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8f6l"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(440, 0, 22, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8uk3"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_d23x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihtnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x5ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sec2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7frw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljrqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8f6l")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="Curve2D" id="Curve2D_31r6a"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -1)
 }
 point_count = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho3w3"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(154, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y17de"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(176, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l77m"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(198, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee3xg"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(220, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38jlr"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(242, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t160r"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(264, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v56gb"]
+atlas = ExtResource("1_w2ldt")
+region = Rect2(286, 0, 22, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_464hs"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_ho3w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y17de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l77m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee3xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38jlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t160r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v56gb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_ihtnl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.145329, 1), 0.0, 0.0, 0, 0, Vector2(0.799308, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_ihtnl"]
+offsets = PackedFloat32Array(0, 0.714829, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.317, 0.317, 0.317, 1, 0.222, 0.222, 0.222, 0.612)
+metadata/_snap_count = 37
+
+[sub_resource type="Curve" id="Curve_d23x6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="Gradient" id="Gradient_3x5ku"]
+offsets = PackedFloat32Array(0.56391, 1)
+colors = PackedColorArray(1, 1, 1, 0.517, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31r6a"]
 size = Vector2(15, 7)
@@ -65,29 +201,77 @@ texture = ExtResource("1_w2ldt")
 region_enabled = true
 region_rect = Rect2(0, 0, 22, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D3" type="AnimatedSprite2D" parent="."]
 z_index = 10
+z_as_relative = false
 material = SubResource("ShaderMaterial_bobmk")
 position = Vector2(6, -1)
 rotation = 3.14159
-texture = ExtResource("1_w2ldt")
+sprite_frames = SubResource("SpriteFrames_d8uk3")
 offset = Vector2(-6, 1)
-region_enabled = true
-region_rect = Rect2(44, 0, 22, 16)
 
 [node name="Path2D" type="Path2D" parent="Sprite2D3"]
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 curve = SubResource("Curve2D_31r6a")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Sprite2D3/Path2D"]
 scale = Vector2(-1, -1)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3"]
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="Sprite2D3"]
+z_index = -10
 use_parent_material = true
 position = Vector2(-6, 1)
-texture = ExtResource("1_w2ldt")
-region_enabled = true
-region_rect = Rect2(22, 0, 22, 16)
+sprite_frames = SubResource("SpriteFrames_464hs")
+
+[node name="black_smoke" type="CPUParticles2D" parent="Sprite2D3"]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(-13, 0.999968)
+rotation = 2.51327
+emitting = false
+amount = 15
+lifetime = 0.8
+speed_scale = 0.2
+randomness = 0.72
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(100, 0)
+gravity = Vector2(0, -980)
+angular_velocity_min = -486.0
+angular_velocity_max = 288.0
+angle_min = -522.0
+angle_max = 486.0
+scale_amount_min = 15.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_ihtnl")
+color_ramp = SubResource("Gradient_ihtnl")
+
+[node name="shoot_effect" type="CPUParticles2D" parent="Sprite2D3"]
+position = Vector2(-18, 0.999954)
+rotation = 1.5708
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+speed_scale = 0.64
+explosiveness = 1.0
+randomness = 0.52
+fract_delta = false
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+spread = 124.91
+gravity = Vector2(0, -101)
+initial_velocity_min = 8.0
+initial_velocity_max = 50.0
+angular_velocity_min = -273.22
+angular_velocity_max = 386.78
+angle_min = -238.9
+angle_max = 258.2
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_d23x6")
+color_ramp = SubResource("Gradient_3x5ku")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 z_index = 11
@@ -115,15 +299,6 @@ sprite_frames = SubResource("SpriteFrames_bobmk")
 frame = 2
 frame_progress = 1.0
 
-[node name="Label" type="Label" parent="."]
-offset_left = 26.0
-offset_top = -12.0
-offset_right = 106.0
-offset_bottom = 11.0
-theme_override_fonts/font = ExtResource("4_ucwc7")
-theme_override_font_sizes/font_size = 14
-text = "asdads"
-
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_left = -5.0
@@ -138,6 +313,32 @@ color = Color(1, 0.00676143, 0.00676143, 1)
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_jhn6i")
 disabled = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bobmk")
+volume_db = 16.0
+
+[node name="State_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_d23x6")
+initial_state = NodePath("ArmyGoombaCannonNormal")
+
+[node name="ArmyGoombaCannonNormal" type="Node" parent="State_machine"]
+script = ExtResource("8_ihtnl")
+
+[node name="ArmyGoombaCannonHeat" type="Node" parent="State_machine"]
+script = ExtResource("9_ihtnl")
+
+[node name="ArmyGoombaCannonSpinning" type="Node" parent="State_machine"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -18.0
+offset_top = -30.0
+offset_right = -14.0
+offset_bottom = 12.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="ColorRect/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,17 +1,17 @@
 extends CharacterBody2D
 class_name Player 
 enum PlayerMode { SMALL, BIG, FIRE } 
-var MAX_SPEED = 250.0
-var RUN_MAX_SPEED = 500
-var DUCK_MAX_SPEED = 35
-const ACCELERATION = 600.0
-const JUMP_ACCELERATION = 800.0
-const FRICTION = -500.0
-const JUMP_FORCE = -1150.0
-const JUMP_CUTOFF = -50.0
-var GRAVITY = 900.0
+var MAX_SPEED = 85.0
+var RUN_MAX_SPEED = 166.5
+var DUCK_MAX_SPEED = 11.5
+const ACCELERATION = 200
+const JUMP_ACCELERATION = 266
+const FRICTION = -166.5
+const JUMP_FORCE = -380
+const JUMP_CUTOFF = -50
+var GRAVITY = 200.0
 var screen_size
-const DRIFT_MIN_SPEED = 200.0
+const DRIFT_MIN_SPEED = 66.5
 var respawn_position:Vector2
 var is_dead = false
 var is_talking = false
@@ -136,8 +136,10 @@ func _ready() -> void:
 	set_physics_process(true)
 	respawn_position = global_position
 
+var mario_spin_air : bool = false
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
+	
 	if direction < 0:
 		front.target_position.x = -10
 		behind.target_position.x = 10
@@ -146,8 +148,10 @@ func _physics_process(delta: float) -> void:
 		behind.target_position.x = -10
 	floor_snap_length = snap
 	move_and_slide()
-	if not is_on_floor():
+	
+	if not is_on_floor() and velocity.y < 400 and !mario_spin_air:
 		velocity.y += (GRAVITY * 3 * delta) 
+
 	if get_current_sprite().flip_h == false:
 		fireball_shoot.position.x = 12
 		direction = -1
@@ -171,7 +175,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta):
 	#if Input.is_action_pressed("enter"):
 		#toggle()
-	
 	afterimage_timer += delta
 	if afterimage_timer >= afterimage_interval and star:
 		afterimage_timer = 0.0
@@ -300,7 +303,7 @@ func handle_enemy_collision(enemy:Enemy):
 	if sliding:
 		enemy.die_by_block()
 		return
-	if global_position.y < enemy.global_position.y - 30:
+	if global_position.y < enemy.global_position.y - 10:
 		enemy.hit()
 		on_enemy_stomped()
 	else:

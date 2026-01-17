@@ -46,7 +46,7 @@ func _turn():
 
 func hit():
 	var message = MESSAGE_SCENE.instantiate()
-	var level = get_parent()
+	var level = get_tree().current_scene
 	level.add_child(message)
 	message.global_position = global_position + Vector2(0, -60)
 	message.setup(null, 200)
@@ -55,17 +55,6 @@ func hit():
 
 func call_child_ready():
 	pass
-
-func die_by_block():
-	muerto = true
-	death.play()
-	horizontal_speed = 0
-	$CollisionShape2D.call_deferred("set_disabled", true)
-	gravity = 0
-	$Area2D.set_deferred("monitorable", false)
-	$Area2D.set_deferred("monitoring", false)
-	animated_sprite_2d.play("death_by_brick")
-	$AnimationPlayer.play("die_by_block")
 
 func active():
 	is_active = true

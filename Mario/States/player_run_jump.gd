@@ -11,7 +11,7 @@ func Physics_Update(delta: float) -> void:
 		player.velocity.y = player.JUMP_CUTOFF
 	var direction := Input.get_axis("ui_left", "ui_right")
 	player.velocity.x = move_toward(player.velocity.x, direction * player.RUN_MAX_SPEED, player.ACCELERATION * delta)
-	if Input.is_action_just_pressed("space") and !player.down.is_colliding():
+	if Input.is_action_just_pressed("ui_down") and !player.down.is_colliding():
 		Transitioned.emit(self, "PlayerPound")
 	if Input.is_action_just_pressed("ui_right") and player.front.is_colliding():
 		Transitioned.emit(self, "PlayerInWall")

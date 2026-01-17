@@ -6,8 +6,7 @@ class_name Block
 
 @onready var collision = $CollisionShape2D
 @onready var original_position = position
-
-var original_scale = scale
+@onready var original_scale = scale
 
 const PARTICLES_SCENE = preload("res://usefull gd/particles.tscn")
 var destruction_texture 
@@ -65,7 +64,7 @@ func grow():
 	var sprite = $Sprite2D
 	if sprite != null:
 		sprite.z_index = 2 
-	bump_tween.tween_property(self,"scale", Vector2(3,3) * 1.3, 0.2)
+	bump_tween.tween_property(self,"scale", original_scale * 1.3, 0.2)
 	
-	bump_tween.chain().tween_property(self, "scale", Vector2(3,3), 0.2)
+	bump_tween.chain().tween_property(self, "scale", original_scale, 0.2)
 	

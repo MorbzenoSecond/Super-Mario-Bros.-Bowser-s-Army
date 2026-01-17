@@ -1,33 +1,13 @@
-[gd_scene load_steps=47 format=3 uid="uid://50llo1qi88j0"]
+[gd_scene load_steps=46 format=3 uid="uid://50llo1qi88j0"]
 
 [ext_resource type="Texture2D" uid="uid://c7nsc6hl2cyfs" path="res://scenes/characters/Enemies/Goomba/goombas.png" id="1_1ng5m"]
 [ext_resource type="Script" uid="uid://dr5okup7acnac" path="res://scenes/characters/Enemies/Goomba/goomba.gd" id="1_jke6y"]
 [ext_resource type="Texture2D" uid="uid://ban0jxmmirj62" path="res://scenes/characters/Enemies/Goomba/goomba_death.png" id="2_lwfim"]
 [ext_resource type="Shader" uid="uid://b514wwd4y8npr" path="res://scenes/levels/tests levels/level_1_1_fondo.gdshader" id="2_q5mdh"]
-[ext_resource type="Texture2D" uid="uid://cb45fshj7qdqt" path="res://addons/phantom_camera/examples/textures/2D/noise04-312x315-2c5fc18dd925408af996369a0ac032bbe63a25f1.jpg" id="3_q5mdh"]
 [ext_resource type="AudioStream" uid="uid://cme04kis5p7lb" path="res://assets/sounds/Super Mario Bros- Goomba Stomp Sound.mp3" id="4_yj1s3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2k7ws"]
 shader = ExtResource("2_q5mdh")
-shader_parameter/stars_on = true
-shader_parameter/stars_flicker = true
-shader_parameter/timeScaleFactor = 0.1
-shader_parameter/noise_texture = ExtResource("3_q5mdh")
-shader_parameter/colour_muiltiplier = Color(0.498695, 0.209375, 0.859799, 1)
-shader_parameter/colour_muiltiplier2 = Color(0.757969, 0.139714, 0.572361, 1)
-shader_parameter/brightness = 0.52
-shader_parameter/clouds_resolution = 19.651
-shader_parameter/clouds_intesity = -0.06
-shader_parameter/waveyness = 3.93
-shader_parameter/fragmentation = 5.321
-shader_parameter/distortion = 7.314
-shader_parameter/clouds_alpha = 0.6
-shader_parameter/movement = 1.398
-shader_parameter/blur = 5.993
-shader_parameter/blur2 = 0.01
-shader_parameter/bg_speed = 0.1
-shader_parameter/mid_speed = 0.5
-shader_parameter/fg_speed = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_637xr"]
 atlas = ExtResource("1_1ng5m")
@@ -294,80 +274,68 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwfim"]
-size = Vector2(44, 48)
+size = Vector2(14, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj1s3"]
-size = Vector2(30, 45)
+size = Vector2(10, 15)
 
 [sub_resource type="Animation" id="Animation_p5x6e"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [false]
+"values": [2]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [2]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/path = NodePath("AnimatedSprite2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:rotation")
+tracks/3/path = NodePath("VisibleOnScreenEnabler2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisibleOnScreenEnabler2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.333333, 1.01725e-05)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CollisionShape2D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -384,10 +352,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.633333, 0.99, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(50, -40), Vector2(67.277, -50), Vector2(114.963, 42.5366), Vector2(250, 500)]
+"values": [Vector2(0, 0), Vector2(25, -30), Vector2(50, -40), Vector2(75, -40), Vector2(100, -20), Vector2(400, 500)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -399,27 +367,15 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.75, 1, 1.25, 1.5, 1.75),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.785398, 1.5708, 2.35619, 3.14159, 3.92699, 4.71239]
+"values": [0.0, 3.14159, 6.28319, 6.98132, 3.14159, 3.92699, 4.71239]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
@@ -439,42 +395,34 @@ script = ExtResource("1_jke6y")
 horizontal_speed = -60
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_2k7ws")
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_dbnww")
 animation = &"iddle"
 frame = 2
 
 [node name="die" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("4_yj1s3")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 3
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(0, 3)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_lwfim")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 4.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_yj1s3")
 
 [node name="Back" type="RayCast2D" parent="."]
-visible = false
 modulate = Color(0.846477, 0.000176977, 0.124509, 1)
 self_modulate = Color(0.915675, 0.25785, 0.326775, 1)
-target_position = Vector2(28, 0)
+target_position = Vector2(13, 0)
 collision_mask = 6
 
 [node name="Front" type="RayCast2D" parent="."]
-visible = false
-target_position = Vector2(-28, 0)
+target_position = Vector2(-13, 0)
 collision_mask = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -483,10 +431,9 @@ libraries = {
 }
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(0.333333, 1.01725e-05)
 rotation = -1.5708
-scale = Vector2(5.52864, 8.77263)
+scale = Vector2(2.23974, 3.40781)
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

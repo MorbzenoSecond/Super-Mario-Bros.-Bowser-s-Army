@@ -1,6 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbaxx05e2hatj"]
+[gd_scene load_steps=4 format=3 uid="uid://cbuyi6n7wr7ks"]
 
-[ext_resource type="Script" uid="uid://ctr6ggk0dmoy1" path="res://scenes/bosses/Army_goomba/army_goomba_particles.gd" id="1_iv4tp"]
+[sub_resource type="GDScript" id="GDScript_k5m3n"]
+script/source = "extends Node2D
+
+
+func setup(global_position_new: Vector2) -> void:
+	global_position = global_position_new
+	$dust.restart()
+
+func _on_dust_finished() -> void:
+	queue_free()
+"
 
 [sub_resource type="Curve" id="Curve_iv4tp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.790588, 0.918312), 0.0, 0.0, 0, 0, Vector2(0.917647, 0.235637), 0.0, 0.0, 0, 0]
@@ -12,7 +22,7 @@ colors = PackedColorArray(0.710448, 0.138325, 0.028165, 0.517, 0.506, 0.184, 0.1
 
 [node name="ARMY_GOOMBA_PARTICLES" type="Node2D"]
 scale = Vector2(0.1, 0.1)
-script = ExtResource("1_iv4tp")
+script = SubResource("GDScript_k5m3n")
 
 [node name="dust" type="CPUParticles2D" parent="."]
 emitting = false

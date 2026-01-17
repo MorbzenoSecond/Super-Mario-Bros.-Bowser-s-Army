@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://fr7e11fmcjbl"]
+[gd_scene load_steps=127 format=3 uid="uid://fr7e11fmcjbl"]
 
 [ext_resource type="Script" uid="uid://bqa4mqrkibwel" path="res://Mario/Mario.gd" id="1_wrvex"]
 [ext_resource type="Texture2D" uid="uid://c1drn5aifkimk" path="res://Mario/Mario exportable.png" id="2_3hini"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://b5ifpcac7ka3x" path="res://Mario/yoshi_jump.gd" id="31_q35e6"]
 [ext_resource type="Script" uid="uid://b3mtrso4og51n" path="res://Mario/yoshi_fall.gd" id="32_64frr"]
 [ext_resource type="Script" uid="uid://di6sqe76kawi6" path="res://Mario/yoshi_air_toungue.gd" id="33_8phnj"]
+[ext_resource type="Script" uid="uid://2h21nvx56gks" path="res://Mario/States/player_air_spin.gd" id="34_bwukd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ckko"]
 size = Vector2(16, 30.5)
@@ -1577,6 +1578,13 @@ script = ExtResource("33_8phnj")
 [node name="PlayerSpin" type="Node" parent="State Machine"]
 script = ExtResource("28_y721s")
 
+[node name="PlayerAirSpin" type="Node" parent="State Machine"]
+script = ExtResource("34_bwukd")
+
+[node name="freeTimeInAir" type="Timer" parent="State Machine/PlayerAirSpin"]
+wait_time = 0.25
+one_shot = true
+
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 9)
 
@@ -1636,4 +1644,5 @@ max_results = 10
 [connection signal="timeout" from="State Machine/PlayerSliding/Timer" to="State Machine/PlayerSliding" method="_on_timer_timeout"]
 [connection signal="timeout" from="State Machine/YoshiIdle/Timer" to="State Machine/YoshiIdle" method="_on_timer_timeout"]
 [connection signal="timeout" from="State Machine/YoshiWalk/Timer" to="State Machine/PlayerWalk" method="_on_timer_timeout"]
+[connection signal="timeout" from="State Machine/PlayerAirSpin/freeTimeInAir" to="State Machine/PlayerAirSpin" method="_on_free_time_in_air_timeout"]
 [connection signal="timeout" from="StarTime" to="." method="_on_star_time_timeout"]

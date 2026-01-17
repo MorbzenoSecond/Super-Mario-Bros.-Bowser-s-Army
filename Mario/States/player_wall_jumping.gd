@@ -17,7 +17,9 @@ func Physics_Update(delta: float) -> void:
 		player.velocity.y = player.JUMP_CUTOFF
 	if  player.front.is_colliding() and can_cut_off:
 		Transitioned.emit(self, "PlayerInWall")
-	if Input.is_action_just_pressed("space") and !player.down.is_colliding():
+	if Input.is_action_just_pressed("space"):
+		Transitioned.emit(self, "PlayerAirSpin")
+	if Input.is_action_just_pressed("ui_down") and !player.down.is_colliding():
 		Transitioned.emit(self, "PlayerPound")
 	if player.is_on_floor():
 		if player.velocity.x == 0:

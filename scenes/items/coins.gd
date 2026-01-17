@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 class_name Coins
 
-@onready var coin_id = str(global_position)
-
 var used : bool = false
 @onready var area = $Area2D as Area2D
 @onready var coin_noice = $AudioStreamPlayer
@@ -13,12 +11,14 @@ var total_coins := 0
 var special_coin_number :String= ""
 var gravity = 0
 var is_special_coin = false
-
+var coin_id
 const MESSAGE_SCENE = preload("res://usefull gd/in_game_message.tscn")
 
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
+	await get_tree().process_frame
+	coin_id = str(global_position)
 	print(coin_id)
 	if  GameState.check_coin_was_used(coin_id):
 		queue_free()
@@ -55,7 +55,7 @@ func grab(going_up:bool):
 	GameState.had_used_coin(coin_id)
 	
 	var message = MESSAGE_SCENE.instantiate()
-	var level = get_parent()
+	var level = get_tree().current_scene
 	level.add_child(message)
 	message.global_position = global_position + Vector2(0, -60)
 	message.setup(null, 200)

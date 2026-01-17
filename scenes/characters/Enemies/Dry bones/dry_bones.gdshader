@@ -9,13 +9,13 @@ uniform vec2 flicker_offset = vec2(0.05, 0.05);                   // desplazamie
 
 void fragment() {
     if (active) {
-        
-    
+
+
 
     vec2 center = vec2(0.5, 0.5); // centro del resplandor
     // añade un pequeño movimiento aleatorio para simular parpadeo
     vec2 flicker = vec2(sin(TIME * flicker_speed), cos(TIME * flicker_speed)) * flicker_offset;
-    
+
     float dist = length(UV - center + flicker);
 
     // caída radial de la luz (suave)
@@ -27,7 +27,7 @@ void fragment() {
     vec4 tex_color = texture(TEXTURE, UV);
     vec4 final_color = mix(tex_color, flame_color, glow * intensity);
 	vec4 color = texture(TEXTURE, UV);
-	if (color.a == 0.0) 
+	if (color.a == 0.0)
 	{ COLOR = color; }
 	else{
     COLOR = final_color;

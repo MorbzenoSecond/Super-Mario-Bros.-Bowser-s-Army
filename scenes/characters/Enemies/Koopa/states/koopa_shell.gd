@@ -6,7 +6,6 @@ func Enter():
 	character.shell_size()
 	character.animated_sprite_2d.play("green_shell")
 
-
 func Physics_Update(delta : float):
 	var character = owner
 	if not character.is_on_floor():

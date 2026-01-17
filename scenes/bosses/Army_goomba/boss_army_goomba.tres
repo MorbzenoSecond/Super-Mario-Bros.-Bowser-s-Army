@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://ct4gdqh7m2mt"]
+
+[ext_resource type="Texture2D" uid="uid://rne7lua0ukel" path="res://scenes/bosses/Army_goomba/sprites/ceja-army_goomba.png" id="1_atxpq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2t3w"]
+atlas = ExtResource("1_atxpq")
+region = Rect2(0, 0, 36, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygt0e"]
+atlas = ExtResource("1_atxpq")
+region = Rect2(37, 0, 36, 12)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2t3w")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygt0e")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]

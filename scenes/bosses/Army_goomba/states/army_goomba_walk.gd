@@ -3,11 +3,11 @@ class_name ArmyGoombaWalk
 
 func Enter():
 	$Timer2.start()
-	if !player.rotation_degrees >= 170:
+	if !player.scale.y < 0:
 		player.rotate_children(360)
 	else: 
 		player.rotate_children(-180)
-	player.SPEED_VAL = 70
+	player.SPEED_VAL = 70 * 1.25
 	$Timer.start()
 	$"../../../AnimationPlayer".play("walk")
 	if player.mario:
@@ -22,4 +22,5 @@ func _on_timer_timeout() -> void:
 	Transitioned.emit(self, "ArmyGoombaIdle")
 
 func _on_timer_2_timeout() -> void:
-	player.cannon.shoot()
+	if player.cannon.heating <= 100.0: 
+		player.cannon.shoot()

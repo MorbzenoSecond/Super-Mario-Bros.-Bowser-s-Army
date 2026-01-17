@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://tpgpgm5v1a0l" path="res://game_world.gd" id="1_bvgre"]
 [ext_resource type="PackedScene" uid="uid://fr7e11fmcjbl" path="res://Mario/Mario.tscn" id="1_hly68"]
-[ext_resource type="AudioStream" uid="uid://cpwu0j48nhpmx" path="res://assets/music/Super Mario World Music_ Level Complete.mp3" id="3_e3xe6"]
+[ext_resource type="AudioStream" uid="uid://mai7adxewhgw" path="res://assets/music/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3" id="2_mcbma"]
 [ext_resource type="PackedScene" uid="uid://ptk3kj75axrj" path="res://WorldMap.tscn" id="4_e08lw"]
 [ext_resource type="PackedScene" uid="uid://bqwm0srcvdy6x" path="res://world_player.tscn" id="5_e3xe6"]
 [ext_resource type="PackedScene" uid="uid://bbay4wqkkgib3" path="res://ui.tscn" id="6_mcbma"]
-[ext_resource type="Script" uid="uid://b2dboi146xtsy" path="res://usefull gd/camera_shake.gd" id="7_ik71a"]
 
 [sub_resource type="Animation" id="Animation_e7o6u"]
 length = 0.001
@@ -21,6 +20,23 @@ _data = {
 &"fade out": SubResource("Animation_ik71a")
 }
 
+[sub_resource type="GDScript" id="GDScript_mcbma"]
+script/source = "extends Camera2D
+
+@export var shake_fade: float = 5.0
+
+var _shake_strength: float = 0.0
+
+func trigger_shake(max_shake)-> void:
+	_shake_strength = max_shake
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _process(delta: float) -> void:
+	if _shake_strength > 0:
+		_shake_strength = lerp(_shake_strength,0.0, shake_fade * delta)
+		offset = Vector2(randf_range(-_shake_strength, _shake_strength),randf_range(-_shake_strength, _shake_strength))
+"
+
 [sub_resource type="Environment" id="Environment_mcbma"]
 
 [node name="GameWorld" type="Node2D" groups=["gameWorld"]]
@@ -33,7 +49,8 @@ enabled = false
 
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["music"]]
 process_mode = 3
-stream = ExtResource("3_e3xe6")
+stream = ExtResource("2_mcbma")
+pitch_scale = 1.25
 
 [node name="EffectMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -56,23 +73,22 @@ layer = 0
 [node name="Mario" parent="." instance=ExtResource("1_hly68")]
 z_index = 1
 position = Vector2(-1657, -64)
-scale = Vector2(3, 3)
 motion_mode = 0
 floor_max_angle = 1.309
 platform_wall_layers = 7
 Player_mode = 1
 
 [node name="PlayerCam" type="Camera2D" parent="Mario" groups=["active_camera"]]
-position = Vector2(78.6667, -2)
-scale = Vector2(0.333333, 0.333333)
+position = Vector2(51, 26)
 enabled = false
+zoom = Vector2(3, 3)
 limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 1.0
 drag_vertical_offset = -1.0
 drag_bottom_margin = 0.6
-script = ExtResource("7_ik71a")
+script = SubResource("GDScript_mcbma")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mcbma")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://duc6vwj0d8q4y"]
+[gd_scene load_steps=37 format=3 uid="uid://duc6vwj0d8q4y"]
 
 [ext_resource type="Script" uid="uid://bqm8bo6ao4q6g" path="res://scenes/characters/Enemies/Koopa/koopa.gd" id="1_tgwte"]
 [ext_resource type="Texture2D" uid="uid://pxr12au1quo5" path="res://scenes/characters/Enemies/Koopa/Koopa Exportable.png" id="1_xjc6k"]
@@ -180,41 +180,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edal0"]
-size = Vector2(35, 81)
+size = Vector2(12, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjvtj"]
-size = Vector2(44, 96.3333)
+size = Vector2(14, 32)
 
 [sub_resource type="Animation" id="Animation_rq3oa"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -53.15)]
-}
 
 [sub_resource type="Animation" id="Animation_kce2r"]
-resource_name = "golpe de goomba"
+resource_name = "shell_hit"
 length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -53), Vector2(0, -70), Vector2(0, -80), Vector2(0, -70), Vector2(0, -53)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hi4v2"]
 _data = {
@@ -222,38 +198,38 @@ _data = {
 &"shell_hit": SubResource("Animation_kce2r")
 }
 
+[sub_resource type="Curve" id="Curve_bpouu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
 [sub_resource type="Gradient" id="Gradient_rq3oa"]
-offsets = PackedFloat32Array(0, 0.446429, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.642857, 0.642857, 0.642857, 1, 0.78, 0.78, 0.78, 0.262745)
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0.721, 0.642857, 0.642857, 0.642857, 1, 0.78, 0.78, 0.78, 0.626)
 metadata/_snap_enabled = true
 metadata/_snap_count = 2
 
 [node name="Koopa" type="CharacterBody2D" groups=["Enemies"]]
-position = Vector2(0, -48)
-scale = Vector2(3, 3)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_tgwte")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_hi4v2")
-position = Vector2(0, -53.15)
-scale = Vector2(3, 3)
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_pf8fp")
-animation = &"green_walk"
+animation = &"green_shell"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -24.5)
+position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_edal0")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 3
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(0, -32.1667)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_pjvtj")
 
 [node name="die" type="AudioStreamPlayer2D" parent="."]
@@ -277,24 +253,22 @@ script = ExtResource("7_rq3oa")
 wait_time = 0.1
 
 [node name="Back" type="RayCast2D" parent="."]
-visible = false
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 0, 0, 1)
-position = Vector2(0, -28.6666)
-target_position = Vector2(28, 0)
+position = Vector2(0, -15)
+target_position = Vector2(8, 0)
 collision_mask = 6
 hit_from_inside = true
 
 [node name="Front" type="RayCast2D" parent="."]
-visible = false
-position = Vector2(0, -28.6666)
-target_position = Vector2(-28, 0)
+position = Vector2(0, -15)
+target_position = Vector2(-8, 0)
 collision_mask = 6
 hit_from_inside = true
 
 [node name="Floor" type="RayCast2D" parent="."]
-position = Vector2(-13.3333, -16)
-target_position = Vector2(0, 38.3333)
+position = Vector2(-4, -10)
+target_position = Vector2(0, 16)
 collision_mask = 4
 hit_from_inside = true
 
@@ -305,11 +279,10 @@ libraries = {
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(0, 16)
 rotation = 2.51327
-emitting = false
 amount = 14
-lifetime = 0.5
+lifetime = 0.7
+speed_scale = 0.8
 randomness = 0.56
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -319,7 +292,9 @@ angular_velocity_min = -486.0
 angular_velocity_max = 288.0
 angle_min = -522.0
 angle_max = 486.0
-scale_amount_max = 26.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_bpouu")
 color_ramp = SubResource("Gradient_rq3oa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

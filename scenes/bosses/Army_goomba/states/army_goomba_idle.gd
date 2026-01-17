@@ -31,10 +31,17 @@ func _on_timer_timeout() -> void:
 		if !player.mario_is_left():
 			Transitioned.emit(self, "ArmyGoombaTurn")
 			return
+	if player.cannon.heating >= 70.0 and player.cannon.heating <= 100.0:
+		Transitioned.emit(self, "ArmyGoombaFreeFire")
+		return
 	
 	if abs(player.global_position.x - player.mario.global_position.x) <= 500:
-		player.velocity.y = -1000
 		player.cannon.spining = true
-		Transitioned.emit(self, "ArmyGoombaWalk")
+		Transitioned.emit(self, "ArmyGoombaPrepareJump")
 	else:
 		Transitioned.emit(self, "ArmyGoombaSprint")
+
+func Exit():
+	player.dust.amount = 15
+	player.dust.emission_rect_extents.x = 3
+	player.dust.lifetime = 0.6

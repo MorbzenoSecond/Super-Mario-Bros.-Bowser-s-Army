@@ -15,8 +15,10 @@ func Physics_Update(delta: float) -> void:
 		Transitioned.emit(self, "PlayerInWall")
 	if Input.is_action_just_pressed("ui_left") and player.front.is_colliding():
 		Transitioned.emit(self, "PlayerInWall")
-	if Input.is_action_just_pressed("space") and !player.down.is_colliding():
+	if Input.is_action_just_pressed("ui_down") and !player.down.is_colliding():
 		Transitioned.emit(self, "PlayerPound")
+	if Input.is_action_just_pressed("space") :
+		Transitioned.emit(self, "PlayerAirSpin")
 	if player.velocity.y > 50:
 		Transitioned.emit(self, "PlayerFall")
 		return

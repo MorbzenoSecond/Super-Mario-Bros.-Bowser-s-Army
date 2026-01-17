@@ -86,6 +86,8 @@ frame_progress = 0.959243
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_o1ea3")
+attenuation = 0.594603
+parameters/looping = true
 
 [node name="Timer" type="Timer" parent="."]
 ignore_time_scale = true
