@@ -7,7 +7,7 @@ func Enter():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "prepare_jump":
-		player.velocity.y = -1000
+		player.velocity.y = -320
 		Transitioned.emit(self, "ArmyGoombaJump")
 
 #func Exit():

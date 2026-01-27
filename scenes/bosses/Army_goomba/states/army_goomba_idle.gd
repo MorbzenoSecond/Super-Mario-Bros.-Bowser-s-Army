@@ -35,7 +35,7 @@ func _on_timer_timeout() -> void:
 		Transitioned.emit(self, "ArmyGoombaFreeFire")
 		return
 	
-	if abs(player.global_position.x - player.mario.global_position.x) <= 500:
+	if abs(player.global_position.x - player.mario.global_position.x) <= 150:
 		player.cannon.spining = true
 		Transitioned.emit(self, "ArmyGoombaPrepareJump")
 	else:

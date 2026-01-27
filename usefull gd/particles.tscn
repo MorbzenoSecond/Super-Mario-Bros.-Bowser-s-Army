@@ -7,16 +7,18 @@
 [ext_resource type="AudioStream" uid="uid://bqm5wgsxrcw23" path="res://assets/sounds/Block Break.wav" id="5_1m7x3"]
 
 [sub_resource type="Curve" id="Curve_vu3sw"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.790588, 0.918312), 0.0, 0.0, 0, 0, Vector2(0.917647, 0.235637), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_fe0ps"]
 offsets = PackedFloat32Array(0.56391, 1)
 colors = PackedColorArray(0.710448, 0.138325, 0.028165, 0.517, 0.506, 0.184, 0.122, 0)
 
 [sub_resource type="Curve" id="Curve_fe0ps"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0843091, 0.988393), 0.0, 0.0, 0, 0, Vector2(0.765808, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_1m7x3"]
 offsets = PackedFloat32Array(0, 0.351621, 1)
@@ -43,7 +45,7 @@ absorbent = true
 friction = 2.0
 absorbent = true
 
-[node name="Node" type="Node2D"]
+[node name="block_particles" type="Node2D"]
 script = ExtResource("1_vu3sw")
 
 [node name="dust" type="CPUParticles2D" parent="."]
@@ -56,24 +58,26 @@ explosiveness = 1.0
 randomness = 0.12
 fract_delta = false
 emission_shape = 3
-emission_rect_extents = Vector2(32, 32)
+emission_rect_extents = Vector2(10, 10)
 direction = Vector2(0, 1)
 spread = 124.91
-gravity = Vector2(0, -101)
+gravity = Vector2(0, -30)
 initial_velocity_min = 20.09
 initial_velocity_max = 20.09
 angular_velocity_min = -238.93
 angular_velocity_max = 25.83
 angle_min = -238.9
 angle_max = 258.2
-scale_amount_min = 15.0
-scale_amount_max = 37.42
+scale_amount_min = 5.0
+scale_amount_max = 12.47
 scale_amount_curve = SubResource("Curve_vu3sw")
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
 color = Color(0.505882, 0.184314, 0.121569, 1)
 color_ramp = SubResource("Gradient_fe0ps")
 
 [node name="bricks" type="CPUParticles2D" parent="."]
-position = Vector2(0, -40)
 emitting = false
 amount = 5
 texture = ExtResource("1_6jeg1")
@@ -82,9 +86,10 @@ one_shot = true
 explosiveness = 1.0
 randomness = 0.2
 emission_shape = 3
-emission_rect_extents = Vector2(25, 25)
+emission_rect_extents = Vector2(5, 5)
 direction = Vector2(0, 1)
 spread = 32.54
+gravity = Vector2(0, 200)
 initial_velocity_min = 26.79
 initial_velocity_max = 107.14
 angular_velocity_min = -225.0
@@ -95,8 +100,6 @@ damping_min = 8.482
 damping_max = 79.592
 angle_min = -192.9
 angle_max = 115.8
-scale_amount_min = 5.0
-scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_fe0ps")
 color_ramp = SubResource("Gradient_1m7x3")
 
@@ -109,10 +112,9 @@ gravity_scale = 10.0
 script = ExtResource("3_63qoi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick parts/1"]
-polygon = PackedVector2Array(-24, -3, -24, -24, 9, -24, 6, -16, -18, -3)
+polygon = PackedVector2Array(-8, -1, -8, -8, 3, -8, 0, -5, -6, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="brick parts/1"]
-scale = Vector2(3, 3)
 texture = ExtResource("4_1m7x3")
 region_enabled = true
 region_rect = Rect2(0.0110626, 0.167811, 15.9889, 15.8322)
@@ -127,11 +129,9 @@ continuous_cd = 1
 script = ExtResource("3_63qoi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick parts/2"]
-scale = Vector2(3, 3)
 polygon = PackedVector2Array(8, 8, -2, 8, -1, 4, 3, 1, 5, 1, 8, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="brick parts/2"]
-scale = Vector2(3, 3)
 texture = ExtResource("4_1m7x3")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
@@ -146,11 +146,14 @@ continuous_cd = 1
 script = ExtResource("3_63qoi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick parts/3"]
-scale = Vector2(3, 3)
 polygon = PackedVector2Array(0, -4, 7, 3, 8, 3, 8, -8, 3, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="brick parts/3"]
-scale = Vector2(3, 3)
+texture = ExtResource("4_1m7x3")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="brick parts/3"]
 texture = ExtResource("4_1m7x3")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 16)
@@ -164,11 +167,9 @@ continuous_cd = 1
 script = ExtResource("3_63qoi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick parts/4"]
-scale = Vector2(3, 3)
-polygon = PackedVector2Array(-8, -1, -5, -1, -1, 3, 0, 5, -2, 8, -8, 8)
+polygon = PackedVector2Array(-8, -1, -6, -1, -2, 3, -1, 5, -2, 8, -8, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="brick parts/4"]
-scale = Vector2(3, 3)
 texture = ExtResource("4_1m7x3")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
@@ -181,11 +182,9 @@ continuous_cd = 1
 script = ExtResource("3_63qoi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="brick parts/5"]
-scale = Vector2(3, 3)
 polygon = PackedVector2Array(1, -4, 4, 0, -1, 4, -6, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="brick parts/5"]
-scale = Vector2(3, 3)
 texture = ExtResource("4_1m7x3")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)

@@ -10,6 +10,8 @@ class_name Block
 
 const PARTICLES_SCENE = preload("res://usefull gd/particles.tscn")
 var destruction_texture 
+@onready var down = $Down
+@onready var top = $Top
 
 
 func _ready() -> void:
@@ -33,20 +35,27 @@ func bump(player_mode: Player.PlayerMode, direction):
 	if direction == "up":
 		bump_tween.tween_property(self,"position", position +Vector2(0,-10),.12)
 		bump_tween.chain().tween_property(self, "position", original_position, .12)
+		character_interactions(top ,direction)
 	if direction == "down":
 		bump_tween.tween_property(self,"position", position +Vector2(0,10),.12)
 		bump_tween.chain().tween_property(self, "position", original_position, .12)
-		
-	for body in $Top.get_overlapping_bodies():
-		if body is Enemy:
-			body.die_by_block()
-		#if body is Bomb:
-			#body.die_by_block()
+		character_interactions(down, direction)
+	
 	grow()
 	shine(direction)
 	#if player_mode == Player.PlayerMode.FIRE:
 	  	#grow()
 	GameState.had_breaked_block(block_id)
+
+func character_interactions(collision, direction):
+	for body in collision.get_overlapping_bodies():
+		if body is Enemy:
+			body.big_hit()
+		if body is Coins:
+			if direction == "up":
+				body.grab(false)
+			if direction == "down":
+				body.grab(true)
 
 var spawn_pos := global_position
 

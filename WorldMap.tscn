@@ -28,10 +28,10 @@ music = "res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3"
 position = Vector2(35, 35)
 level_id = "1"
 level_name = "level_1"
-path_to_scene = "res://escenary_test/test_level.tscn"
+path_to_scene = "res://scenes/levels/tests levels/level_1_1.tscn"
 cordenades = Vector2(384, 448)
 path_activate = true
-music = "res://assets/music/Mario & Luigi_ Brothership OST - Mid-boss Theme.mp3"
+music = "res://assets/music/Super Mario 3D World - Main Theme -  HD.mp3"
 
 [node name="World_map_paths" parent="." instance=ExtResource("3_aypb6")]
 scale = Vector2(1, 1)

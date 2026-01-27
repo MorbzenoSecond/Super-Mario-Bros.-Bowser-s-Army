@@ -65,7 +65,7 @@ func shoot():
 	mob.rotation = direction 
 	mob.sprite.flip_v = flip
 	mob.z_index = 1
-	var velocity = Vector2(800, 0)
+	var velocity = Vector2(200, 0)
 	mob.linear_velocity = velocity.rotated(direction)
 
 func clamp_angle(angle: float) -> float:

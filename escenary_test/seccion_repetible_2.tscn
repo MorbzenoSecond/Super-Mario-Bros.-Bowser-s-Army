@@ -275,10 +275,10 @@ position = Vector2(-317.333, -66.6667)
 
 [node name="Coin" parent="Node" instance=ExtResource("5_0fpeu")]
 position = Vector2(-317.333, -90.6667)
-scale = Vector2(1, 1)
 
 [node name="Goomba" parent="Node" instance=ExtResource("6_kuk48")]
 position = Vector2(-381.333, 21.3333)
+horizontal_speed = -20
 
 [connection signal="body_entered" from="front" to="." method="_on_front_body_entered"]
 [connection signal="body_entered" from="back" to="." method="_on_back_body_entered"]

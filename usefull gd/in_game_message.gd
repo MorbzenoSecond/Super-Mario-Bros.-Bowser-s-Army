@@ -22,7 +22,7 @@ func fade_in_fade_out():
 	tween.parallel().tween_property(self, "global_position", global_position + Vector2(15, -5), 1)
 	tween.tween_property(self, "modulate", Color("ffffff00"), 0.5)
 	tween.parallel().tween_property(self, "global_position", global_position + Vector2(22, -10.5), 0.5)
-	tween.parallel().tween_property(self, "scale", Vector2(0.2, 8), 0.5)
+	tween.parallel().tween_property(self, "scale", Vector2(0, 8), 0.5)
 
 func _on_timer_timeout() -> void:
 	queue_free()

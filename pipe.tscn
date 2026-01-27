@@ -19,28 +19,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7r7"]
-size = Vector2(20, 8)
+size = Vector2(32, 4.66667)
 
 [node name="Pipe" type="RigidBody2D" groups=["Pipes"]]
-scale = Vector2(3, 3)
 mass = 1000.0
 gravity_scale = 0.0
 script = ExtResource("1_78010")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_i3wvs")
 animation = &"new_animation"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -36)
-scale = Vector2(3, 3)
+position = Vector2(4.76837e-07, -10.3333)
 shape = SubResource("RectangleShape2D_qp7r7")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -8)
 
 [node name="Timer" type="Timer" parent="."]
 

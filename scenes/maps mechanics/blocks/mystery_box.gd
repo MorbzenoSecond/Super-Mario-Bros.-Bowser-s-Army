@@ -18,26 +18,21 @@ const STAR_SCENE = preload("res://star.tscn")
 @export var invisible: bool = false
 @onready var animation = $AnimationPlayer
 
+
 var is_empty = false
 
-func _process(delta: float) -> void:
-	if $RayCast2D.is_colliding() and invisible:
-		$CollisionShape2D. disabled = false
-	elif !is_empty and invisible:
-		$CollisionShape2D. disabled = true
 
 func _ready() -> void:
 	super._ready()
 	if GameState.check_block_was_destroyed(block_id):
 		print(block_id)
 		sprite.play("empty")
-		$CollisionShape2D. disabled = false
 		call_deferred("set_process", false)
 		is_empty = true
 		return
 	if invisible:
 		sprite.play("invisible")
-		$CollisionShape2D.disabled = true
+		$CollisionShape2D.one_way_collision = true
 	else:
 		sprite.play("default")
 
@@ -62,7 +57,7 @@ func bump(player_mode: Player.PlayerMode, direction):
 
 func make_empty():
 	self.animation.play("less_size")
-	$CollisionShape2D. disabled = false
+	$CollisionShape2D.one_way_collision = false
 	call_deferred("set_process", false)
 	is_empty = true
 	sprite.play("empty")
@@ -73,18 +68,18 @@ func spawn_coin(direction):
 	Level.add_child(coin)
 	coin.coin_id = global_position
 	if direction == "up":
-		coin.global_position = global_position + Vector2 (0,-12)
+		coin.global_position = global_position + Vector2 (0,-5)
 		coin.grab(false)
 	elif direction == "down":
-		coin.global_position = global_position + Vector2 (0,12)
+		coin.global_position = global_position + Vector2 (0,5)
 		coin.grab(true)
 
 func spawn_power_up(direction, new_power_up):
 	var power_up = new_power_up.instantiate()
 	if direction == "up":
-		power_up.global_position = global_position + Vector2 (0,-12)
+		power_up.global_position = global_position + Vector2 (0,-5)
 	elif direction == "down":
-		power_up.global_position = global_position + Vector2 (0,12)
+		power_up.global_position = global_position + Vector2 (0,5)
 	get_parent().add_child(power_up) 
 	power_up.spawn(direction)
 

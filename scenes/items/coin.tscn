@@ -55,14 +55,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lr2a7"]
-radius = 8.08462
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kr7ko"]
 radius = 10.3333
 
 [node name="Coin" type="CharacterBody2D" groups=["coins"]]
-scale = Vector2(3, 3)
-collision_layer = 0
+collision_layer = 524288
+collision_mask = 524289
 motion_mode = 1
 floor_snap_length = 1.2
 script = ExtResource("1_kr7ko")
@@ -75,7 +75,6 @@ frame_progress = 0.361774
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.83333)
 shape = SubResource("CircleShape2D_lr2a7")
-disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -85,11 +84,11 @@ shape = SubResource("CircleShape2D_kr7ko")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_lr2a7")
-volume_db = -8.8
+attenuation = 0.517632
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0.166667, -1.5)
-scale = Vector2(2.35, 1.91667)
+position = Vector2(0, -7.15256e-07)
+scale = Vector2(2.35, 1.6)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

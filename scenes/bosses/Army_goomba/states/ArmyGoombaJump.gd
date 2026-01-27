@@ -5,6 +5,7 @@ var is_finished: bool = false
 
 func Enter():
 	$Timer.start()
+	$Timer2.start()
 	if !player.scale.y < 0:
 		player.rotate_children(-360)
 	else: 
@@ -20,4 +21,10 @@ func _on_timer_timeout() -> void:
 	is_finished = true
 
 func Exit():
+	$Timer2.stop()
+	player.cannon.spining = false
 	is_finished = false
+
+func _on_timer_2_timeout() -> void:
+	if player.cannon.heating <= 100.0: 
+		player.cannon.shoot()

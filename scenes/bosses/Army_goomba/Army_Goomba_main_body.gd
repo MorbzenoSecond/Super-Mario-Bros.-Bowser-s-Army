@@ -6,8 +6,9 @@ extends CharacterBody2D
 @onready var anim = $"../AnimationPlayer"
 @onready var sprite = $Sprite2D 
 @onready var cannon = $Army_goomba_cannon
+@onready var gravity = GameState.global_gravity
 
-var SPEED_VAL = 70
+var SPEED_VAL = 25
 var mario
 
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		mario = players[0]
+		print(mario)
 
 func mario_is_left() -> bool:
 	if global_position.x < mario.global_position.x:
@@ -23,14 +25,12 @@ func mario_is_left() -> bool:
 		return false
 
 func _physics_process(delta: float) -> void:
-	print(mario.velocity)
 	if not is_on_floor():
-		velocity.y += 900 * delta
+		velocity.y += gravity * delta
 	move_and_slide()
 
 func orientar_personaje(direccion: int):
 	#var escala_base = abs(scale.y) 
-	
 	scale.x = direccion
 	$"Army_goomba_cannon/Sprite2D3".scale = $"Army_goomba_cannon/Sprite2D3".scale * -1
 
@@ -50,9 +50,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		print("jhsakljadskñljñ{ladsas}")
 		body.die_by_block()
-
-
-
 
 func rotate_children(degree):
 	var tween = get_tree().create_tween()
@@ -129,8 +126,8 @@ func _on_mario_touch_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		mario_bounce(body)
 
-@export var bounce_force := 800.0
-@export var max_bounce_speed := 600.0
+@export var bounce_force := 250.0
+@export var max_bounce_speed := 200.0
 
 func mario_bounce(body):
 	var direction = (body.global_position -global_position).normalized()

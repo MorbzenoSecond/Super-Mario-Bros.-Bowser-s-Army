@@ -26,8 +26,6 @@ LevelDataManager="*res://usefull gd/level_data_manager.gd"
 
 [display]
 
-window/size/viewport_width=330
-window/size/viewport_height=215
 window/size/resizable=false
 window/size/always_on_top=true
 window/size/transparent=true

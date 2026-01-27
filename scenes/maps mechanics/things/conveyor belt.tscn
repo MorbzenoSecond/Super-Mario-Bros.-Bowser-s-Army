@@ -104,6 +104,7 @@ size = Vector2(6, 2)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_64ggf")
+speed = 75
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_3hnqq")

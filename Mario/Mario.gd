@@ -9,7 +9,7 @@ const JUMP_ACCELERATION = 266
 const FRICTION = -166.5
 const JUMP_FORCE = -380
 const JUMP_CUTOFF = -50
-var GRAVITY = 200.0
+var GRAVITY = GameState.global_gravity
 var screen_size
 const DRIFT_MIN_SPEED = 66.5
 var respawn_position:Vector2
@@ -45,7 +45,7 @@ var afterimage_interval := 0.05  # Cada cuánto deja una silueta
 @export_group("stomping")
 @export var min_stomp_degree = 35
 @export var max_stomp_degree = 145
-@export var stomp_y_velocity = -400
+@export var stomp_y_velocity = -133
 @export_group("")
 @onready var Fire := $Fire
 @onready var collision:= $CollisionShape2D
@@ -173,6 +173,7 @@ func _physics_process(delta: float) -> void:
 	in_fence = get_tile_fence_state()
 
 func _process(delta):
+	print("mario posicion: ", global_position.y)
 	#if Input.is_action_pressed("enter"):
 		#toggle()
 	afterimage_timer += delta
@@ -200,7 +201,7 @@ func spawn_afterimage():
 	var img = afterimage_scene.instantiate()
 	img.setup(
 		get_current_sprite(),  # AnimatedSprite2D del personaje
-		global_position,
+		global_position + Vector2(0, 9),
 		Color(1, 0, 1, 0.4)  # Color violeta translúcido
 	)
 	get_parent().add_child(img)
@@ -298,12 +299,12 @@ func handle_enemy_collision(enemy:Enemy):
 	if enemy == null:
 		return
 	if star:
-		enemy.die_by_block()
+		enemy.big_hit(sign(enemy.global_position.x - global_position.x))
 		return
 	if sliding:
-		enemy.die_by_block()
+		enemy.big_hit(sign(enemy.global_position.x - global_position.x))
 		return
-	if global_position.y < enemy.global_position.y - 10:
+	if global_position.y < enemy.global_position.y:
 		enemy.hit()
 		on_enemy_stomped()
 	else:
@@ -311,10 +312,10 @@ func handle_enemy_collision(enemy:Enemy):
 			_i_frame_start()
 			if !Player_mode == PlayerMode.SMALL:
 				print("golpea a mario")
-				Player_mode = PlayerMode.SMALL
-				update_active_sprite()
-			else:
-				die()
+				#Player_mode = PlayerMode.SMALL
+				#update_active_sprite()
+			#else:
+				#die()
 		else: 
 			return
 
@@ -339,7 +340,7 @@ func handle_piranna_collision(enemy):
 func handle_bullet_collision(enemy:Bullet):
 	if enemy == null:
 		return
-	if global_position.y < enemy.global_position.y - 30:
+	if global_position.y < enemy.global_position.y:
 		enemy.die()
 		on_enemy_stomped()
 	else:
@@ -390,8 +391,8 @@ func on_enemy_stomped():
 		return
 		
 	if Input.is_key_pressed(KEY_SPACE):
-		GRAVITY = 900.0
-		velocity.y = stomp_y_velocity - 800
+		GRAVITY = GameState.global_gravity
+		velocity.y = stomp_y_velocity - 200
 	else:
 		velocity.y = stomp_y_velocity
 

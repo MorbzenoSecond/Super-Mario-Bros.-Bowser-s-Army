@@ -7,7 +7,7 @@ func Enter():
 		player.rotate_children(360)
 	else: 
 		player.rotate_children(-180)
-	player.SPEED_VAL = 70 * 1.25
+	player.SPEED_VAL = 25
 	$Timer.start()
 	$"../../../AnimationPlayer".play("walk")
 	if player.mario:

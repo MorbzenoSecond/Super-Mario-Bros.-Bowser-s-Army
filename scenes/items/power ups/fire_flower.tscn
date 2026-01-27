@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://0vn6563mp551"]
 
 [ext_resource type="Script" uid="uid://bmy1cwf1dvbvf" path="res://scenes/items/power ups/fire_flower.gd" id="1_ftisv"]
-[ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://assets/sprites/things sprite/MUSHROOM.png" id="2_0o87m"]
 [ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_nhas1"]
+[ext_resource type="Texture2D" uid="uid://clkoj4tt6eej7" path="res://assets/sprites/things sprite/Powerups.png" id="3_nhas1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dtuhj"]
 shader = ExtResource("2_nhas1")
@@ -11,36 +11,36 @@ shader_parameter/shine_progress = 0.5
 shader_parameter/shine_size = 1.0
 shader_parameter/shine_angle = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ftisv"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(17, 4, 14, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtuhj"]
+atlas = ExtResource("3_nhas1")
+region = Rect2(1, 15, 16, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0o87m"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(65, 4, 14, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnhg8"]
+atlas = ExtResource("3_nhas1")
+region = Rect2(17, 15, 16, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0lftr"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(113, 4, 14, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m71lx"]
+atlas = ExtResource("3_nhas1")
+region = Rect2(33, 15, 16, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vcf37"]
-atlas = ExtResource("2_0o87m")
-region = Rect2(161, 4, 14, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h6fw"]
+atlas = ExtResource("3_nhas1")
+region = Rect2(49, 15, 16, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qrkmf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ftisv")
+"texture": SubResource("AtlasTexture_dtuhj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0o87m")
+"texture": SubResource("AtlasTexture_dnhg8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0lftr")
+"texture": SubResource("AtlasTexture_m71lx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vcf37")
+"texture": SubResource("AtlasTexture_5h6fw")
 }],
 "loop": true,
 "name": &"default",
@@ -51,16 +51,16 @@ animations = [{
 size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftisv"]
-size = Vector2(17.3333, 16)
+size = Vector2(17, 16)
 
 [node name="Fire flower" type="CharacterBody2D"]
-scale = Vector2(3.35, 2)
+scale = Vector2(1.117, 0.667)
 script = ExtResource("1_ftisv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dtuhj")
 sprite_frames = SubResource("SpriteFrames_qrkmf")
-frame_progress = 0.735473
+frame_progress = 0.627986
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aha6j")

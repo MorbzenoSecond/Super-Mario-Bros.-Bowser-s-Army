@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7nsc6hl2cyfs"
-path="res://.godot/imported/goombas.png-a56d2e7b2314e2e46b93190431f236bb.ctex"
+uid="uid://clkoj4tt6eej7"
+path="res://.godot/imported/Powerups.png-019328e32c12ee95f9ab36ee8a3b3dd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/characters/Enemies/Goomba/goombas.png"
-dest_files=["res://.godot/imported/goombas.png-a56d2e7b2314e2e46b93190431f236bb.ctex"]
+source_file="res://assets/sprites/things sprite/Powerups.png"
+dest_files=["res://.godot/imported/Powerups.png-019328e32c12ee95f9ab36ee8a3b3dd4.ctex"]
 
 [params]
 

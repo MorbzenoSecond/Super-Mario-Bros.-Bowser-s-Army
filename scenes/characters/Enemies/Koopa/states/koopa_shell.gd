@@ -11,14 +11,12 @@ func Physics_Update(delta : float):
 	if not character.is_on_floor():
 		character.velocity.y += character.gravity * delta
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	var character = owner
-
-	if body.is_in_group("Player") and character.shell and character.is_spining:
-		var direction = sign(body.global_position.x - character.global_position.x)
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Player") and player.shell and player.is_spining:
+		var direction = sign(area.global_position.x - player.global_position.x)
 		if direction == 0:
 			direction = 1  # default to right if exactly aligned
 
-		character.direction = direction
-		character.horizontal_speed = direction * 1  # opcional si quieres empujón inicial
+		player.direction = direction
+		player.horizontal_speed = direction * 1  # opcional si quieres empujón inicial
 		Transitioned.emit(self, "KoopaShellSpining")

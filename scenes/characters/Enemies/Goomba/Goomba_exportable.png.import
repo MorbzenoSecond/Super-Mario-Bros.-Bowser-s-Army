@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceptr8xngdxmm"
-path="res://.godot/imported/goombas-sheet.png-c6a93d30d5db9d020cf5b501632d3a1b.ctex"
+uid="uid://cbhsmap31lkib"
+path="res://.godot/imported/Goomba_exportable.png-325dc41860d5e707a2ed87b1a82f33ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/characters/Enemies/Goomba/goombas-sheet.png"
-dest_files=["res://.godot/imported/goombas-sheet.png-c6a93d30d5db9d020cf5b501632d3a1b.ctex"]
+source_file="res://scenes/characters/Enemies/Goomba/Goomba_exportable.png"
+dest_files=["res://.godot/imported/Goomba_exportable.png-325dc41860d5e707a2ed87b1a82f33ef.ctex"]
 
 [params]
 

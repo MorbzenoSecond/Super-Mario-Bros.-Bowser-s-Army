@@ -139,8 +139,9 @@ animations = [{
 }]
 
 [sub_resource type="Curve" id="Curve_ihtnl"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.145329, 1), 0.0, 0.0, 0, 0, Vector2(0.799308, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_ihtnl"]
 offsets = PackedFloat32Array(0, 0.714829, 1)
@@ -148,7 +149,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.317, 0.317, 0.317, 1, 0.222, 0.222, 0.22
 metadata/_snap_count = 37
 
 [sub_resource type="Curve" id="Curve_d23x6"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 metadata/_snap_enabled = true
 metadata/_snap_count = 8
@@ -241,8 +242,8 @@ angular_velocity_min = -486.0
 angular_velocity_max = 288.0
 angle_min = -522.0
 angle_max = 486.0
-scale_amount_min = 15.0
-scale_amount_max = 30.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_ihtnl")
 color_ramp = SubResource("Gradient_ihtnl")
 
@@ -268,8 +269,8 @@ angular_velocity_min = -273.22
 angular_velocity_max = 386.78
 angle_min = -238.9
 angle_max = 258.2
-scale_amount_min = 20.0
-scale_amount_max = 40.0
+scale_amount_min = 6.67
+scale_amount_max = 13.33
 scale_amount_curve = SubResource("Curve_d23x6")
 color_ramp = SubResource("Gradient_3x5ku")
 

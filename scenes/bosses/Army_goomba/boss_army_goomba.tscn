@@ -426,8 +426,9 @@ animations = [{
 size = Vector2(36, 55.8333)
 
 [sub_resource type="Curve" id="Curve_bti3k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.790588, 0.918312), 0.0, 0.0, 0, 0, Vector2(0.917647, 0.235637), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.013464), 0.0, 0.0, 0, 0]
 point_count = 4
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_o73re"]
 offsets = PackedFloat32Array(0.56391, 1)
@@ -1160,7 +1161,7 @@ _data = {
 
 [node name="Boss_Army_Goomba" type="Node2D"]
 position = Vector2(0, -66)
-scale = Vector2(3.6, 3.6)
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_g0xbc")
 
 [node name="main_body" type="CharacterBody2D" parent="."]
@@ -1228,8 +1229,8 @@ angular_velocity_min = -238.93
 angular_velocity_max = 25.83
 angle_min = -238.9
 angle_max = 258.2
-scale_amount_min = 15.0
-scale_amount_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 6.67
 scale_amount_curve = SubResource("Curve_bti3k")
 color = Color(0.505882, 0.184314, 0.121569, 1)
 color_ramp = SubResource("Gradient_o73re")
@@ -1246,18 +1247,16 @@ explosiveness = 1.0
 randomness = 0.41
 fract_delta = false
 emission_shape = 3
-emission_rect_extents = Vector2(15, 0)
+emission_rect_extents = Vector2(15, 5)
 direction = Vector2(0, 1)
 spread = 124.91
-gravity = Vector2(0, -101)
-initial_velocity_min = 10.0
+gravity = Vector2(0, -30)
 initial_velocity_max = 26.04
-angular_velocity_min = -238.93
-angular_velocity_max = 25.83
+angular_velocity_max = 10.0
 angle_min = -238.9
 angle_max = 258.2
-scale_amount_min = 15.0
-scale_amount_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 6.67
 scale_amount_curve = SubResource("Curve_bti3k")
 color = Color(0.505882, 0.184314, 0.121569, 1)
 color_ramp = SubResource("Gradient_o73re")
@@ -1307,6 +1306,9 @@ script = ExtResource("10_o8m8j")
 wait_time = 0.5
 one_shot = true
 
+[node name="Timer2" type="Timer" parent="main_body/State_machine/ArmyGoombaJump"]
+wait_time = 0.2
+
 [node name="ArmyGoombaTurn" type="Node" parent="main_body/State_machine"]
 script = ExtResource("12_teoeg")
 
@@ -1343,6 +1345,7 @@ one_shot = true
 [connection signal="timeout" from="main_body/State_machine/ArmyGoombaWalk/Timer2" to="main_body/State_machine/ArmyGoombaWalk" method="_on_timer_2_timeout"]
 [connection signal="timeout" from="main_body/State_machine/ArmyGoombaSprint/Timer" to="main_body/State_machine/ArmyGoombaSprint" method="_on_timer_timeout"]
 [connection signal="timeout" from="main_body/State_machine/ArmyGoombaJump/Timer" to="main_body/State_machine/ArmyGoombaJump" method="_on_timer_timeout"]
+[connection signal="timeout" from="main_body/State_machine/ArmyGoombaJump/Timer2" to="main_body/State_machine/ArmyGoombaJump" method="_on_timer_2_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="main_body/State_machine/ArmyGoombaTurn" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="main_body/State_machine/ArmyGoombaPrepareJump" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="main_body/State_machine/ArmyGoombaFinishJump" method="_on_animation_player_animation_finished"]

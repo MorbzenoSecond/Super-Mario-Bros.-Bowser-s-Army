@@ -3,8 +3,10 @@ class_name Koopa
 
 @export var red : bool = false
 @export var shell := false
-@onready var area2d = $Area2D
+@onready var area2d = $Area2D2
 @onready var collision_koopa = $CollisionShape2D
+@onready var collision_shell = $CollisionShape2D2
+@onready var area_shell = $Area2D2/CollisionShape2D
 @onready var floor = $Floor
 @onready var animated_player = $AnimationPlayer
 @onready var particles = $CPUParticles2D
@@ -39,7 +41,7 @@ func call_child_ready():
 		else:
 			is_spining = true
 
-func die_by_block():
+func big_hit(_direction):
 	#super.die_by_block()
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	gravity = 0
@@ -50,13 +52,11 @@ func die_by_block():
 
 
 func shell_size():
-	collision_koopa.shape = collision_koopa.shape.duplicate()
-	area_collision.shape = area_collision.shape.duplicate()
-	collision_koopa.shape.size = Vector2(12,10)
-	area_collision.shape.size = Vector2(14,18)
-	collision_koopa.position.y = -6
-	area_collision.position.y = -8
-	#
+	collision_koopa.disabled = true
+	area_collision.disabled = true
+	collision_shell.disabled = false
+	area_shell.disabled = false
+
 func update_shader():
 	animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 	animated_sprite_2d.material.set_shader_parameter("red", red)

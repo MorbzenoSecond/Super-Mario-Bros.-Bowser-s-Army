@@ -11,6 +11,8 @@ var specialCoins = {
 }
 
 enum Player_mode { SMALL, BIG, FIRE }
+var global_gravity = 300.0
+
 
 func send_final_resoult():
 	for coin in specialCoins:

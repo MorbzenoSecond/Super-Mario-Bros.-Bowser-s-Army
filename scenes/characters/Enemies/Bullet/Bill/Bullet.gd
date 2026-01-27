@@ -15,8 +15,6 @@ func hit():
 	$Area2D.set_collision_layer_value(1, false)
 	$Area2D.set_collision_mask_value(1, false)
 	set_collision_mask_value(1, false)
-	await get_tree().create_timer(0.7).timeout  # Tiempo de invulnerabilidad
-	hide()
 	
 func top():
 	animated_sprite_2d.play("On_top")

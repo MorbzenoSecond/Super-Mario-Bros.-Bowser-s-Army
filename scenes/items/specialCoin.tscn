@@ -61,7 +61,7 @@ radius = 8.08462
 radius = 10.3333
 
 [node name="specialCoin" type="CharacterBody2D" groups=["coins"]]
-scale = Vector2(9, 9)
+scale = Vector2(3, 3)
 collision_layer = 0
 motion_mode = 1
 floor_snap_length = 1.2

@@ -20,8 +20,8 @@ var mario_touch_pos
 func _ready() -> void:
 	if distance == 0:
 		distance = 1
-	flag.position.y = (-distance * 64) 
-	pole.position.y = (-distance * 64) 
+	flag.position.y = (-distance * 22) 
+	pole.position.y = (-distance * 22) 
 	
 	# Obtenemos la posición global del flag y de la base
 	global_flag_pos = Vector2(pole.global_position.x + 15,pole.global_position.y) 

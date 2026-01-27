@@ -1,6 +1,6 @@
 extends State
 class_name PlayerInWall
-var lateralJump = -400
+var lateralJump = -135
 
 func Enter() -> void: 
 	player.get_current_sprite().play("mario_in_wall")
@@ -36,4 +36,4 @@ func Physics_Update(delta: float) -> void:
 
 
 func Exit() -> void:
-	player.GRAVITY = 900.0
+	player.GRAVITY = GameState.global_gravity

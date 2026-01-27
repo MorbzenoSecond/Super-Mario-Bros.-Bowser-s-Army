@@ -3,11 +3,16 @@ var last_position : Vector2
 @onready var collision = $CollisionShape2D
 var sprite
 
-func disarm():
+func disarm(direction):
 	$CollisionShape2D.call_deferred("set_disabled", false)
-	linear_velocity.y = -450
-	linear_velocity.x = randf_range(-80,80)
-	gravity_scale = 1
+	linear_velocity.y = randf_range(-140,-280)
+	if direction == 1:
+		linear_velocity.x = randf_range(40,80)
+	elif direction == -1:
+		linear_velocity.x = randf_range(-40,-80)
+	else:
+		linear_velocity.x = randf_range(-40,40)
+	gravity_scale = 0.75
 
 func prepare_rearm():
 	gravity_scale = 0

@@ -1,16 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwxxea211osfr"]
+[gd_scene load_steps=9 format=3 uid="uid://cwxxea211osfr"]
 
 [ext_resource type="Script" uid="uid://bpycmrolnwdld" path="res://scenes/maps mechanics/things/final_flag.gd" id="1_b0tyi"]
 [ext_resource type="Texture2D" uid="uid://bnmb70eioaeme" path="res://assets/sprites/things sprite/banderas_bowser.png" id="2_idfsd"]
 [ext_resource type="Texture2D" uid="uid://bi0klhw1ybxlo" path="res://assets/sprites/things sprite/banderas_mario.png" id="3_p3pj3"]
 [ext_resource type="Texture2D" uid="uid://dybyhhhfr73th" path="res://assets/sprites/pole.png" id="4_p3pj3"]
 
-[sub_resource type="Shader" id="Shader_88c0q"]
-resource_local_to_scene = true
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idfsd"]
-render_priority = 0
-shader = SubResource("Shader_88c0q")
 
 [sub_resource type="Gradient" id="Gradient_kx7vc"]
 interpolation_mode = 2
@@ -26,31 +21,31 @@ height = 6
 fill_to = Vector2(0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0tyi"]
+size = Vector2(7, 7)
 
 [node name="FinalFlag" type="Node2D"]
-position = Vector2(2, 0)
+position = Vector2(-12, -227)
 script = ExtResource("1_b0tyi")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -36.0
-offset_top = 428.0
-offset_right = 32.0
-offset_bottom = 494.0
+offset_left = -7.0
+offset_top = 235.0
+offset_right = 13.0
+offset_bottom = 255.0
 color = Color(0.377804, 0.16654, 0.16654, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource("ShaderMaterial_idfsd")
-position = Vector2(-414, -78)
-points = PackedVector2Array(412, 506, 412, 506)
-width = 20.0
+position = Vector2(-402, -325)
+points = PackedVector2Array(405, 560)
+width = 7.0
 texture = SubResource("GradientTexture2D_idfsd")
 texture_mode = 2
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-position = Vector2(-1, 378)
+position = Vector2(3, 224)
 shape = SubResource("RectangleShape2D_b0tyi")
-target_position = Vector2(1, -428)
+target_position = Vector2(0, -217)
 max_results = 100
 collision_mask = 4
 collide_with_areas = true
@@ -60,19 +55,19 @@ collide_with_bodies = false
 wait_time = 10.0
 
 [node name="BanderasBowser" type="Sprite2D" parent="."]
-scale = Vector2(4.60714, 4.5)
+position = Vector2(0, 3)
+scale = Vector2(1.536, 1.5)
 texture = ExtResource("2_idfsd")
 offset = Vector2(15.9535, 10.6111)
 
 [node name="BanderasMario" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(73.5, 456.875)
-scale = Vector2(4.60714, 4.33824)
+scale = Vector2(1.536, 1.446)
 texture = ExtResource("3_p3pj3")
 
 [node name="Pole" type="Sprite2D" parent="."]
-position = Vector2(-2, 0)
-scale = Vector2(3, 3)
+position = Vector2(3, 3)
 texture = ExtResource("4_p3pj3")
 offset = Vector2(0, -3)
 

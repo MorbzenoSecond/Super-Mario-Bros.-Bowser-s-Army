@@ -2,7 +2,7 @@ extends State
 class_name KoopaShellSpining
 
 var player_mode = "BIG"
-var shell_speed = 400
+var shell_speed = 135
 var turn := true
 @onready var timer = $Timer
 func Enter():
@@ -11,7 +11,6 @@ func Enter():
 	character.animated_sprite_2d.play("green_spining_shell")
 
 func Physics_Update(delta: float) -> void:
-	
 	var character = owner
 	character.turn_cooldown -= delta
 
@@ -25,49 +24,51 @@ func Physics_Update(delta: float) -> void:
 	# Manejo de colisión con bloque
 	if character.ray_cast_front.is_colliding():
 		var collider = character.ray_cast_front.get_collider()
-
+		print(collider)
 		# Si colisiona con un bloque, activarlo
 		if character.turn_cooldown <= 0:
 			if collider is Block:
 				collider.bump(Player.PlayerMode.FIRE, "up")
+				change_direction(character)
 			elif collider is Player:
+				print("heloosaodsaadsads")
 				return
 			elif collider is Enemy:
 				for body in character.area2d.get_overlapping_bodies():
 					if body is Enemy and body != character:
-						body.die_by_block()
+						body.big_hit(sign(body.global_position.x - player.global_position.x))
 				return  # no giramos
-
-			# Gira
-			character.direction *= -1
-			character.ray_cast_front.scale.x = -sign(character.horizontal_speed)
-			character.ray_cast_back.scale.x = -sign(character.horizontal_speed)
-			character.animated_sprite_2d.flip_h = -character.horizontal_speed < 0
-			character.turn_cooldown = character.TURN_DELAY
+			else:
+				change_direction(character)
 
 	if character.ray_cast_back.is_colliding():
 		var collider = character.ray_cast_back.get_collider()
-
+		print(collider)
 		# Si colisiona con un bloque, activarlo
 		if character.turn_cooldown <= 0:
 			if collider is Block:
 				collider.bump(Player.PlayerMode.FIRE, "up")
+				change_direction(character)
 			elif collider is Player:
+				print("heloosaodsaadsads")
 				return
 			elif collider is Enemy:
 				for body in character.area2d.get_overlapping_bodies():
 					if body is Enemy and body != character:
-						body.die_by_block()
+						body.big_hit(sign(body.global_position.x - player.global_position.x))
 				return  # no giramos
-
-			# Gira
-			character.direction *= -1
-			character.ray_cast_front.scale.x = -sign(character.horizontal_speed)
-			character.ray_cast_back.scale.x = -sign(character.horizontal_speed)
-			character.animated_sprite_2d.flip_h = -character.horizontal_speed < 0
-			character.turn_cooldown = character.TURN_DELAY
+			else:
+				change_direction(character)
 
 	if !character.is_spining:
 		character.velocity.x = 0
 		character.particles.emitting = false
 		Transitioned.emit(self, "KoopaShell")
+
+
+func change_direction(character):
+	character.direction *= -1
+	character.ray_cast_front.scale.x = -sign(character.horizontal_speed)
+	character.ray_cast_back.scale.x = -sign(character.horizontal_speed)
+	character.animated_sprite_2d.flip_h = -character.horizontal_speed < 0
+	character.turn_cooldown = character.TURN_DELAY

@@ -6,6 +6,7 @@ var original_positions = {}
 var body_parts = {}
 
 func _ready() -> void:
+	$AnimationPlayer.play("walking")
 	super._ready()
 
 	body_parts = $BodyParts.get_children()
@@ -17,12 +18,6 @@ func _ready() -> void:
 func all_die():
 	hit()
 
-func _process(delta: float) -> void:
-	if sign(horizontal_speed) > 0 and !muerto:
-		$AnimationPlayer.play("walking_2")
-	elif sign(horizontal_speed) < 0 and !muerto:
-		$AnimationPlayer.play("walking")
-
 func _physics_process(delta: float) -> void:
 	if muerto:
 		return
@@ -30,8 +25,13 @@ func _physics_process(delta: float) -> void:
 	velocity.x = horizontal_speed
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	# Detectar colisión frontal para girar
-	if ray_cast_front.is_colliding():
+
+	if ray_cast_front.is_colliding() and turn_cooldown <= 0:
+		orientar_personaje(-1)
+		super._turn()
+
+	if ray_cast_back.is_colliding() and turn_cooldown <= 0:
+		orientar_personaje(-1)
 		super._turn()
 
 	if ray_cast_back.is_colliding() and ray_cast_front.is_colliding() and not muerto:
@@ -46,8 +46,21 @@ func die_by_block():
 func call_child_active():
 	pass
 
+func big_hit(direction):
+	turn_off()
+	for part in body_parts:
+		var global_pos = part.global_position    
+		part.global_position = global_pos 
+		part.disarm(direction)      
+
 func hit():
-	super.hit()
+	turn_off()
+	for part in body_parts:
+		var global_pos = part.global_position    
+		part.global_position = global_pos 
+		part.disarm(0)      
+
+func turn_off():
 	sound.stream = load("res://scenes/characters/Enemies/Dry bones/GUESS_SE_O_KRN_Crash.wav")
 	sound.play()
 	$AnimationPlayer.play("RESET")
@@ -56,10 +69,6 @@ func hit():
 	$CollisionShape2D.set_deferred("disabled", true)
 	muerto = true
 	$Timer.start()
-	for part in body_parts:
-		var global_pos = part.global_position    
-		part.global_position = global_pos 
-		part.disarm()      
 
 func regroup():
 	sound.stream = load("res://scenes/characters/Enemies/Dry bones/GUESS_SE_O_KRN_Reborn.wav")
@@ -83,4 +92,8 @@ func _on_timer_2_timeout() -> void:
 	$CollisionShape2D.set_deferred("disabled", false)
 	$Area2D.set_deferred ("monitoring", true)
 	$Area2D.set_deferred("monitorable", true)
+	$AnimationPlayer.play("walking")
 	muerto = false
+
+func orientar_personaje(direccion: int):
+	scale.x = direccion

@@ -6,6 +6,7 @@ class_name Shroom
 
 func _ready() -> void:
 	super._ready()
+	$Timer.start()
 	animarion.play("fully")
 
 func _physics_process(delta: float) -> void:
@@ -18,3 +19,6 @@ func _physics_process(delta: float) -> void:
 
 func spawn(direction):
 	super.spawn(direction)
+
+func _on_timer_timeout() -> void:
+	super.scale_bounce()

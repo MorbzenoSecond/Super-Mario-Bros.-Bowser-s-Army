@@ -7,7 +7,7 @@ func Enter() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func Physics_Update(_delta: float) -> void:
-	if player.global_position.y > player.initial_position.y - 120:
+	if player.global_position.y > player.initial_position.y - 40:
 		var pos_root: Vector2 = player.global_position
 
 		pos_root.y -= 0.8

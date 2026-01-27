@@ -35,17 +35,17 @@ func _ready() -> void:
 	base_angle = head.rotation
 
 func _physics_process(delta: float) -> void:
-
-	if !is_inside and is_in_area:
-		dir = mario.global_position - head.global_position
-		mario_locket = true
-	else:
-		dir = $Marker2D.global_position - head.global_position
-		mario_locket = false
-	var target_angle = -dir.angle() + PI / 2 
-
-	target_angle = clamp_angle(target_angle)
-	head.rotation = lerp_angle(head.rotation, target_angle, max_turn_speed * delta)
+	pass
+	#if !is_inside and is_in_area:
+		#dir = mario.global_position - head.global_position
+		#mario_locket = true
+	#else:
+		#dir = $Marker2D.global_position - head.global_position
+		#mario_locket = false
+	#var target_angle = -dir.angle() + PI / 2 
+#
+	#target_angle = clamp_angle(target_angle)
+	#head.rotation = lerp_angle(head.rotation, target_angle, max_turn_speed * delta)
 
 func clamp_angle(angle: float) -> float:
 	var wrapped = wrapf(angle, -PI, PI)

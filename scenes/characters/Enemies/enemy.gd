@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var horizontal_speed := -30
-@export var gravity := 600.0
+@export var horizontal_speed := -10
+@export var gravity = GameState.global_gravity
 @onready var ray_cast_front = $Front
 @onready var ray_cast_back = $Back
 @onready var death = $die
@@ -16,7 +16,7 @@ var initial_direction:=-1
 var world:Node2D
 
 var turn_cooldown := 0.0
-const TURN_DELAY := 0.2
+const TURN_DELAY := 1
 
 const MESSAGE_SCENE = preload("res://usefull gd/in_game_message.tscn")
 
@@ -29,9 +29,9 @@ func _ready() -> void:
 	$Area2D.monitorable = true
 	$Area2D.monitoring = true
 
-func all_die():
-	if is_active:
-		hit()
+#func all_die():
+	#if is_active:
+		#hit()
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -45,13 +45,14 @@ func _turn():
 	turn_cooldown = TURN_DELAY
 
 func hit():
+	call_child_ready()
+
+func point_score(points):
 	var message = MESSAGE_SCENE.instantiate()
 	var level = get_tree().current_scene
 	level.add_child(message)
-	message.global_position = global_position + Vector2(0, -60)
-	message.setup(null, 200)
-
-	call_child_ready()
+	message.global_position = $AnimatedSprite2D.global_position + Vector2(0, -30)
+	message.setup(null, points)
 
 func call_child_ready():
 	pass
@@ -71,7 +72,7 @@ func active():
 	$CollisionShape2D.set_deferred("disabled", false)
 	$Area2D.set_deferred("monitoring", true)
 	$Area2D.set_deferred("monitorable", true)
-	horizontal_speed = -60
+	horizontal_speed = -20
 	animated_sprite_2d.flip_h = -horizontal_speed < 0
 	ray_cast_front.scale.x = -sign(horizontal_speed)
 	ray_cast_back.scale.x = -sign(horizontal_speed)

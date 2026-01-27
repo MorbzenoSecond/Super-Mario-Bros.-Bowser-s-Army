@@ -59,10 +59,10 @@ func create_lines(last_point, new_point):
 	line.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	line.begin_cap_mode = Line2D.LINE_CAP_BOX
 	line.end_cap_mode = Line2D.LINE_CAP_BOX
-	line.scale =  Vector2(0.3,0.3)
+	#line.scale =  Vector2(0.3,0.3)
 	line.add_point(line.to_local(last_point))
 	line.add_point(line.to_local(new_point))
-	line.width = 100
+	line.width = 30
 	line.scale
 	$lines.add_child(line)
 	#print("line_position: ", line.get_point_position(1))

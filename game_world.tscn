@@ -38,6 +38,9 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="Environment" id="Environment_mcbma"]
+background_energy_multiplier = 8.53
+ambient_light_energy = 5.39
+sdfgi_enabled = true
 
 [node name="GameWorld" type="Node2D" groups=["gameWorld"]]
 script = ExtResource("1_bvgre")
@@ -50,7 +53,6 @@ enabled = false
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["music"]]
 process_mode = 3
 stream = ExtResource("2_mcbma")
-pitch_scale = 1.25
 
 [node name="EffectMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -94,3 +96,4 @@ script = SubResource("GDScript_mcbma")
 environment = SubResource("Environment_mcbma")
 
 [node name="WorldPlayer" parent="." instance=ExtResource("5_e3xe6")]
+position = Vector2(57, 30)

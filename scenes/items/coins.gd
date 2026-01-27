@@ -61,8 +61,8 @@ func grab(going_up:bool):
 	message.setup(null, 200)
 
 	var tween = create_tween()
-	tween.tween_property(self, "global_position", Vector2(global_position.x,global_position.y - 150 * direction), 0.4).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "global_position", Vector2(global_position.x,global_position.y + 30 * direction), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", Vector2(global_position.x,global_position.y - 50 * direction), 0.4).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", Vector2(global_position.x,global_position.y + 10 * direction), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(self, "modulate", Color("ffffff00"), 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	await tween.finished
 
@@ -74,8 +74,8 @@ func _fall_by_force():
 func throw_random():
 	if can_be_pushed_down:
 		set_process(false)
-		gravity = 900.0
+		gravity = GameState.global_gravity
 		collision.disabled = false
 		var angle = randf_range(-PI / 4, -3 * PI / 4)
-		var speed = randf_range(150.0, 200.0)       
+		var speed = randf_range(50.0, 70.0)       
 		velocity = Vector2.RIGHT.rotated(angle) * speed

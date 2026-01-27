@@ -38,11 +38,11 @@ func  _process(_delta: float) -> void:
 		if Input.is_action_pressed("Up"):
 			DialogueManager.show_dialogue_balloon(load(dialogue), "start", [self])
 			dialogue_started = true
-	if player_is_in:
-		if player.global_position.x > self.global_position.x:
-			sprite.flip_h = true
-		else:
-			sprite.flip_h = false
+	#if player_is_in:
+		#if player.global_position.x > global_position.x:
+			#sprite.flip_h = true
+		#else:
+			#sprite.flip_h = false
 
 func play_noises(seconds: float, animation: String):
 	noise.play()

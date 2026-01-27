@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://0kxfy56m6mix"]
+[gd_scene load_steps=21 format=3 uid="uid://0kxfy56m6mix"]
 
 [ext_resource type="Script" uid="uid://bgo6lpftl1w2l" path="res://star.gd" id="1_e2x7v"]
-[ext_resource type="Texture2D" uid="uid://q6cf6h2seqax" path="res://assets/sprites/things sprite/MUSHROOM.png" id="2_c2gop"]
 [ext_resource type="Shader" uid="uid://cs5hwm4igu0hi" path="res://assets/shaders/shine.gdshader" id="2_d7oe7"]
 [ext_resource type="AudioStream" uid="uid://c3ufvqnhqpjd2" path="res://assets/sounds/star_appears.wav" id="3_c2gop"]
+[ext_resource type="Texture2D" uid="uid://clkoj4tt6eej7" path="res://assets/sprites/things sprite/Powerups.png" id="3_d7oe7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujs67"]
 size = Vector2(10, 12)
@@ -70,38 +70,43 @@ shader = ExtResource("2_d7oe7")
 shader_parameter/shine_color = Color(1, 1, 1, 1)
 shader_parameter/shine_progress = 0.5
 shader_parameter/shine_size = 1.0
-shader_parameter/shine_angle = 45.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7oe7"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(33, 21, 14, 15)
+shader_parameter/shine_angle = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvwch"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(81, 21, 14, 15)
+atlas = ExtResource("3_d7oe7")
+region = Rect2(1, 29, 16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi5u8"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(129, 21, 14, 15)
+atlas = ExtResource("3_d7oe7")
+region = Rect2(17, 29, 16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ar2v"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(177, 21, 14, 15)
+atlas = ExtResource("3_d7oe7")
+region = Rect2(33, 29, 16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynkmc"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(225, 21, 14, 15)
+atlas = ExtResource("3_d7oe7")
+region = Rect2(49, 29, 16, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktok1"]
-atlas = ExtResource("2_c2gop")
-region = Rect2(273, 21, 14, 15)
+atlas = ExtResource("3_d7oe7")
+region = Rect2(65, 29, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro5ko"]
+atlas = ExtResource("3_d7oe7")
+region = Rect2(81, 29, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou736"]
+atlas = ExtResource("3_d7oe7")
+region = Rect2(97, 29, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frsb1"]
+atlas = ExtResource("3_d7oe7")
+region = Rect2(113, 29, 16, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ro5ko"]
 animations = [{
 "frames": [{
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_d7oe7")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dvwch")
 }, {
@@ -116,15 +121,24 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ktok1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro5ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou736")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frsb1")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 12.5
 }]
 
 [node name="Star" type="CharacterBody2D"]
 physics_interpolation_mode = 2
-scale = Vector2(3.45, 2)
+scale = Vector2(1.15, 0.667)
 collision_layer = 524288
 collision_mask = 524288
 script = ExtResource("1_e2x7v")
@@ -154,7 +168,7 @@ hit_from_inside = true
 material = SubResource("ShaderMaterial_e2x7v")
 position = Vector2(0, 0.5)
 sprite_frames = SubResource("SpriteFrames_ro5ko")
-frame_progress = 0.151606
+frame_progress = 0.900963
 
 [node name="Down" type="RayCast2D" parent="."]
 target_position = Vector2(0, 7.33333)
@@ -165,5 +179,10 @@ stream = ExtResource("3_c2gop")
 volume_db = 8.0
 autoplay = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.4
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

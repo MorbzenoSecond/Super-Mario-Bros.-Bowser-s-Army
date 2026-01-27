@@ -14,7 +14,6 @@ func Physics_Update(delta : float):
 
 	# Detectar colisión frontal para girar
 	if character.ray_cast_front.is_colliding():
-		print(character.floor.position.x)
 		character.horizontal_speed *= -1
 		character.ray_cast_front.scale.x = -sign(character.horizontal_speed)
 		character.floor.position.x = -character.floor.position.x 

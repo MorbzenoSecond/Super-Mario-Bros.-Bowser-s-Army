@@ -3,8 +3,14 @@ extends Bullet
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():
-	sprite.play("default")  # 🔥 Inicia la animación
+	sprite.play("default")
 	gravity_scale = 0
+
+
+
+func _physics_process(delta):
+	if linear_velocity.length() > 0.1:
+		rotation = linear_velocity.angle()
 
 func _on_timer_timeout() -> void:
 	z_index = 2
